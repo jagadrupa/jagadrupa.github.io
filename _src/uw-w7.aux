@@ -1,0 +1,51 @@
+\relax 
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Synaptic Plasticity and Learning}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Where We Are}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Two Experimental Facts: LTP and LTD}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Hebb's Rule}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}The Average Effect of the Hebb Rule}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}The Covariance Rule}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Are These Rules Stable?}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Both unstable rules grow as straight lines on a log axis --- that is exponential growth --- reaching $\|\mathbf  {w}\|\sim 10^3$ within 15{,}000 updates. Oja's rule settles at $1/\sqrt  {\alpha }$ and stays there.}}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Oja's Rule}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}What Does Hebbian Learning Actually Do?}{8}{}\protected@file@percent }
+\newlabel{sec:pca}{{8}{8}{What Does Hebbian Learning Actually Do?}{section.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Left: both coefficients grow without bound. Right: what matters is their \emph  {ratio} --- the share of $\mathbf  {w}$ lying along $\mathbf  {e}_1$ goes to 1, so the direction converges even though the length does not.}}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}The Brain Can Do Statistics}{9}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The same three cases, simulated. Dashed blue is the true direction of maximum variance; the solid line is where the rule actually converged. Left and right land on it (within $0.1^\circ $ and $4^\circ $); the middle panel misses it by $90^\circ $.}}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Where PCA Fails}{10}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Simulated. The learnt direction runs between the two clusters, describing neither, and passes through a region containing almost no data.}}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Where This Leaves Us}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Competitive Learning and Unsupervised Learning}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Representing Clusters with Neurons}{12}{}\protected@file@percent }
+\newlabel{sec:closest}{{12}{12}{Representing Clusters with Neurons}{section.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13}Updating the Weights}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}The Competitive Learning Algorithm}{13}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Competitive learning run on three blobs. Weights start in the wrong places; after 1500 single-input updates each sits on a cluster centre, within $0.09$--$0.13$ of the true one. Colours show which neuron owns which points.}}{14}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A third unit initialised away from the data. After 1500 inputs it has moved a distance of exactly $0$ and owns $0$ points, and the remaining two units are left to cover three clusters.}}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {15}Self-Organising Maps}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {16}Two Models, and a Question}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {17}Generative Models}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {18}Clustering as a Mixture of Gaussians}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {19}The EM Algorithm}{17}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The same overlapping data under both schemes. Winner-take-all splits them along a hard line; EM leaves a band of pale, genuinely ambiguous points --- $63$ of $360$ have a posterior between $0.1$ and $0.9$.}}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {20}EM in Action}{18}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces EM on the two-cluster data, from a deliberately poor start. Dashed lines trace each mean; circles are two standard deviations. By iteration 50 the means and widths have both converged.}}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {21}Where This Leaves Us}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Sparse Coding and Predictive Coding}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {22}Eigenvectors Strike Again}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Patches built from localised bars, then analysed two ways. PCA returns global, wave-like patterns; sparse coding recovers single bars. Measuring the fraction of each basis vector's energy falling in its best single row or column: true parts $1.000$, PCA $0.357$, sparse coding $0.915$. Signs are arbitrary in sparse coding, so some bars come out dark.}}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {23}A Linear Model with Better Basis Vectors}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {24}The Generative Model: Likelihood}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {25}The Generative Model: A Sparse Prior}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The same three, computed. On the log axis the Gaussian is a parabola that plunges, while the sparse priors fall away far more gently --- which is exactly what a heavy tail is.}}{23}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {26}The Bayesian Objective}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Sweeping the weight on the sparseness term. Reconstruction error rises monotonically as the code is forced to be sparser --- from error $0.13$ with a quarter of coefficients near zero, to $1.68$ with all of them. There is no setting that is best at both.}}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Why following the gradient works from either side: left of the peak the slope is positive and $v$ increases; right of it the slope is negative and $v$ decreases.}}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {27}Maximising $F$ by Gradient Ascent}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {28}Step 1: The Recurrent Network}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {29}Step 2: Learning $G$}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {30}What the Network Learns}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {31}Predictive Coding}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {32}Where This Leaves Us}{28}{}\protected@file@percent }
+\gdef \@abspage@last{28}

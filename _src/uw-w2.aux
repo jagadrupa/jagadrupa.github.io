@@ -1,0 +1,50 @@
+\relax 
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}What Is the Neural Code?}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}The Question}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Recording from the Brain}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}A First Look at the Code: the Retina}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Raster plot and PSTH.} Each row is one repetition of the same stimulus and each tick is a spike, so the vertical axis is \emph  {trial}, not neuron. Where the cell responds reliably the ticks line up into a vertical band; a weaker response gives a ragged, partly-filled band. Summing down the columns gives the PSTH below.}}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Encoding and Decoding}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Choosing a Stimulus Parameter}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Tuning Curves}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {Two tuning curves.} Left: a V1 neuron's firing rate against bar orientation traces a Gaussian bump around its preferred orientation. Right: a motor cortical neuron's rate against reach direction traces a full cosine, because direction wraps around a circle and the cell is broadly tuned. Points are simulated measurements; curves are the fitted forms in the text.}}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Functional Maps}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Higher-Order Feature Selectivity}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}A Hierarchy of Complexity --- and Its Limits}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Building a Response Model}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Setting Up the Problem}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}The Simplest Possible Model: Linear Response}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Temporal Filtering}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Spatial Filtering}{11}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Filtering smooths.} A white-noise stimulus (top) convolved with a decaying filter (middle) gives the response (bottom). Each output point is a weighted sum over a window of recent input, so rapid fluctuations average out and only slower structure survives.}}{12}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Two filter shapes.} The running average weights the last $n$ steps equally at height $1/n$ and everything else at zero. The leaky average weights recent input heavily and older input less and less --- a leaky integrator, which is how a cell membrane behaves.}}{12}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Centre--surround as a filter.} Left: a narrow positive Gaussian minus a broader, shallower one. Right: the same weights drawn as a surface over the two spatial coordinates --- a positive peak in the middle, a negative moat around it.}}{13}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {The filter detects change, not brightness.} Applying a difference of Gaussians to a synthetic image leaves only the boundaries. Inside a region of constant intensity the positive centre and negative surround cancel; at an edge they see different values and the cancellation fails.}}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}Spatiotemporal Filtering}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {15}Why a Linear Filter Cannot Be the Whole Story}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {16}The Linear--Nonlinear Model}{15}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {The linear--nonlinear model.} The stimulus is projected onto a filter $f$, collapsing its whole recent history into one number; that number passes through a fixed input/output function $g$, which clamps the output at zero below and saturates it above.}}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Finding the Model from Data}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {17}The Problem Is Dimensionality}{16}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {A stimulus is a point in a high-dimensional space.} Sampling a waveform at $n$ times gives $n$ numbers, and those are coordinates: one axis per time point. The filter $f$ lives in the same space, and filtering projects the stimulus onto it --- turning $n$ dimensions into one.}}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {18}Why White Noise?}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {19}The Spike-Triggered Average}{17}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces \textbf  {The STA, geometrically.} Red: all stimuli (the prior). Blue: only those that preceded a spike. Their centre of mass (green) is displaced from the origin, and that displacement is the spike-triggered average --- the neuron's preferred feature.}}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {20}Recovering the Nonlinearity}{18}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces \textbf  {The nonlinearity is a ratio of two histograms.} Left: prior and spike-conditional distributions nearly coincide, so their ratio (dashed) is flat --- the filter tells you nothing. Middle: they separate, and the ratio acquires a threshold. Right: that ratio, rescaled, is $g$.}}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {21}Multiple Features: Principal Component Analysis}{19}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces \textbf  {Where the STA fails.} If a cell responds to a feature \emph  {and} its negative, the spike-triggering stimuli form two opposite lobes. Their mean sits at the origin (left), so the STA looks like nothing. The covariance still finds the axis they lie along (right).}}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {22}Maximally Informative Dimensions}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces \textbf  {Maximally informative dimensions.} For each candidate filter, project all stimuli (red) and the spike-triggering ones (blue) onto it and measure how different the two distributions are. $f_1$ separates them; $f_2$ barely does. The search keeps the direction maximising $D_{\mathrm  {KL}}$.}}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}From Firing Rates to Spikes}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {23}The Assumption We Have Been Hiding}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {24}From Coin Flips to the Poisson Distribution}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces \textbf  {The Poisson distribution at three rates.} At a low rate it is almost exponential, with zero spikes the most likely outcome; as the rate rises it becomes increasingly Gaussian-looking.}}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {25}Testing It Against Real Data}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces \textbf  {The Fano factor in data.} Splitting an MT recording into short windows and plotting each window's spike-count variance against its mean: the points follow the line of slope 1. Even as the rate changes over time, within each chunk the response looks Poisson.}}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {26}Generalized Linear Models}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces \textbf  {Interspike intervals.} A Poisson process gives exponentially distributed intervals (left), which appear as a straight line on a log count axis (middle). A real neuron departs from this at short intervals: the refractory period carves a hole near zero (right).}}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces \textbf  {The post-spike filter.} After each spike this waveform is fed back into the neuron's own input. A pure dip implements refractoriness. The filter used in practice dips, then rises above zero, promoting a spike a little later --- giving the cell a tendency to fire rhythmically.}}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {27}The Time-Rescaling Theorem}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {28}What These Models Leave Out}{27}{}\protected@file@percent }
+\gdef \@abspage@last{28}
