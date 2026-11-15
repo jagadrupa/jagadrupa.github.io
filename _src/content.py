@@ -34,6 +34,8 @@ CERTS = {
                  "certificates/uchicago-brain", "https://coursera.org/verify/6UDPHE85PSS3"),
     "yale": ("Introduction to Psychology", "Yale University", "19 Jul 2020", "2020-07-19",
              "certificates/yale-psychology", "https://coursera.org/verify/DR5BAPD97DNZ"),
+    "cam_cog": ("Introduction to Cognitive Psychology and Neuropsychology", "University of Cambridge", "11 Nov 2026", "2026-11-11",
+                "certificates/cambridge-cognitive-psychology", "https://coursera.org/verify/KLZF03C12VAA"),
     "cam_dm": ("The Neuropsychology of Decision Making", "University of Cambridge", "12 Nov 2026", "2026-11-12",
                "certificates/cambridge-decision-making", "https://coursera.org/verify/DHLJY1GK73T3"),
     "cam_em": ("The Psychology of Emotions: An Introduction to Embodied Cognition", "University of Cambridge", "13 Nov 2026", "2026-11-13",
@@ -205,6 +207,10 @@ FMRI2 = [("cognition", M, "Psychological and behavioural inference, and advanced
          ("brain", M, "Multi-voxel pattern analysis")]
 NEUROHACK = [("brain", M, "Introduction"), ("brain", M, "Neuroimaging: formats and visualization"),
              ("brain", M, "Image processing"), ("brain", M, "Extended image processing")]
+CAM_COG_URL = "https://www.coursera.org/learn/introduction-to-cognitive-psychology-and-neuropsychology"
+CAM_COG = [("cognition", M, "What is cognitive psychology? History and core debates"), ("cognition", M, "How do we measure the mind? Research methods"),
+           ("cognition", M, "The psychology of human language"), ("cognition", M, "Memory, perception and cross-modal interactions"),
+           ("cognition", M, "Attention, consciousness and free will")]
 CAM_DM_URL = "https://www.coursera.org/learn/neuropsychology-of-decision-making"
 CAM_DM = [("brain", M, "Introduction to neuroanatomy and neurodevelopment"),
           ("brain", M, "The importance of the prefrontal cortex"),
@@ -251,6 +257,8 @@ COURSES = [
       summary="The foundations of fMRI: how the signal is acquired and pre-processed, and how experiments are designed and analysed with the General Linear Model.", graphic="rail", demos=[]),
  dict(id="jhu-principles-of-fmri-2", title="Principles of fMRI 2", provider="Johns Hopkins University · Coursera", tutors="Martin Lindquist, Tor Wager", status="cert", cert="fmri2", url="https://www.coursera.org/learn/functional-mri-2", outcomes=FMRI2, kind="syllabus",
       summary="Advanced fMRI analysis: efficient experimental design, brain connectivity and multi-voxel pattern analysis.", graphic="rail", demos=[]),
+ dict(id="cambridge-cognitive-psychology", title="Introduction to Cognitive Psychology and Neuropsychology", provider="University of Cambridge · Coursera", tutors="Giulia Mangiaracina", status="cert", cert="cam_cog", url=CAM_COG_URL, outcomes=CAM_COG, kind="syllabus",
+      summary="How human cognition is studied, and how memory, language, attention and perception work.", graphic="rail", demos=[]),
  dict(id="cambridge-neuropsychology-of-decision-making", title="The Neuropsychology of Decision Making", provider="University of Cambridge · Coursera", tutors="Stacey Bedwell", status="cert", cert="cam_dm", url=CAM_DM_URL, outcomes=CAM_DM, kind="syllabus",
       summary="How the prefrontal cortex, neurotransmitter systems and early experience shape the way people make decisions.", graphic="rail", demos=[]),
  dict(id="cambridge-psychology-of-emotions", title="The Psychology of Emotions: An Introduction to Embodied Cognition", provider="University of Cambridge · Coursera", tutors="Giulia Mangiaracina", status="cert", cert="cam_em", url=CAM_EM_URL, outcomes=CAM_EM, kind="syllabus",
@@ -347,6 +355,8 @@ CERT_META = {
               skills=["Magnetic Resonance Imaging", "Medical Imaging", "Image Analysis", "Statistical Analysis", "Research Design", "Anatomy", "Neurology", "Data Preprocessing"]),
  "yale": dict(major="psych", url=YALE_URL, summary="The scientific study of thought and behaviour, from development to mental illness.",
               skills=["Psychology", "Learning Theory", "Human Learning", "Human Development", "Child Development", "Mental Health Diseases and Disorders", "Psychotherapy", "Cognitive Behavioral Therapy", "Critical Thinking", "Problem Solving"]),
+ "cam_cog": dict(major="psych", url=CAM_COG_URL, summary="How cognition is studied, and how memory, language, attention and perception work.",
+                 skills=["Psychology", "Research Methodologies", "Learning Theory", "Human Learning", "Magnetic Resonance Imaging", "Research"]),
  "cam_em": dict(major="psych", url=CAM_EM_URL, summary="How emotions are felt, studied and recognised in other people.",
                 skills=["Psychology", "Research Methodologies", "Research", "Non-Verbal Communication"]),
  "ph125": dict(major="ml", url="https://www.edx.org/learn/machine-learning/harvard-university-data-science-machine-learning", summary="Cross-validation, regularisation, common algorithms and a recommendation system, in R.",
@@ -479,14 +489,14 @@ TREE = [
  ]),
 ]
 CERT_GROUP = {"uchicago": "neuro/fund", "uw": "neuro/comp", "jhu": "neuro/imaging", "fmri1": "neuro/imaging", "fmri2": "neuro/imaging", "nh": "neuro/imaging", "spec": "neuro/imaging",
-              "yale": "neuro/psych", "cam_em": "neuro/psych", "cam_dm": "neuro/psych", "ph125": "dl/ml",
+              "yale": "neuro/psych", "cam_cog": "neuro/psych", "cam_em": "neuro/psych", "cam_dm": "neuro/psych", "ph125": "dl/ml",
               "gentech": "bioinf/courses", "pygen": "bioinf/courses", "galaxy": "bioinf/courses", "dnaseq": "bioinf/courses", "bigdata": "bioinf/courses", "gut": "bioinf/courses", "covid": "bioinf/courses",
               "biotech": "biotech/applied", "drug": "biotech/applied", "stem": "biotech/applied", "permed": "biotech/applied"}
 AUDIT_GROUP = ["neuro/fund", "neuro/fund", "neuro/fund", "neuro/comp", "dl/keras", "dl/pytorch", "dl/pytorch", "dl/keras", "dl/pytorch"]
 # Module names as listed on the course pages
 CERT_MODULES = {
  "uw": ["Introduction and basic neurobiology", "Neural encoding models", "Neural decoding", "Information theory and neural coding", "Computing in carbon", "Computing with networks", "Plasticity in the brain and learning", "Learning from supervision and rewards"],
- "uchicago": [o[2] for o in UCHICAGO], "yale": [o[2] for o in YALE], "cam_dm": [o[2] for o in CAM_DM], "cam_em": [o[2] for o in CAM_EM],
+ "uchicago": [o[2] for o in UCHICAGO], "yale": [o[2] for o in YALE], "cam_dm": [o[2] for o in CAM_DM], "cam_cog": [o[2] for o in CAM_COG], "cam_em": [o[2] for o in CAM_EM],
  "jhu": ["Structural neuroanatomy of the human brain", "Functional neuroanatomy of the human brain", "Principles and methods of neuroimaging", "Experimental design and special applications in neuroimaging"],
  "fmri1": [o[2] for o in FMRI1], "fmri2": [o[2] for o in FMRI2], "nh": [o[2] for o in NEUROHACK],
  "spec": ["Fundamental Neuroscience for Neuroimaging", "Principles of fMRI 1", "Principles of fMRI 2", "Introduction to Neurohacking in R"],
@@ -564,4 +574,40 @@ COURSE_DETAIL["jhu-principles-of-fmri-1"] = {
   ["The General Linear Model", "Applying the GLM to fMRI data", "Building GLM models", "Linear basis sets", "Filtering and nuisance covariates", "GLM estimation", "Autoregressive noise models", "Contrasts and t-tests"]),
  "Group-level analysis and the multiple comparison problem": ("Combining subjects in group analyses, and controlling false positives across thousands of voxels.",
   ["Group-level analysis", "The multiple comparison problem in fMRI", "Family-wise error correction", "False discovery rate correction", "Pitfalls in multiple comparisons"]),
+}
+
+COURSE_DETAIL["cambridge-cognitive-psychology"] = {
+ "What is cognitive psychology? History and core debates": ("The ideas behind modern psychology and the debates at its centre.",
+  ["Nature and nurture", "Brain, mind and behaviour", "Plasticity in the adult brain", "Modularity of mind"]),
+ "How do we measure the mind? Research methods": ("The methods cognitive psychology relies on, from lesion studies to imaging and brain stimulation.",
+  ["Neuropsychological lesion studies", "MRI and fMRI", "PET", "EEG and MEG", "Single-cell recordings", "TMS and tDCS"]),
+ "The psychology of human language": ("How language is structured, processed and acquired.",
+  ["Language development", "Theories of language acquisition", "Shared attention between parent and infant", "Phonology and morphology", "Semantics and syntax", "The Stroop test"]),
+ "Memory, perception and cross-modal interactions": ("Working memory and its models, and how the senses, language and memory influence one another.",
+  ["Working memory", "Phonological loop", "Visuo-spatial sketchpad", "Auditory perception", "Visual perception", "Cross-modal effects"]),
+ "Attention, consciousness and free will": ("How attention shapes experience, what happens when it is impaired, and how it relates to consciousness and free will.",
+  ["Attention", "Visual spatial neglect", "Attention and consciousness", "Change blindness", "Free will"]),
+}
+COURSE_DETAIL["cambridge-neuropsychology-of-decision-making"] = {
+ "Introduction to neuroanatomy and neurodevelopment": ("The anatomy and development of the brain needed to follow the later modules.",
+  ["Neuroanatomy", "Neurodevelopment"]),
+ "The importance of the prefrontal cortex": ("What makes the prefrontal cortex distinctive in structure and function, and the evidence for its role in decisions.",
+  ["Structure of the prefrontal cortex", "Higher-order processes", "Research evidence on decision making"]),
+ "Neurotransmitters, neurophysiology and decision networks": ("The neurotransmitters behind a decision, how they act physiologically, and the networks that connect the regions involved.",
+  ["Neurotransmitters", "Neurophysiology", "Brain connectivity", "Decision networks"]),
+ "Decision making styles and the role of childhood experiences": ("Decision making as a process that develops: adult differences in style and the childhood factors that shape them.",
+  ["Decision-making styles", "Development of decision making", "Childhood experiences"]),
+ "Decision making deficits": ("Deficits in decision making, such as those seen in schizophrenia, with their biological causes and external factors.",
+  ["Observed deficits", "Schizophrenia", "Biological causes", "External and childhood factors"]),
+}
+
+COURSE_DETAIL["jhu-principles-of-fmri-2"] = {
+ "Psychological and behavioural inference, and advanced experimental design": ("What can and cannot be concluded from fMRI results, how meta-analysis sharpens inference, and how to match acquisition to the study's aims.",
+  ["Reproducibility problems and solutions", "Circularity and reverse inference", "Meta-analysis", "Using meta-analysis to improve inference", "Optimising acquisition for the study goals", "Resting-state fMRI"]),
+ "Advanced experimental design and advanced GLM modelling": ("Designing efficient experiments and building more robust models of the data.",
+  ["Design efficiency", "Efficiency in fMRI", "Optimising designs with genetic algorithms", "Parametric modulators", "Basis sets", "Multicollinearity and diagnostics", "Robust regression", "Practical group analysis"]),
+ "Brain connectivity": ("The different kinds of brain connectivity and the methods used to estimate them.",
+  ["Types of brain connectivity", "Functional connectivity", "Multivariate decomposition methods", "Dynamic connectivity", "Graph theory and network analysis", "Effective connectivity", "Mediation, moderation and structural models"]),
+ "Multi-voxel pattern analysis": ("Causal modelling of connectivity, then predicting mental states from patterns of activity across voxels.",
+  ["Dynamic causal modelling", "Granger causality", "Principles of causal inference", "Multi-voxel pattern analysis", "Performing MVPA", "Worked example: a neural signature of pain"]),
 }
