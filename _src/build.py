@@ -283,7 +283,7 @@ for c in COURSES:
 MJ = {k: (n, col) for k, n, col in MAJORS}
 S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
 # one entry per course: (major, skills, certified?)
-units = [(m["major"], m["skills"], True) for k, m in CERT_META.items() if k != "spec"] + [("imaging", FMRI1_SKILLS, True)] + [(a["major"], a["skills"], False) for a in AUDITS]
+units = [(m["major"], m["skills"], True) for k, m in CERT_META.items() if k != "spec"] + [(a["major"], a["skills"], False) for a in AUDITS]
 for _, sks, _ in units:
     for sk in sks: assert sk in S2M, f"skill without a major: {sk}"
 assert set(CERT_META) == set(CERTS), set(CERTS) ^ set(CERT_META)
