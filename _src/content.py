@@ -784,7 +784,7 @@ OTHER_DETAIL = {
   ("Pharmaceutical and biotechnology industry landscape", "How the pharmaceutical and biotechnology industries are organised and where they are heading.", ["The pharma and biotechnology landscape", "Key issues for pharma", "Global outlook", "Patient-centric drug discovery", "A new approach to R&D", "Innovation"]),
   ("Drug discovery: proteomics, genomics", "Using genomics and proteomics to find and validate drug targets.", []),
   ("Compound selection and preclinical studies", "Choosing candidate compounds and testing them before human trials.", []),
-  ("Fragment-based drug discovery for protein kinases", "Building kinase inhibitors up from small fragments, and why it is difficult.", []),
+  ("Fragment-based drug discovery for protein kinases", "Building kinase inhibitors up from small fragments, and why it is difficult.", ["Fragment-based discovery", "Protein kinases as targets", "Structure-based approaches"]),
   ("Key concepts in drug delivery", "Getting a drug to the right place in the body at the right dose.", [])],
 }
 
@@ -814,4 +814,12 @@ OTHER_DETAIL["covid"] = [
  ("Choose a measure", "Deciding on and calculating a good measure for the analysis.", []),
  ("Merge and correlate", "Merging two datasets and finding correlations in the data.", ["Merging datasets", "Correlation"]),
  ("Visualise the results", "Presenting the results of the analysis with Seaborn.", ["Seaborn plots"]),
+]
+
+OTHER_DETAIL["stem"] = [
+ ("Introduction to stem cells", "What stem cells are, the history of the field and why they matter.", ["How stem cells differentiate", "The history of stem cells", "Why stem cells are important", "Stem cells in other organisms"]),
+ ("How do stem cells work?", "How scientists coax stem cells into particular cell types, and the technologies built on that.", ["Cell differentiation", "Therapeutic cloning", "Chimeras for organ transplantation", "Mitochondrial replacement therapy", "Cloning and genetic engineering"]),
+ ("Using stem cells to study disease", "Cultured cells as models for finding the causes of disease and screening for drugs.", ["Reprogramming and genome editing for disease modelling", "Alzheimer's disease in cultured cells", "Diabetes in a dish", "Developing new cures"]),
+ ("Using stem cells to treat disease", "Using the body's own stem cells as therapy, and how to judge a proposed treatment.", ["Adult stem cells of the retinal pigment epithelium", "Age-related macular degeneration", "Myths about adult stem cells", "Evaluating stem-cell treatments"]),
+ ("The bioethics of stem cell research and therapy", "The controversies around embryonic stem cells, and the legal, policy and ethical questions in research and treatment.", ["Embryonic stem cell controversies", "Legal and policy challenges", "The future of reproductive technology"]),
 ]
