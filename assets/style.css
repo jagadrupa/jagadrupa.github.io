@@ -50,7 +50,7 @@ nav{display:flex;flex-wrap:wrap;gap:4px 14px}nav a{margin-left:0;white-space:now
 
 .mj{display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--c)}.mj.on{border-color:var(--c);box-shadow:0 0 0 1px var(--c)}.mj h3{font-size:18px;margin:0}.mj small{color:var(--muted);font-size:12.5px}
 .units{display:flex;flex-wrap:wrap;gap:4px}.u{width:14px;height:14px;border-radius:2px;background:var(--c);border:1.5px solid var(--c);display:block}.u.a{background:transparent}
-.chip.sk{background:color-mix(in srgb,var(--c) 11%,transparent);cursor:default}.chip.sk:hover{border-color:transparent}.chip.sk b{font-weight:500;color:var(--c);margin-left:5px}
+.chip.sk{background:color-mix(in srgb,var(--c,var(--neurons)) 13%,transparent);cursor:default}.chip.sk:hover{border-color:transparent}.chip.sk b{font-weight:500;color:var(--c);margin-left:5px}
 details.more{display:contents}details.more summary,details.les summary{font:400 11.5px/1.5 var(--mono);color:var(--muted);cursor:pointer;padding:1px 4px;list-style:none}details.more summary::-webkit-details-marker,details.les summary::-webkit-details-marker{display:none}details.more summary:hover,details.les summary:hover{color:var(--ink);text-decoration:underline}details.more[open] summary{display:none}
 details.les summary{padding:0}details.les summary::before{content:"▸ "}details.les[open] summary::before{content:"▾ "}details.les ol{margin:6px 0 2px;padding-left:20px;font-size:14px}
 .mjb{margin-top:auto;align-self:flex-start;font:500 12px var(--mono);color:var(--c);background:none;border:1px solid var(--c);border-radius:20px;padding:4px 11px;cursor:pointer}.mjb:hover,.mjb[aria-pressed=true]{background:var(--c);color:var(--paper)}

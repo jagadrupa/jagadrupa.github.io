@@ -182,7 +182,7 @@ n_out = len(ALL) + len(AD_FINDINGS)
 S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
 MCOL = {k: col for k, _, col in MAJORS}
 def skchip(sk):
-    return f'<span class="chip sk" style="--c:var(--{MCOL[S2M[sk]]})">{E(sk)}</span>'
+    return f'<span class="chip sk">{E(sk)}</span>'
 COURSE_SK = {}; COURSE_BR = {}
 for c in COURSES:
     if c.get("cert"): COURSE_SK[c["id"]] = CERT_META[c["cert"]]["skills"]; COURSE_BR[c["id"]] = CERT_GROUP[c["cert"]]
@@ -273,7 +273,7 @@ assert len(AUDIT_GROUP) == len(AUDITS)
 S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
 MCOL = {k: col for k, _, col in MAJORS}
 def skchip(sk):
-    return f'<span class="chip sk" style="--c:var(--{MCOL[S2M[sk]]})">{E(sk)}</span>'
+    return f'<span class="chip sk">{E(sk)}</span>'
 def ol(label, items):
     return f'<p class="dl">{E(label)}</p><ol>{"".join(f"<li>{E(x)}</li>" for x in items)}</ol>' if items else ""
 groups = {}
