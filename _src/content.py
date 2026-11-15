@@ -611,3 +611,26 @@ COURSE_DETAIL["jhu-principles-of-fmri-2"] = {
  "Multi-voxel pattern analysis": ("Causal modelling of connectivity, then predicting mental states from patterns of activity across voxels.",
   ["Dynamic causal modelling", "Granger causality", "Principles of causal inference", "Multi-voxel pattern analysis", "Performing MVPA", "Worked example: a neural signature of pain"]),
 }
+
+COURSE_DETAIL["jhu-neurohacking-in-r"] = {
+ "Introduction": ("What structural MRI data look like and why R is a workable tool for analysing them.",
+  ["Structural MRI", "R for neuroimaging"]),
+ "Neuroimaging: formats and visualization": ("The formats brain images come in, the common MRI scan types, and how to read, plot and manipulate them in R.",
+  ["Data structures and operations", "The NIfTI format", "Basic visualisation", "Basic data manipulation", "Transformations and smoothing", "Basic MRI contrasts"]),
+ "Image processing": ("The standard steps for preparing a brain MRI: inhomogeneity correction, brain extraction and registration.",
+  ["Pre-processing overview", "Registration", "Bias field correction with fslr", "Brain extraction with fslr", "Image registration with fslr", "Data manipulation with ANTsR", "Pre-processing with ANTsR"]),
+ "Extended image processing": ("Processing a multi-sequence scan end to end, registering to a template, segmenting tissue and exploring images interactively.",
+  ["Co-registration with fslr and ANTsR", "Wrapper functions for processing pipelines", "Across-visit co-registration of T1 images", "Rigid, affine and nonlinear registration to a template", "Regional anatomy from nonlinear registration", "Tissue-level segmentation", "Interactive viewing with papayar"]),
+}
+COURSE_DETAIL["cambridge-psychology-of-emotions"] = {
+ "What is cognitive psychology?": ("The main findings, theories and methods of cognitive psychology, which treats the mind as a processor of information.",
+  ["Key findings and theories", "Research methods", "Perception, attention, language and memory", "Thinking and consciousness"]),
+ "How we feel emotions": ("The core ideas of social cognition: how mirror neurons and theory of mind let us understand what others feel.",
+  ["Emotional intelligence", "Embodied cognition", "Mirror neurons", "Theory of mind", "The importance of facial expression"]),
+ "How do we study emotions?": ("The methods behind research on embodied emotion, including lesion studies, EEG and EMG.",
+  ["Simulation theories", "Facial mimicry in the simulation process", "Neuropsychological lesion studies", "EEG and EMG"]),
+ "How do we recognise others' emotional facial expressions?": ("The competing accounts of how facial expressions are recognised, and the evidence that mimicry helps.",
+  ["Theory-theory and simulation models", "Neuroscience research methods", "Key EEG findings", "Key neuropsychological findings", "Key EMG findings"]),
+ "Is it always easy to understand others' emotions?": ("What affects emotional understanding in real social situations: motivation, prior knowledge and ambiguous expressions.",
+  ["Simulation in ambiguous contexts", "Simulation with ambiguous expressions", "Attitude and motivation towards the other person", "Prior knowledge"]),
+}
