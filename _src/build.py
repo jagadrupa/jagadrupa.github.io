@@ -169,16 +169,23 @@ def RAIL(c):
     return f'<figure class="demo" style="margin:16px 0"><h4>Course map</h4><p>Topics in order from the official course page, coloured by scale.</p><div class="scroll"><svg class="diag" style="min-width:680px" viewBox="0 0 760 {h}" font-family="var(--sans)" role="img" aria-label="Course topics in order">{o}</svg></div></figure>'
 
 # ---- home
+tk_rows = ""
+for label, items in TOOLKIT:
+    bs = "".join(f'<span class="tb{" tc" if kind == "course" else ""}" style="--b:{col}">{E(n)}</span>' for n, col, kind in items)
+    tk_rows += f'<div class="tkrow"><span class="tklabel">{E(label)}</span><div class="tbs">{bs}</div></div>'
+tk_m = "".join(f'<p><b>{E(a)}:</b> {E(d)}</p>' for a, d in TOOLKIT_METHODS)
+toolkit = f'<section><h2>Toolkit</h2><div class="tk">{tk_rows}</div><div class="tkm">{tk_m}</div><p class="note" style="margin-top:12px"><span class="tb" style="--b:var(--muted);font-size:10px;padding:2px 7px">Filled</span> used in my own projects &nbsp; <span class="tb tc" style="--b:var(--muted);font-size:10px;padding:2px 7px">Outlined</span> from audited coursework so far. Courses and certificates behind these are on the <a href="certificates.html">Certificates</a> page.</p></section>'
 def counts(k): return sum(1 for c, o in ALL if o[0] == k) + (len(AD_FINDINGS) if k == "disease" else 0)
 n_out = len(ALL) + len(AD_FINDINGS)
 home = f'''<section><p class="eyebrow">Neuroscience learning record</p><h1>From molecules to disease,<br>with the evidence attached.</h1>
 <p class="lede">I work in bioinformatics and study human Alzheimer's tissue with spatial transcriptomics. This record shows what I have learned about the brain, how I learned it, and where to check each claim.</p>
 {ladder()}
 <div class="stats"><a class="stat" href="by-scale.html"><b>{n_out}</b><span>learning outcomes and findings, each referenced</span></a><a class="stat" href="courses.html"><b>{sum(c["status"]=="cert" for c in COURSES)} + {sum(c["status"]=="audit" for c in COURSES)}</b><span>courses certified + audited</span></a><a class="stat" href="courses/uw-computational-neuroscience.html"><b>{notes_pages}</b><span>pages of my own public notes</span></a><a class="stat" href="certificates.html"><b>2020–26</b><span>span of certificates</span></a></div></section>
+{toolkit}
 <section><h2>Three ways in</h2><div class="grid" style="margin-top:16px">
 <a class="card ccard" href="by-scale.html"><span class="eyebrow">By scale</span><h3>Everything learned, from molecules up</h3><small>Six levels, with simulations, textbook chapters and sources.</small></a>
 <a class="card ccard" href="courses.html"><span class="eyebrow">By course</span><h3>Each course and its graphical summary</h3><small>Outcomes by unit, with a page reference for each.</small></a>
-<a class="card ccard" href="certificates.html"><span class="eyebrow">Certificates</span><h3>Verifiable certificates, on a timeline</h3><small>Open the PDF, or verify it with the issuer.</small></a></div></section>
+<a class="card ccard" href="certificates.html"><span class="eyebrow">Certificates</span><h3>Certificates and a skills map</h3><small>Open the PDF, or verify it with the issuer.</small></a></div></section>
 <section><h2>How to read the evidence</h2><p class="note">A claim is only as strong as its source, so each one shows which kind it is.</p>
 <table class="plain" style="margin-top:12px"><tr><th>Label</th><th>What it means</th><th>Where the link goes</th></tr>
 <tr><td><a class="chip" href="notes/uw-w5.pdf#page=10">UW week 5 · p.10</a></td><td>I wrote this up in my own notes</td><td>The exact PDF page. The build fails if the section is not on that page.</td></tr>

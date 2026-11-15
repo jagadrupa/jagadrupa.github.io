@@ -61,3 +61,10 @@ details.les summary{padding:0}details.les summary::before{content:"▸ "}details
 .mtag{font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
 .fstate{font-size:14px;color:var(--muted);margin:12px 0 0}.fstate[hidden]{display:none}.fstate button{font:inherit;color:var(--accent);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 @media (max-width:480px){.crow .thumb{flex-basis:76px}}
+
+.tk{display:flex;flex-direction:column;gap:12px;margin-top:16px}.tkrow{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}.tklabel{flex:0 0 150px;font:500 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tbs{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:220px}.tb{font:600 11.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--b);border:1.5px solid var(--b);padding:5px 11px;border-radius:3px;white-space:nowrap;display:inline-block}
+.tb.tc{background:transparent;color:var(--b)}
+.tkm{margin-top:18px;font-size:14.5px;max-width:56em}.tkm p{margin:4px 0}.tkm b{font-weight:600}
+@media (prefers-color-scheme:dark){.tb.tc{color:color-mix(in srgb,var(--b) 70%,#fff);border-color:color-mix(in srgb,var(--b) 70%,#fff)}}
+@media (max-width:560px){.tklabel{flex-basis:100%}}

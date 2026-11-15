@@ -410,3 +410,20 @@ AUDITS = [
       lessons=["Choose a deep learning method for a given problem", "Build a deep learning model for a real problem", "Create a deep learning pipeline", "Improve models using real data", "Present the outcomes of a deep learning project"],
       skills=["Deep Learning", "PyTorch", "Keras", "Data Preprocessing"]),
 ]
+
+# ---- toolkit, for the home page. (name, colour, "used" in my own projects | "course" for audited coursework only)
+TOOLKIT = [
+ ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("LaTeX", "#0F6E6E", "used")]),
+ ("Data and statistics", [("pandas", "#3B2A8C", "used"), ("NumPy", "#4D77CF", "used"), ("SciPy", "#0054A6", "used"), ("statsmodels", "#3F4F75", "used"),
+                          ("tidyverse", "#2C3E66", "used"), ("ggplot2", "#4F7CAC", "used"), ("vegan", "#4E7D2B", "used")]),
+ ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "course"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),
+ ("Omics", [("Scanpy", "#6A4C93", "used"), ("Squidpy", "#8A3F7C", "used"), ("AnnData", "#2F7D7B", "used"), ("GSEApy", "#8D5A2B", "used"),
+            ("Biopython", "#3A7CA5", "used"), ("MaAsLin3", "#7A5C00", "used"), ("MetaPhlAn", "#A8326A", "used"), ("HUMAnN", "#8D2C2C", "used")]),
+ ("Workflow", [("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("pytest", "#0A7FB0", "used")]),
+]
+TOOLKIT_METHODS = [
+ ("Spatial and single-cell transcriptomics", "Xenium and Visium, clustering and annotation, differential expression, spatial statistics, ligand–receptor analysis"),
+ ("Metagenomics", "shotgun profiling, factorial differential abundance, PERMANOVA"),
+ ("Statistical genetics", "gene-burden tests, LD score regression, polygenic scores"),
+ ("Neuroscience", "neural encoding and decoding models, neuron and network simulation, fMRI design and analysis"),
+]
