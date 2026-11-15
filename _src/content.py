@@ -414,7 +414,7 @@ AUDITS = [
 
 # ---- toolkit, for the home page. (name, colour, "used" in my own projects | "course" for audited coursework only)
 TOOLKIT = [
- ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("LaTeX", "#0F6E6E", "used")]),
+ ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("C", "#5C6BC0", "used"), ("C++", "#00599C", "used"), ("HTML", "#C8532B", "used"), ("DBMS", "#336791", "used"), ("LaTeX", "#0F6E6E", "used")]),
  ("Data and statistics", [("pandas", "#3B2A8C", "used"), ("NumPy", "#4D77CF", "used"), ("SciPy", "#0054A6", "used"), ("statsmodels", "#3F4F75", "used"),
                           ("tidyverse", "#2C3E66", "used"), ("ggplot2", "#4F7CAC", "used"), ("vegan", "#4E7D2B", "used")]),
  ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "used"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),

@@ -179,6 +179,24 @@ def counts(k): return sum(1 for c, o in ALL if o[0] == k) + (len(AD_FINDINGS) if
 n_out = len(ALL) + len(AD_FINDINGS)
 
 # ---- courses
+def slug(t): return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+NEURO_IDS = {c["id"] for c in COURSES}
+_have = {c["cert"] for c in COURSES if c.get("cert")}
+for k, v in sorted(CERTS.items(), key=lambda kv: kv[1][3], reverse=True):
+    if k in _have or k == "spec": continue
+    m = CERT_META[k]; mods = CERT_MODULES.get(k, [])
+    COURSES.append(dict(id=slug(v[0]), title=v[0], provider=v[1] if "edX" in v[1] else v[1] + " · Coursera", status="cert", cert=k,
+                        url=m["url"] or "https://www.coursera.org/search?query=" + v[0].replace(" ", "%20"), outcomes=[("brain", "Official course modules", x) for x in mods],
+                        kind="syllabus", summary=m["summary"], graphic="rail" if mods else None, demos=[]))
+for a_ in AUDITS:
+    if a_["page"]: continue
+    cid = slug(a_["title"]); det = {}; outs_ = []
+    for l in a_["lessons"]:
+        name, _, rest = l.partition(": ")
+        outs_.append(("brain", "Modules", name)); det[name] = ("", [x.strip()[:1].upper() + x.strip()[1:] for x in rest.split(", ")] if rest else [])
+    COURSE_DETAIL[cid] = det; a_["page"] = cid
+    COURSES.append(dict(id=cid, title=a_["title"], provider=a_["provider"], status="audit", url=a_["url"], outcomes=outs_, kind="syllabus",
+                        summary=AUDIT_SUMMARY.get(a_["title"], ""), graphic="rail", demos=[]))
 S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
 MCOL = {k: col for k, _, col in MAJORS}
 def skchip(sk):
@@ -203,27 +221,21 @@ for bk, bn in BRANCHES:
         sub = " · ".join(x for x in [f"{nc} certified" if nc else "", f"{na} audited" if na else ""] if x)
         done += f'<div class="cgroup" style="--c:var(--neurons);margin-top:22px"><h4 id="{bk.split("/")[1]}">{E(bn)} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{"".join(ccard(c) for c in cs)}</div></div>'
 assert all(c["id"] in COURSE_BR for c in COURSES if c["status"] != "todo")
-def xcard(status, title, provider, summary, skills, href):
-    chips_ = f'<span class="chips">{"".join(skchip(x) for x in skills[:3])}{f"""<span class="chip src">+{len(skills)-3}</span>""" if len(skills) > 3 else ""}</span>'
-    return f'<a class="card ccard" href="{href}"><div>{BADGE[status]}</div><h3>{E(title)}</h3><small>{E(provider)}</small><span style="font-size:14px">{E(summary)}</span>{chips_}</a>'
-with_page = {c["cert"] for c in COURSES if c.get("cert")}
 for t in TREE[1:]:
     sec_ = ""
     for br in t["branches"]:
         g_ = f'{t["key"]}/{br["key"]}'
-        cs_ = [(CERTS[k][3], xcard("cert", CERTS[k][0], f"{CERTS[k][1]} · {CERTS[k][2]}", CERT_META[k]["summary"], CERT_META[k]["skills"], f'index.html#g-{t["key"]}-{br["key"]}'))
-               for k in CERTS if CERT_GROUP[k] == g_ and k not in with_page]
-        au_ = [xcard("audit", a_["title"], a_["provider"], AUDIT_SUMMARY.get(a_["title"], ""), a_["skills"], f'index.html#g-{t["key"]}-{br["key"]}')
-               for a_, gg in zip(AUDITS, AUDIT_GROUP) if gg == g_ and not a_["page"]]
-        if cs_ or au_:
-            sub = " · ".join(x for x in [f"{len(cs_)} certified" if cs_ else "", f"{len(au_)} audited" if au_ else ""] if x)
-            cards_ = "".join(c for _, c in sorted(cs_, reverse=True)) + "".join(au_)
-            sec_ += f'<div class="cgroup" style="margin-top:22px"><h4>{E(br["name"])} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{cards_}</div></div>'
+        cs = [c for c in COURSES if COURSE_BR.get(c["id"]) == g_]
+        if cs:
+            nc = sum(c["status"] == "cert" for c in cs); na = len(cs) - nc
+            sub = " · ".join(x for x in [f"{nc} certified" if nc else "", f"{na} audited" if na else ""] if x)
+            sec_ += f'<div class="cgroup" style="margin-top:22px"><h4>{E(br["name"])} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{"".join(ccard(c) for c in cs)}</div></div>'
     if sec_: other += f'<div style="--c:var(--{t["col"]})"><h3 class="ah" style="margin-top:{44 if other else 10}px">{E(t["name"])}</h3>{sec_}</div>'
+AREA_COL = {t["key"]: t["col"] for t in TREE}
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
 page("other-courses.html", "Other courses", f"""<section><p class="eyebrow">Other courses</p><h1>Other courses</h1><p class="lede">Courses outside neuroscience that I have completed or audited: deep learning and machine learning, bioinformatics and biotechnology.</p></section>
-<section><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Each card opens its certificate and course details on the Skills and certificates page.</p>{other}</section>""", "other")
+<section><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Each course has its own page with its modules, skills and certificate.</p>{other}</section>""", "other")
 page("courses.html", "Neuroscience courses", f"""<section><p class="eyebrow">Neuroscience courses</p><h1>Neuroscience courses</h1><p class="lede">Every neuroscience course I have completed or audited. Each has its own page with a graphical summary, learning outcomes and skills.</p></section>
 <section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="index.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
@@ -241,7 +253,7 @@ for c in COURSES:
         proof = f'<a class="chip" href="{rel}{cc[4]}.pdf">Certificate · {cc[2]}</a><a class="chip" href="{cc[5]}">Verify with issuer ↗</a>' + proof
     skl = f'<p class="eyebrow" style="margin:18px 0 6px">Skills</p><div class="chips">{"".join(skchip(x) for x in COURSE_SK[c["id"]])}</div>' if c["id"] in COURSE_SK else ""
     if c.get("repo"): proof += f'<a class="chip" href="{c["repo"]}">Public notes repository ↗</a>'
-    body = f'<section><a href="{rel}courses.html" class="eyebrow" style="text-decoration:none">← Neuroscience courses</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div>{skl}</section>'
+    body = f'<section><a href="{rel}{"courses.html" if c["id"] in NEURO_IDS else "other-courses.html"}" class="eyebrow" style="text-decoration:none">← {"Neuroscience courses" if c["id"] in NEURO_IDS else "Other courses"}</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div>{skl}</section>'
     if c["kind"] == "todo":
         body = body.replace(f'<p class="lede" style="font-size:19px">{E(c["summary"])}</p>', "")
         body += '<section><div class="card ccard todo"><h3>To be updated</h3><span style="font-size:14px">Learning outcomes and a graphical summary will be added here.</span></div></section>'
@@ -250,8 +262,9 @@ for c in COURSES:
         if c["graphic"] == "uw": g = UW_ARC(rel)
         elif c["graphic"] == "jhu": g = JHU_GFX(rel)
         elif c["graphic"] == "rail": g = RAIL(c)
-        if c["id"] in PICTURES:
-            pt, pc, ps = PICTURES[c["id"]]
+        pk = c["id"] if c["id"] in PICTURES else c["title"]
+        if pk in PICTURES:
+            pt, pc, ps = PICTURES[pk]
             g = f'<figure class="demo" style="margin:16px 0"><h4>{E(pt)}</h4><p>{E(pc)}</p>{ps}</figure>'
         demos = "".join(demo(d, rel) for d in c["demos"])
         gal = ""
@@ -269,6 +282,8 @@ for c in COURSES:
             def more(o):
                 if o[2] not in det: return ""
                 d, tp = det[o[2]]
+                if not d and not tp: return ""
+                if not d: return f'<div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div>'
                 return f'<p class="od">{E(d)}</p><div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div>'
             refs = (lambda o: f'<div class="chips">{outcome_refs(c, o, rel)}</div>') if c["kind"] == "notes" else (lambda o: "")
             lis = "".join(f'<li><p>{E(o[2])}</p>{more(o)}{refs(o)}</li>' for o in os_)
@@ -281,11 +296,12 @@ for c in COURSES:
         if c["id"] in COURSE_MODULES:
             ml = "".join(f'<li><p>{E(t)}</p><p class="od">{E(d)}</p><div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div></li>' for t, d, tp in COURSE_MODULES[c["id"]])
             mods = f'<h3 style="margin-top:22px">Official course modules</h3><ul class="out">{ml}</ul><h3 style="margin-top:34px">Outcomes from my own notes</h3><p class="note">Each outcome links to the page of my notes that covers it.</p>'
-        body += f'<section><h2>Learning outcomes</h2>{caveat}{mods}{outs}</section>'
+        if outs or mods: body += f'<section><h2>Learning outcomes</h2>{caveat}{mods}{outs}</section>'
         if demos:
             body += f'<section><h2>Interactive simulations</h2><p class="note">Small models of ideas from the course, with illustrative parameters.</p>{demos}</section>'
         body += gal
-    page(f'courses/{c["id"]}.html', c["title"], body, "courses", c["summary"])
+    col_ = AREA_COL.get(COURSE_BR.get(c["id"], "neuro/x").split("/")[0], "neurons")
+    page(f'courses/{c["id"]}.html', c["title"], f'<div style="--c:var(--{col_})">{body}</div>', "courses" if c["id"] in NEURO_IDS else "other", c["summary"])
 
 # ---- certificates
 assert set(CERT_META) == set(CERTS) == set(CERT_GROUP), "certificate tables out of step"
