@@ -694,3 +694,18 @@ COURSE_MODULES["uw-computational-neuroscience"] = [
  ("Learning from supervision and rewards", "Neurons as classifiers, and learning from reward.",
   ["Supervised learning", "Reinforcement learning: predicting rewards", "Reinforcement learning: choosing actions", "Bidirectional brain-computer interfaces (guest lecture)"]),
 ]
+
+COURSE_DETAIL["epflx-neuronal-dynamics-of-cognition"] = {
+ "Associative memory and the Hopfield model": ("How a network of neurons can store patterns and recall them from partial cues.",
+  ["Classification by similarity", "Detour on magnetic materials", "The Hopfield model", "Learning of associations", "Storage capacity"]),
+ "Attractor networks and spiking neurons": ("Memories as stable states of network activity, and how the idea carries over to realistic spiking neurons.",
+  ["Attractor networks", "The stochastic Hopfield model", "Energy landscape", "Low-activity patterns", "Spiking neurons"]),
+ "Neuronal populations and mean-field theory": ("Describing thousands of neurons by the activity of the population they form.",
+  ["Population activity", "Cortical populations", "Connectivity", "The mean-field argument", "Stationary mean-field", "Random networks"]),
+ "Perception and cortical field models": ("Continuous models of cortex and the activity patterns they produce, applied to perception.",
+  ["Transients", "Spatial continuum models of cortex", "Solution types", "Perception", "Head direction cells"]),
+ "Decision making and competitive dynamics": ("Decisions as a competition between neuronal populations.",
+  ["Perceptual decision making", "Theory of decision dynamics", "Solutions", "Simulations and experiments", "Decisions, actions and volition"]),
+ "Synaptic plasticity and learning": ("Models of how synapses change, from short-term effects to spike-timing rules and memory formation.",
+  ["Classification of plasticity", "Short-term plasticity", "Long-term plasticity", "Spike-timing models of plasticity", "From spiking models to rate models", "The triplet STDP model", "Online learning of memories"]),
+}

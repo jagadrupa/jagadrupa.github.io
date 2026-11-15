@@ -3,6 +3,7 @@
 import re, subprocess, html, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from content import *
+from pictures import PICTURES
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
 TEX = str.maketrans({"–": "-", "—": "-", "’": "'", "‘": "'", "“": '"', "”": '"'})
@@ -229,6 +230,9 @@ for c in COURSES:
         if c["graphic"] == "uw": g = UW_ARC(rel)
         elif c["graphic"] == "jhu": g = JHU_GFX(rel)
         elif c["graphic"] == "rail": g = RAIL(c)
+        if c["id"] in PICTURES:
+            pt, pc, ps = PICTURES[c["id"]]
+            g = f'<figure class="demo" style="margin:16px 0"><h4>{E(pt)}</h4><p>{E(pc)}</p><div class="scroll">{ps}</div></figure>'
         demos = "".join(demo(d, rel) for d in c["demos"])
         gal = ""
         if c["id"].startswith("uw-"):
