@@ -416,7 +416,7 @@ TOOLKIT = [
  ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("LaTeX", "#0F6E6E", "used")]),
  ("Data and statistics", [("pandas", "#3B2A8C", "used"), ("NumPy", "#4D77CF", "used"), ("SciPy", "#0054A6", "used"), ("statsmodels", "#3F4F75", "used"),
                           ("tidyverse", "#2C3E66", "used"), ("ggplot2", "#4F7CAC", "used"), ("vegan", "#4E7D2B", "used")]),
- ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "course"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),
+ ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "used"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),
  ("Omics", [("Scanpy", "#6A4C93", "used"), ("Squidpy", "#8A3F7C", "used"), ("AnnData", "#2F7D7B", "used"), ("GSEApy", "#8D5A2B", "used"),
             ("Biopython", "#3A7CA5", "used"), ("MaAsLin3", "#7A5C00", "used"), ("MetaPhlAn", "#A8326A", "used"), ("HUMAnN", "#8D2C2C", "used")]),
  ("Workflow", [("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("pytest", "#0A7FB0", "used")]),
@@ -427,3 +427,56 @@ TOOLKIT_METHODS = [
  ("Statistical genetics", "gene-burden tests, LD score regression, polygenic scores"),
  ("Neuroscience", "neural encoding and decoding models, neuron and network simulation, fMRI design and analysis"),
 ]
+
+# ---- summary map and grouping, for the certificates page
+# Each area: key, name, colour variable, where it comes from, branches (key, name, source note, leaves, optional link)
+TREE = [
+ dict(key="neuro", name="Neuroscience", col="neurons", note="Certified and audited coursework, 2020 to 2026", branches=[
+  dict(key="fund", name="Fundamental neuroscience", leaves=["Neuroanatomy", "Neurophysiology", "Synapses and circuits", "Sensory and motor systems", "Homeostasis"]),
+  dict(key="comp", name="Computational neuroscience", leaves=["Neural encoding and decoding", "Information theory", "Neuron and network models", "Plasticity and learning", "Attractor networks"]),
+  dict(key="imaging", name="Neuroimaging", leaves=["MRI", "fMRI experimental design", "General Linear Model", "Connectivity", "Multi-voxel pattern analysis", "Image processing in R"]),
+  dict(key="psych", name="Psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
+ ]),
+ dict(key="dl", name="Deep learning and machine learning", col="networks", note="Research at TUM, and certified and audited coursework", branches=[
+  dict(key="ml", name="Machine learning", leaves=["Cross-validation", "Regularisation", "Dimensionality reduction", "Classification", "Recommender systems"]),
+  dict(key="keras", name="Keras and TensorFlow", leaves=["Regression models", "Classification models", "Custom layers and models"]),
+  dict(key="pytorch", name="PyTorch", leaves=["Neural networks", "Deep networks", "Autoencoders", "Transfer learning"]),
+  dict(key="cnn", name="Convolutional networks", leaves=["Keras", "PyTorch", "Variational CNNs on sequencing signal"]),
+  dict(key="tfm", name="Transformers", leaves=["Sequential data", "Time-series prediction"]),
+ ]),
+ dict(key="bioinf", name="Bioinformatics", col="molecules", note="MSc at Manchester, research at TUM, an independent project and certified coursework", branches=[
+  dict(key="msc", name="MSc Bioinformatics and Systems Biology", note="University of Manchester, 2021 to 2022, Distinction", leaves=["Programming", "Sequence and structural bioinformatics", "Genomics and phylogenetics", "Statistics and experimental design", "Rare-variant burden testing", "Protein docking"]),
+  dict(key="omics", name="Multi-omics", note="Research at TUM, 2023 to 2025", leaves=["Metagenomics", "Epigenomics", "Metaproteomics", "Multi-omics integration", "Metabolic modelling"]),
+  dict(key="spatial", name="Spatial transcriptomics", note="Independent project, 2026", link=REPO_AD, leaves=["Xenium and Visium", "Cell-type annotation", "Spatially variable genes", "Ligand–receptor analysis"]),
+  dict(key="courses", name="Genomic data science", leaves=["Sequencing algorithms", "Genomic technologies", "Python for genomics", "Galaxy workflows", "Gene-expression classification in R", "Microbiome analysis"]),
+ ]),
+ dict(key="biotech", name="Biotechnology", col="brain", note="BSc (Hons) Biotechnology, Amity University, 2018 to 2021, and certified coursework", branches=[
+  dict(key="molbio", name="Molecular biology and genetics", note="BSc", leaves=["Genetics", "Recombinant DNA technology", "Genomics and proteomics", "Human genetics and gene therapy"]),
+  dict(key="biochem", name="Biochemistry and lab techniques", note="BSc", leaves=["Biochemistry", "Enzymology", "Bioanalytical techniques", "Molecular diagnostics"]),
+  dict(key="micro", name="Microbiology and immunology", note="BSc", leaves=["Microbiology", "Microbial ecology", "Immunology"]),
+  dict(key="physio", name="Physiology and anatomy", note="BSc", leaves=["Animal physiology", "Human anatomy", "Developmental biology"]),
+  dict(key="applied", name="Applied biotechnology", note="BSc and courses", leaves=["Animal and plant biotechnology", "Tissue engineering", "Industrial bioprocessing", "Drug discovery", "Stem cells", "Personalised medicine"]),
+ ]),
+]
+CERT_GROUP = {"uchicago": "neuro/fund", "uw": "neuro/comp", "jhu": "neuro/imaging", "fmri1": "neuro/imaging", "fmri2": "neuro/imaging", "nh": "neuro/imaging", "spec": "neuro/imaging",
+              "yale": "neuro/psych", "cam_em": "neuro/psych", "cam_dm": "neuro/psych", "ph125": "dl/ml",
+              "gentech": "bioinf/courses", "pygen": "bioinf/courses", "galaxy": "bioinf/courses", "dnaseq": "bioinf/courses", "bigdata": "bioinf/courses", "gut": "bioinf/courses", "covid": "bioinf/courses",
+              "biotech": "biotech/applied", "drug": "biotech/applied", "stem": "biotech/applied", "permed": "biotech/applied"}
+AUDIT_GROUP = ["neuro/fund", "neuro/fund", "neuro/fund", "neuro/comp", "dl/keras", "dl/pytorch", "dl/pytorch", "dl/keras", "dl/pytorch"]
+# Module names as listed on the course pages
+CERT_MODULES = {
+ "uw": ["Introduction and basic neurobiology", "Neural encoding models", "Neural decoding", "Information theory and neural coding", "Computing in carbon", "Computing with networks", "Plasticity in the brain and learning", "Learning from supervision and rewards"],
+ "uchicago": [o[2] for o in UCHICAGO], "yale": [o[2] for o in YALE], "cam_dm": [o[2] for o in CAM_DM], "cam_em": [o[2] for o in CAM_EM],
+ "jhu": ["Structural neuroanatomy of the human brain", "Functional neuroanatomy of the human brain", "Principles and methods of neuroimaging", "Experimental design and special applications in neuroimaging"],
+ "fmri1": [o[2] for o in FMRI1], "fmri2": [o[2] for o in FMRI2], "nh": [o[2] for o in NEUROHACK],
+ "spec": ["Fundamental Neuroscience for Neuroimaging", "Principles of fMRI 1", "Principles of fMRI 2", "Introduction to Neurohacking in R"],
+ "ph125": ["The basics of machine learning", "Cross-validation to avoid overtraining", "Several popular machine learning algorithms", "Building a recommendation system", "Regularisation"],
+ "gut": ["Introduction to microbes and the human microbiome", "Studying the microbiome", "Making sense out of microbial data", "The human gut microbiome and your health", "Gut microbe-host interactions: beyond nutrition", "What's in the American Gut"],
+ "permed": ["Introduction to personalised medicine", "Health information used in personalised medicine", "Biomarkers, genetics and omics", "Evidence and documentation for clinical efficacy", "Communication in personalised medicine", "Ethical, legal and social aspects"],
+ "gentech": ["Overview", "Measurement technology", "Computing technology", "Data science technology"],
+ "biotech": ["Enzymes, enzyme discovery and engineering", "Methods in systems and synthetic biology", "Biochemical and bioprocess engineering", "Pharmaceuticals and fine chemicals", "Case studies: bioenergy and biomaterials", "Case studies: glycoscience and biotherapeutics"],
+ "stem": ["Introduction to stem cells", "Using stem cells to study disease", "Using stem cells to treat disease", "The bioethics of stem cell research and therapy"],
+ "dnaseq": ["DNA sequencing, strings and matching", "Preprocessing, indexing and approximate matching", "Edit distance, assembly, overlaps", "Algorithms for assembly"],
+ "bigdata": ["Genes and data", "Preparing datasets for analysis", "Finding differentially expressed genes", "Predicting diseases from genes", "Determining gene alterations", "Clustering and pathway analysis"],
+ "drug": ["Pharmaceutical and biotechnology industry landscape", "Drug discovery: proteomics, genomics", "Compound selection and preclinical studies", "Fragment-based drug discovery for protein kinases", "Key concepts in drug delivery"],
+}
