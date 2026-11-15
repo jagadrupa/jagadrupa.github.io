@@ -643,3 +643,16 @@ COURSE_DETAIL["harvardx-mcb80-1x"] = {
  "Action potentials": ("How the action potential is generated, phase by phase, and the ionic currents behind it.",
   ["Fundamentals of the action potential", "The phases of the action potential", "The currents behind the action potential", "Field trips: neurotoxins at the aquarium, and electroreception"]),
 }
+
+COURSE_DETAIL["harvardx-mcb80-2x"] = {
+ "The synapse": ("How a signal crosses from one neuron to the next, and what happens in the presynaptic terminal.",
+  ["The basics of synaptic transmission", "The presynaptic terminal", "Visualising the synapse"]),
+ "Excitation and inhibition": ("How excitatory and inhibitory inputs move the membrane potential, and the diseases that follow when either is disturbed.",
+  ["EPSPs and IPSPs", "Disease states of excitation", "Disease states of inhibition", "Field trip: the Tye Lab at MIT"]),
+ "Small circuits": ("How a neuron combines its inputs in space and time, and how circuits are mapped.",
+  ["Synaptic efficacy and distance", "Synaptic summation", "Synaptic inhibition", "Temporal summation", "Temporal inhibition", "Field trip: connectomics in the Lichtman Lab"]),
+ "Neuromodulation": ("How neuromodulators change the way circuits respond, through receptor types and the serotonin and dopamine systems.",
+  ["What neuromodulation is", "Ionotropic receptors", "Metabotropic receptors", "The serotonin system", "The dopamine system", "The science of addiction"]),
+ "Potentiation and depression": ("How synapses strengthen and weaken with use, the basis of learning.",
+  ["Introduction to plasticity", "Short-term plasticity and adaptation", "Hebb's rule and associative learning", "Nonsynaptic plasticity", "MDMA-assisted psychotherapy"]),
+}
