@@ -434,8 +434,6 @@ AD_PROJECTS = [
   ["10x Xenium", "Cell-type annotation", "Spatial niche classifiers", "Spatially variable genes", "Ligand–receptor analysis", "Transcriptional noise", "Cell-type vulnerability index", "Validation against the SEA-AD atlas"]),
  ("Multi-omics integration of published Alzheimer's disease datasets", "Independent project", "2026",
   ["Genomic, transcriptomic and proteomic data", "MOFA+", "DIABLO", "sPLS", "Transcript–protein concordance"]),
- ("Gut–brain axis signalling", "Research assistant, Amity University", "2020 to 2021",
-  ["Behavioural assays", "Biochemical readouts", "Network analysis", "Molecular docking"]),
  ("Quercetin in a zebrafish model of Alzheimer's disease", "Bachelor's project, Amity University", "BSc, 2018 to 2021",
   ["Zebrafish disease model"]),
  ("GPCR-targeted therapeutic strategies in neurodegenerative disease", "Author of the review", "Ethical Edufabrica, 2020",
@@ -463,7 +461,7 @@ TREE = [
   dict(key="imaging", name="Neuroimaging", leaves=["MRI", "fMRI experimental design", "General Linear Model", "Connectivity", "Multi-voxel pattern analysis", "Image processing in R"]),
   dict(key="psych", name="Psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
   dict(key="ad", name="Alzheimer's disease and neurodegeneration", note="Research projects and a review, 2020 to 2026", link=REPO_AD, projects_label="Projects and review",
-       leaves=["Alzheimer's pathology", "Neurodegenerative diseases", "Selective cell-type vulnerability", "Spatial transcriptomics of human cortex", "Zebrafish disease model", "GPCR-targeted therapies", "Gut–brain axis"], projects=AD_PROJECTS),
+       leaves=["Alzheimer's pathology", "Neurodegenerative diseases", "Selective cell-type vulnerability", "Spatial transcriptomics of human cortex", "Zebrafish disease model", "GPCR-targeted therapies"], projects=AD_PROJECTS),
  ]),
  dict(key="dl", name="Deep learning and machine learning", col="networks", note="MSc at Manchester, research at TUM, and certified and audited coursework", branches=[
   dict(key="ml", name="Machine learning", note="MSc and certified coursework", leaves=["Cross-validation", "Regularisation", "Dimensionality reduction", "Classification", "Recommender systems"]),
