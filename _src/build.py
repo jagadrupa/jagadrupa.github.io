@@ -4,6 +4,7 @@ import re, subprocess, html, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from content import *
 from pictures import PICTURES
+from icons import icon_svg
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
 TEX = str.maketrans({"–": "-", "—": "-", "’": "'", "‘": "'", "“": '"', "”": '"'})
@@ -171,7 +172,7 @@ def RAIL(c):
 # ---- home
 tk_rows = ""
 for label, items in TOOLKIT:
-    bs = "".join(f'<span class="tb{" tc" if kind == "course" else ""}" style="--b:{col}">{E(n)}</span>' for n, col, kind in items)
+    bs = "".join(f'<span class="tb{" tc" if kind == "course" else ""}" style="--b:{col}">{icon_svg(n)}{E(n)}</span>' for n, col, kind in items)
     tk_rows += f'<div class="tkrow"><span class="tklabel">{E(label)}</span><div class="tbs">{bs}</div></div>'
 tk_m = "".join(f'<p><b>{E(a)}:</b> {E(d)}</p>' for a, d in TOOLKIT_METHODS)
 toolkit = f'<section><h2>Toolkit</h2><div class="tk">{tk_rows}</div><div class="tkm">{tk_m}</div><p class="note" style="margin-top:12px"><span class="tb" style="--b:var(--muted);font-size:10px;padding:2px 7px">Filled</span> used in my own projects &nbsp; <span class="tb tc" style="--b:var(--muted);font-size:10px;padding:2px 7px">Outlined</span> from audited coursework so far. The courses and certificates behind these are listed below.</p></section>'

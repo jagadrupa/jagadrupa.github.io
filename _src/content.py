@@ -414,13 +414,13 @@ AUDITS = [
 
 # ---- toolkit, for the home page. (name, colour, "used" in my own projects | "course" for audited coursework only)
 TOOLKIT = [
- ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("C", "#5C6BC0", "used"), ("C++", "#00599C", "used"), ("HTML", "#C8532B", "used"), ("DBMS", "#336791", "used"), ("LaTeX", "#0F6E6E", "used")]),
+ ("Languages", [("Python", "#3776AB", "used"), ("R", "#276DC3", "used"), ("Bash", "#3E8E2C", "used"), ("C", "#5C6BC0", "used"), ("C++", "#00599C", "used"), ("HTML", "#C8532B", "used"), ("DBMS", "#336791", "used")]),
  ("Data and statistics", [("pandas", "#3B2A8C", "used"), ("NumPy", "#4D77CF", "used"), ("SciPy", "#0054A6", "used"), ("statsmodels", "#3F4F75", "used"),
                           ("tidyverse", "#2C3E66", "used"), ("ggplot2", "#4F7CAC", "used"), ("vegan", "#4E7D2B", "used")]),
  ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "used"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),
  ("Omics", [("Scanpy", "#6A4C93", "used"), ("Squidpy", "#8A3F7C", "used"), ("AnnData", "#2F7D7B", "used"), ("GSEApy", "#8D5A2B", "used"),
             ("Biopython", "#3A7CA5", "used"), ("MaAsLin3", "#7A5C00", "used"), ("MetaPhlAn", "#A8326A", "used"), ("HUMAnN", "#8D2C2C", "used")]),
- ("Workflow", [("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("Nextflow", "#1E9E73", "used"), ("Snakemake", "#03627A", "used"), ("pytest", "#0A7FB0", "used")]),
+ ("Workflow", [("Linux", "#B8860B", "used"), ("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("Nextflow", "#1E9E73", "used"), ("Snakemake", "#03627A", "used"), ("pytest", "#0A7FB0", "used")]),
 ]
 TOOLKIT_METHODS = [
  ("Spatial and single-cell transcriptomics", "Xenium and Visium, clustering and annotation, differential expression, spatial statistics, ligand–receptor analysis"),
