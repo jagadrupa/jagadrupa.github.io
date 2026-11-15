@@ -435,7 +435,7 @@ AD_PROJECTS = [
  ("Multi-omics integration of published Alzheimer's disease datasets", "Independent project", "2026",
   ["Genomic, transcriptomic and proteomic data", "MOFA+", "DIABLO", "sPLS", "Transcript–protein concordance"]),
  ("Quercetin in a zebrafish model of Alzheimer's disease", "Bachelor's project, Amity University", "BSc, 2018 to 2021",
-  ["Zebrafish disease model"]),
+  ["Zebrafish disease model", "Behavioural analysis", "Biochemical analysis", "Molecular docking of quercetin compounds"]),
  ("GPCR-targeted therapeutic strategies in neurodegenerative disease", "Author of the review", "Ethical Edufabrica, 2020",
   ["Literature review", "GPCR signalling", "Therapeutic strategies"]),
 ]
