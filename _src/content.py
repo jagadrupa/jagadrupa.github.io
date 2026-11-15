@@ -539,3 +539,18 @@ COURSE_MODULES = {
    ["Experimental design", "Functional connectivity MRI", "Diffusion tensor imaging", "Magnetic resonance spectroscopy"]),
  ],
 }
+
+COURSE_DETAIL["yale-introduction-to-psychology"] = {
+ "Foundations: neuroscience, Freud, Skinner": ("The physical basis of mental life, and the two theories that shaped modern psychology: Freud's psychodynamics and Skinner's behaviourism.",
+  ["Dualism", "Neurons", "Parts of the brain", "The two hemispheres", "Freud and the psychodynamic approach", "Stages of development", "Defence mechanisms", "Scientific assessment of Freud", "Habituation", "Classical conditioning", "Instrumental conditioning", "Scientific assessment of Skinner"]),
+ "Development and language": ("How infants and children think and how that is studied, then the structure of language, how it is learned and how it relates to thought.",
+  ["Piaget's developmental stage theory", "Scientific evaluation of Piaget", "Methods for studying infants", "How children differ from adults", "Explanations for development", "Phonology", "Morphology", "Syntax", "Language acquisition", "Language and thought"]),
+ "Cognition: perception, attention, memory": ("How we perceive the world, how attention works and how experience is stored in memory.",
+  ["Problems of perception", "Perception of brightness, objects and depth", "Attention", "Memory distinctions", "Memory storage", "Learning and remembering", "Failures of memory", "False memories"]),
+ "Self and others: emotion, social psychology": ("Social and non-social emotions and their evolution, and how people understand themselves and deal with others.",
+  ["Evolution of emotion", "Facial expressions", "Fear", "Kinship", "Attachment", "Prisoner's dilemma", "Irrationality and culture", "The self", "Attribution", "Liking", "The psychology of groups", "Social categories"]),
+ "Variation: personality, intelligence, mental illness, therapy": ("How and why people differ in personality and intelligence, followed by the major mental illnesses and their treatment.",
+  ["Personality", "Intelligence", "Behavioural genetics", "Genes and environment", "Parenting", "Schizophrenia", "Mood disorders", "Anxiety disorders", "Dissociative disorders", "Personality disorders", "Therapy"]),
+ "The good life: happiness": ("How psychologists measure happiness and what contributes to a good life.",
+  ["Positive psychology", "What is happiness?", "The happiness set point", "Happiness is relative", "Skewed judgments of past events", "Humility and optimism"]),
+}
