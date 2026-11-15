@@ -634,3 +634,12 @@ COURSE_DETAIL["cambridge-psychology-of-emotions"] = {
  "Is it always easy to understand others' emotions?": ("What affects emotional understanding in real social situations: motivation, prior knowledge and ambiguous expressions.",
   ["Simulation in ambiguous contexts", "Simulation with ambiguous expressions", "Attitude and motivation towards the other person", "Prior knowledge"]),
 }
+
+COURSE_DETAIL["harvardx-mcb80-1x"] = {
+ "Resting potential": ("Why a neuron at rest holds a voltage across its membrane, and how ion gradients and selective channels set its value.",
+  ["The history of bioelectricity", "The resting potential", "The Nernst potential", "The GHK equation", "Ion filters", "Field trips: the Museum of Science and the human brain"]),
+ "Passive membrane properties": ("How resistance and capacitance shape the way the membrane potential changes when current flows.",
+  ["Changing the membrane potential", "Current and Ohm's law", "Resistance in the neuron", "Membrane capacitance", "Field trip: the Warren Anatomical Museum"]),
+ "Action potentials": ("How the action potential is generated, phase by phase, and the ionic currents behind it.",
+  ["Fundamentals of the action potential", "The phases of the action potential", "The currents behind the action potential", "Field trips: neurotoxins at the aquarium, and electroreception"]),
+}
