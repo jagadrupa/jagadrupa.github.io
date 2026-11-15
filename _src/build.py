@@ -208,6 +208,8 @@ page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><ul class="out">{read}</ul></section>""", "courses")
 
+for cid_, d_ in COURSE_DETAIL.items():
+    assert set(d_) <= {o[2] for c in COURSES if c["id"] == cid_ for o in c["outcomes"]}, cid_
 for c in COURSES:
     rel = "../"
     tut = (" · " + E(c["tutors"])) if c.get("tutors") else ""
@@ -239,7 +241,12 @@ for c in COURSES:
         for o in c["outcomes"]: groups.setdefault(o[1], []).append(o)
         outs = ""
         for u, os_ in groups.items():
-            lis = "".join(f'<li><p>{E(o[2])}</p><div class="chips">{outcome_refs(c, o, rel)}</div></li>' for o in os_)
+            det = COURSE_DETAIL.get(c["id"], {})
+            def more(o):
+                if o[2] not in det: return ""
+                d, tp = det[o[2]]
+                return f'<p class="od">{E(d)}</p><details class="les"><summary>Lecture topics ({len(tp)})</summary><div class="leaves" style="--c:var(--accent);margin:8px 0 6px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div></details>'
+            lis = "".join(f'<li><p>{E(o[2])}</p>{more(o)}<div class="chips">{outcome_refs(c, o, rel)}</div></li>' for o in os_)
             outs += f'<h3 style="margin-top:22px">{E(u)}</h3><ul class="out">{lis}</ul>'
         extra_note = "The course was audited, so there is no graded work or certificate behind them." if c["status"] == "audit" else "The certificate is the evidence of completion."
         caveat = "" if c["kind"] == "notes" else f'<p class="note">These are the outcomes listed by the course. {extra_note}</p>'

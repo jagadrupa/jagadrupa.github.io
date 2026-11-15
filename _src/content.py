@@ -500,3 +500,28 @@ CERT_MODULES = {
  "bigdata": ["Genes and data", "Preparing datasets for analysis", "Finding differentially expressed genes", "Predicting diseases from genes", "Determining gene alterations", "Clustering and pathway analysis"],
  "drug": ["Pharmaceutical and biotechnology industry landscape", "Drug discovery: proteomics, genomics", "Compound selection and preclinical studies", "Fragment-based drug discovery for protein kinases", "Key concepts in drug delivery"],
 }
+
+# ---- detailed course content, shown inside the learning outcomes on course pages.
+# course id -> {outcome text: (one-line description, [lecture topics])}. Topics follow the lecture titles on the course page.
+COURSE_DETAIL = {
+ "uchicago-understanding-the-brain": {
+  "The nervous system": ("The four functions of the nervous system, its cells and coverings, and what goes wrong in tumours and demyelinating disease.",
+   ["The four functions", "Central anatomy", "Neurons and their parts", "Neuronal diversity", "Glial cells", "Myelin", "Demyelinating diseases", "Meninges", "Peripheral diseases", "Brain tumours", "The brain and the spinal cord"]),
+  "Neural communication and embodied emotion": ("How neurons signal electrically and chemically, and how the autonomic and enteric systems tie emotion to the body.",
+   ["Electrical signalling", "Action potential", "Neurotransmitter synthesis and release", "Clostridial toxins", "Signal termination", "Receptors", "Metabotropic receptors", "Embodied emotion", "Enteric nervous system", "Sympathetic and parasympathetic balance", "Autonomic pharmacology", "Spinal cord injury"]),
+  "Neuroanatomy": ("How the brain develops and is organised, its blood supply and major pathways, and how lesions map onto symptoms.",
+   ["Neural tube formation and defects", "Brain vesicles", "Expansion of the cerebral cortex", "Forebrain tracts", "Cerebral palsy", "Nerves", "Regional and hemispheric functions", "Aphasia and language circuits", "Cerebral blood flow and blood supply", "Strokes, tumours and bleeds", "Spinal cord", "Telencephalon and cortex", "Cerebellum", "Visual pathway", "Pituitary tumours", "Hippocampus and Alzheimer's disease"]),
+  "Perception and vision": ("How the brain interprets sensory input, and how the eye and the visual pathway build what we see.",
+   ["Optical and auditory illusions", "Weber's law", "The visual pathway", "Distance and near vision", "Emmetropization", "Rods and cones", "Central and colour vision", "Visual fields", "The importance of edges", "Visual perception", "Learning to see", "Sheep brain dissection"]),
+  "The vestibular sense and gaze": ("How the inner ear senses head movement and drives the reflexes and eye movements that keep gaze stable.",
+   ["The vestibular stimulus", "Canals and otoconial masses", "Hair cell orientation", "Yoked end organs", "Otoconial disorders", "Visual integration", "The vestibulo-ocular reflex and its circuitry", "Nystagmus", "Adapting the reflex", "Saccades and their control"]),
+  "Voluntary movements": ("How the motor system is organised, from motoneurons and muscle fibres to reflexes, posture and self-generated movement.",
+   ["Motor hierarchy", "Fast and slow fibres", "Motoneuron types", "Orderly recruitment", "Monosynaptic reflex", "Co-activation", "Gamma reflex loop", "Postural control", "Central pattern generators", "Praxis", "Emotional movements"]),
+  "Motor modulation": ("How the cerebellum and basal ganglia refine, select and learn movements, and what fails in Parkinson's disease.",
+   ["The Purkinje cell", "Cerebellar functions, topography and laterality", "Efference copy and sensory reafference", "Cerebellar learning", "Action selection", "Basal ganglia anatomy and pathways", "Operational learning", "Chunking", "Parkinson's disease", "Non-motor functions of the basal ganglia"]),
+  "Homeostasis": ("How the hypothalamus and brainstem keep temperature, breathing, urination and sleep within working limits.",
+   ["Hypothalamic anatomy", "Pituitary gland", "Post-partum mood disorders", "Thermoregulation", "Hyperthermia, fever and hot flashes", "Breathing", "Urination", "Sleep phenomenology and mechanisms"]),
+  "Abstract function": ("Emotion, attention, memory and language, and the disorders that reveal how they work.",
+   ["Emotion", "Thalamic attention", "Memory types", "PTSD", "Semantic and episodic memory", "The story of H.M.", "Memory formation circuitry", "Amnesia", "Language and aphasias", "Prosody", "Intellectual disability"]),
+ },
+}
