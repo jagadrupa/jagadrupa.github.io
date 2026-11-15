@@ -66,7 +66,7 @@ def outcome_refs(c, o, rel):
 def page(path, title, body, active="", desc="Skills, certificates and neuroscience coursework of Jagadrupa Sahoo, with the evidence attached."):
     depth = path.count("/")
     rel = "../" * depth
-    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Courses", "courses")]
+    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Neuroscience courses", "courses"), ("other-courses.html", "Other courses", "other")]
     nav = "".join(f'<a href="{rel}{h}"{" class=on" if a == active else ""}>{t}</a>' for h, t, a in links)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><meta name="author" content="Jagadrupa Sahoo">
@@ -194,7 +194,8 @@ def ccard(c):
     sk = COURSE_SK.get(c["id"], [])
     chips_ = f'<span class="chips">{"".join(skchip(x) for x in sk[:3])}{f"""<span class="chip src">+{len(sk)-3}</span>""" if len(sk) > 3 else ""}</span>' if sk else ""
     return f'<a class="card ccard{td}" href="courses/{c["id"]}.html"><div>{BADGE[c["status"]]}</div><h3>{E(c["title"])}</h3><small>{E(c["provider"])}</small><span style="font-size:14px">{E(c["summary"])}</span>{chips_}</a>'
-done = '<h3 class="ah" style="--c:var(--neurons)">Neuroscience</h3>'
+done = ""
+other = ""
 for bk, bn in BRANCHES:
     cs = [c for c in COURSES if c["status"] != "todo" and COURSE_BR.get(c["id"]) == bk]
     if cs:
@@ -218,11 +219,13 @@ for t in TREE[1:]:
             sub = " · ".join(x for x in [f"{len(cs_)} certified" if cs_ else "", f"{len(au_)} audited" if au_ else ""] if x)
             cards_ = "".join(c for _, c in sorted(cs_, reverse=True)) + "".join(au_)
             sec_ += f'<div class="cgroup" style="margin-top:22px"><h4>{E(br["name"])} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{cards_}</div></div>'
-    if sec_: done += f'<div style="--c:var(--{t["col"]})"><h3 class="ah" style="margin-top:44px">{E(t["name"])}</h3>{sec_}</div>'
+    if sec_: other += f'<div style="--c:var(--{t["col"]})"><h3 class="ah" style="margin-top:{44 if other else 10}px">{E(t["name"])}</h3>{sec_}</div>'
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
-page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Every course I have completed or audited, by area. Each neuroscience course has its own page with a graphical summary, learning outcomes and skills.</p></section>
-<section><h2>Completed and audited</h2><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Neuroscience courses open their own page; the others open their certificate card.</p>{done}</section>
+page("other-courses.html", "Other courses", f"""<section><p class="eyebrow">Other courses</p><h1>Other courses</h1><p class="lede">Courses outside neuroscience that I have completed or audited: deep learning and machine learning, bioinformatics and biotechnology.</p></section>
+<section><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Each card opens its certificate and course details on the Skills and certificates page.</p>{other}</section>""", "other")
+page("courses.html", "Neuroscience courses", f"""<section><p class="eyebrow">Neuroscience courses</p><h1>Neuroscience courses</h1><p class="lede">Every neuroscience course I have completed or audited. Each has its own page with a graphical summary, learning outcomes and skills.</p></section>
+<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="index.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><ul class="out">{read}</ul></section>""", "courses")
 
@@ -238,7 +241,7 @@ for c in COURSES:
         proof = f'<a class="chip" href="{rel}{cc[4]}.pdf">Certificate · {cc[2]}</a><a class="chip" href="{cc[5]}">Verify with issuer ↗</a>' + proof
     skl = f'<p class="eyebrow" style="margin:18px 0 6px">Skills</p><div class="chips">{"".join(skchip(x) for x in COURSE_SK[c["id"]])}</div>' if c["id"] in COURSE_SK else ""
     if c.get("repo"): proof += f'<a class="chip" href="{c["repo"]}">Public notes repository ↗</a>'
-    body = f'<section><a href="{rel}courses.html" class="eyebrow" style="text-decoration:none">← All courses</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div>{skl}</section>'
+    body = f'<section><a href="{rel}courses.html" class="eyebrow" style="text-decoration:none">← Neuroscience courses</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div>{skl}</section>'
     if c["kind"] == "todo":
         body = body.replace(f'<p class="lede" style="font-size:19px">{E(c["summary"])}</p>', "")
         body += '<section><div class="card ccard todo"><h3>To be updated</h3><span style="font-size:14px">Learning outcomes and a graphical summary will be added here.</span></div></section>'
