@@ -302,9 +302,12 @@ for c in COURSES:
             outs += f'<h3 style="margin-top:22px">{E(u)}</h3><ul class="out">{lis}</ul>'
         extra_note = "The course was audited, so there is no graded work or certificate behind them." if c["status"] == "audit" else "The certificate is the evidence of completion."
         caveat = "" if c["kind"] == "notes" else f'<p class="note">These are the outcomes listed by the course. {extra_note}</p>'
-        if g or demos:
-            body += f'<section><h2>Graphical summary</h2>{g}{demos}</section>'
-        body += gal + f'<section><h2>Learning outcomes</h2>{caveat}{outs}</section>'
+        if g:
+            body += f'<section><h2>Graphical summary</h2>{g}</section>'
+        body += f'<section><h2>Learning outcomes</h2>{caveat}{outs}</section>'
+        if demos:
+            body += f'<section><h2>Interactive simulations</h2><p class="note">Small models of ideas from the course, with illustrative parameters.</p>{demos}</section>'
+        body += gal
     page(f'courses/{c["id"]}.html', c["title"], body, "courses", c["summary"])
 
 # ---- certificates
