@@ -461,7 +461,7 @@ TREE = [
   dict(key="comp", name="Computational neuroscience", leaves=["Neural encoding and decoding", "Information theory", "Neuron and network models", "Plasticity and learning", "Attractor networks"]),
   dict(key="imaging", name="Neuroimaging", leaves=["MRI", "fMRI experimental design", "General Linear Model", "Connectivity", "Multi-voxel pattern analysis", "Image processing in R"]),
   dict(key="psych", name="Psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
-  dict(key="ad", name="Alzheimer's disease and neurodegeneration", note="Research projects and a review, 2020 to 2026", link=REPO_AD, projects_label="Projects and review",
+  dict(key="ad", name="Alzheimer's disease and neurodegeneration", note="Research projects and a review, 2020 to 2026", link="alzheimers-project.html", projects_label="Projects and review",
        leaves=["Alzheimer's pathology", "Neurodegenerative diseases", "Selective cell-type vulnerability", "Spatial transcriptomics of human cortex", "Zebrafish disease model", "GPCR-targeted therapies"], projects=AD_PROJECTS),
  ]),
  dict(key="dl", name="Deep learning and machine learning", col="networks", note="MSc at Manchester, research at TUM, and certified and audited coursework", branches=[
@@ -787,3 +787,24 @@ OTHER_DETAIL = {
   ("Fragment-based drug discovery for protein kinases", "Building kinase inhibitors up from small fragments, and why it is difficult.", []),
   ("Key concepts in drug delivery", "Getting a drug to the right place in the body at the right dose.", [])],
 }
+
+# ---- Alzheimer's project page
+AD_STEPS = [
+ ("Quality control", "Per-cell and per-gene filtering, with the detection gap between the two sections documented up front."),
+ ("Clustering and annotation", "Leiden clustering and marker-based cell-type annotation, tuned separately for each section."),
+ ("Composition and identity", "How cell-type proportions shift, and whether each type still expresses its defining programme."),
+ ("Spatial statistics", "Neighbourhood enrichment and Moran's I to test whether cell types and genes are spatially organised."),
+ ("Spatial zoning", "A transcriptional pathology index divides the Alzheimer's section into AD-hot and preserved zones."),
+ ("Differential expression", "Zone against zone, globally and within each cell type, with gene-set and transcription-factor activity."),
+ ("Trajectory and noise", "Pseudotime along OPC to oligodendrocyte maturation, transcriptional noise, and an integrated disruption index."),
+ ("Machine learning", "Cell-type classifiers tested with a random split, a spatial hold-out, and transfer between the two sections."),
+ ("External validation", "Core oligodendrocyte findings checked against the independent SEA-AD atlas."),
+]
+AD_LIMITS = [
+ "One tissue section per condition, so there is no biological replication.",
+ "A detection gap between sections (median 28 against 69 genes per cell) confounds direct cross-section comparisons; the analysis is built to avoid depending on them.",
+ "A targeted gene panel, not the whole transcriptome: tau (MAPT) is not measured, and the pathology index is a transcriptional proxy.",
+ "Cell types are annotated from markers, not confirmed by a pathologist.",
+ "The results are correlational; nothing here establishes cause or the order of events.",
+]
+AD_TOOLS = ["Python", "Scanpy", "Squidpy", "AnnData", "GSEApy", "scikit-learn", "Jupyter", "Docker"]

@@ -449,3 +449,21 @@ PICTURES.update({
  "Drug Discovery": (H, "From a target to a medicine.", _figure(DRUG)),
  "The Science of Stem Cells": (H, "What stem cells are and how they are used.", _figure(STEM)),
 })
+
+# ---------------- research project ----------------
+import random as _r
+_r.seed(7)
+_cells = [(20 + _r.random() * 192, 52 + _r.random() * 120, _r.choice(["accent", "accent", "brain", "cognition", "networks"])) for _ in range(150)]
+ADPROJ = [
+ ("Tissue to cells", f'<rect x="14" y="46" width="204" height="132" rx="8" fill="var(--tint)" stroke="var(--line)"/>' + "".join(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="2.6" fill="var(--{c})"/>' for x, y, c in _cells) + T(116, 198, "each dot a cell, with its genes measured", 10) + T(116, 213, "10x Xenium, human cortex", 10, "ink", font="mono"),
+  ["Two sections: Alzheimer's (44,955", "cells) and matched healthy (24,406)"]),
+ ("Composition", AX(40, 196, 160, 136) + f'<rect x="64" y="{196 - 59}" width="40" height="59" rx="3" fill="{TINT("accent", 50)}" stroke="var(--accent)"/><rect x="134" y="{196 - 108}" width="40" height="108" rx="3" fill="{TINT("disease", 55)}" stroke="var(--disease)"/>'
+  + T(84, 130, "19.7%", 11, "ink", font="mono") + T(154, 81, "36.0%", 11, "ink", font="mono") + T(84, 212, "healthy", 10) + T(154, 212, "Alzheimer's", 10) + T(116, 56, "oligodendrocyte share", 10),
+  ["The oligodendrocyte lineage is the", "main axis of disruption"]),
+ ("Spatial zones", GRID(28, 52, 8, 6, 22, [80 if (c >= 4 and r <= 3) or (c >= 6) else (45 if c == 3 and r <= 2 else 12) for r in range(6) for c in range(8)], "disease") + T(160, 200, "AD-hot: 58% oligo", 10, "disease") + T(64, 200, "preserved: 15%", 10),
+  ["Pathology is zoned, not spread", "evenly through the tissue"]),
+ ("Test and validate", B(16, 56, 84, 28, "train on AD", "disease", 10) + AR(100, 70, 130, 70) + B(132, 56, 84, 28, "test healthy", "accent", 10) + T(116, 100, "macro F1 ≈ 0.59", 10.5, "ink", font="mono")
+  + B(16, 116, 84, 28, "train healthy", "accent", 10) + AR(100, 130, 130, 130) + B(132, 116, 84, 28, "test on AD", "disease", 10) + T(116, 160, "macro F1 ≈ 0.43", 10.5, "ink", font="mono") + B(40, 176, 152, 26, "replicated in SEA-AD", "gold", 10),
+  ["Classifiers transfer unevenly; core", "claims hold in an independent atlas"]),
+]
+PICTURES["ad-project"] = ("The project in one picture", "From a tissue section to a tested claim.", _figure(ADPROJ))

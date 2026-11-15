@@ -67,7 +67,7 @@ def outcome_refs(c, o, rel):
 def page(path, title, body, active="", desc="Skills, certificates and neuroscience coursework of Jagadrupa Sahoo, with the evidence attached."):
     depth = path.count("/")
     rel = "../" * depth
-    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Neuroscience courses", "courses"), ("other-courses.html", "Other courses", "other")]
+    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Neuroscience courses", "courses"), ("other-courses.html", "Other courses", "other"), ("alzheimers-project.html", "Alzheimer's project", "ad")]
     nav = "".join(f'<a href="{rel}{h}"{" class=on" if a == active else ""}>{t}</a>' for h, t, a in links)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><meta name="author" content="Jagadrupa Sahoo">
@@ -308,6 +308,23 @@ for c in COURSES:
         body += gal
     col_ = AREA_COL.get(COURSE_BR.get(c["id"], "neuro/x").split("/")[0], "neurons")
     page(f'courses/{c["id"]}.html', c["title"], f'<div style="--c:var(--{col_})">{body}</div>', "courses" if c["id"] in NEURO_IDS else "other", c["summary"])
+
+# ---- Alzheimer's project
+_pt, _pc, _ps = PICTURES["ad-project"]
+_find = "".join(f'<li><p>{E(t)}</p><div class="chips"><a class="chip" href="{REPO_AD}{a}">Repository section ↗</a></div></li>' for _, _, t, a in AD_FINDINGS)
+_figs = "".join(f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)} · <a href="{REPO_AD}{a}">source ↗</a></figcaption></figure>' for f, cap, a in AD_FIGS)
+_steps = "".join(f'<li><p>{E(t)}</p><p class="od">{E(d)}</p></li>' for t, d in AD_STEPS)
+page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of human cortex", f"""<div style="--c:var(--neurons)"><section><p class="eyebrow">Independent research project · 2026</p><h1 style="font-size:clamp(30px,5vw,46px)">Spatial transcriptomics of human Alzheimer's cortex</h1>
+<p class="lede">I asked how the cellular architecture of human cortex is reorganised in Alzheimer's disease, and whether a model can learn that organisation. The oligodendrocyte lineage turned out to be the main axis of disruption: more numerous, less oligodendrocyte-like, arrested in maturation, and concentrated in the pathological zones.</p>
+<div class="chips" style="margin-top:14px"><a class="chip" href="{REPO_AD}">Code, notebooks and report on GitHub ↗</a><a class="chip src" href="{REPO_AD}#limitations">Limitations ↗</a></div>
+<div class="stats"><div class="stat"><b>44,955</b><span>cells in the Alzheimer's section</span></div><div class="stat"><b>24,406</b><span>cells in the matched healthy section</span></div><div class="stat"><b>19.7 → 36.0%</b><span>oligodendrocyte share, healthy to Alzheimer's</span></div><div class="stat"><b>58% vs 15%</b><span>oligodendrocytes in AD-hot against preserved zones</span></div></div></section>
+<section><h2>Graphical summary</h2><figure class="demo" style="margin:16px 0"><h4>{E(_pt)}</h4><p>{E(_pc)}</p>{_ps}</figure></section>
+<section><h2>Questions</h2><ul class="out"><li><p>How is the cellular architecture of human cortex reorganised in Alzheimer's disease, and is that reorganisation spatially structured?</p></li><li><p>Can machine learning learn cell-type identity from expression and spatial context, and does it transfer across tissue regions and across disease state?</p></li></ul></section>
+<section><h2>What I did</h2><p class="note">The data are a public 10x Genomics Xenium dataset: one Alzheimer's and one matched healthy section of human cortex, prepared and processed the same way.</p><ol class="out" style="list-style:none">{_steps}</ol></section>
+<section><h2>Key findings</h2><p class="note">Each finding links to the section of the repository that shows the evidence.</p><ul class="out">{_find}<li><p>Classifiers trained on the Alzheimer's section and tested on the healthy one generalise better (macro F1 about 0.59) than the reverse (about 0.43), across every model family tested.</p><div class="chips"><a class="chip" href="{REPO_AD}#the-asymmetry-is-the-finding">Repository section ↗</a></div></li></ul></section>
+<section><h2>Figures</h2><p class="note">From the analysis notebooks.</p><div class="gallery">{_figs}</div></section>
+<section><h2>Limitations</h2><p class="note">Stated in the repository before any result. This is research and a portfolio project, not a clinical tool.</p><ul class="out">{"".join(f"<li><p style='font-weight:400'>{E(x)}</p></li>" for x in AD_LIMITS)}</ul></section>
+<section><h2>Tools</h2><div class="chips" style="margin-top:10px">{"".join(skchip(x) for x in AD_TOOLS)}</div></section></div>""", "ad", "An independent analysis of 10x Xenium spatial transcriptomics of human Alzheimer's cortex.")
 
 # ---- certificates
 assert set(CERT_META) == set(CERTS) == set(CERT_GROUP), "certificate tables out of step"
