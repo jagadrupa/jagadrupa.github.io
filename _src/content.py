@@ -656,3 +656,16 @@ COURSE_DETAIL["harvardx-mcb80-2x"] = {
  "Potentiation and depression": ("How synapses strengthen and weaken with use, the basis of learning.",
   ["Introduction to plasticity", "Short-term plasticity and adaptation", "Hebb's rule and associative learning", "Nonsynaptic plasticity", "MDMA-assisted psychotherapy"]),
 }
+
+COURSE_DETAIL["harvardx-mcb80-3x"] = {
+ "Vision": ("How light is captured by the eye, processed in the retina and carried through the visual pathways of the brain.",
+  ["The nature of light", "How the retina processes light", "Visual pathways in the brain", "Anatomy of the eye"]),
+ "Audition": ("How sound is turned into neural signals and processed from the ear to the auditory cortex, and how hearing is lost.",
+  ["The nature of sound", "Auditory anatomy", "Subcortical auditory processing", "The auditory cortex", "Conduction deafness", "Sensorineural hearing loss"]),
+ "Touch, taste, smell and the remaining senses": ("The chemical senses and body sensation, and senses that other animals have and humans lack.",
+  ["Gustation", "Olfaction", "Somatosensation", "Senses beyond the human range"]),
+ "Movement and action": ("How muscles, motor neurons and reflexes produce movement, and what brain damage does to it.",
+  ["Muscles", "Lower motor neurons", "Upper motor neurons", "Reflexes", "How brain damage affects movement", "Voluntary and reflex movements"]),
+ "Subcortical brain areas": ("The structures beneath the cortex and what each contributes.",
+  ["Hindbrain", "Midbrain", "Cerebellum", "Forebrain", "Limbic system"]),
+}
