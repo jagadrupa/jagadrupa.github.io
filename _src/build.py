@@ -253,7 +253,11 @@ for c in COURSES:
         caveat = "" if c["kind"] == "notes" else f'<p class="note">These are the outcomes listed by the course. {extra_note}</p>'
         if g:
             body += f'<section><h2>Graphical summary</h2>{g}</section>'
-        body += f'<section><h2>Learning outcomes</h2>{caveat}{outs}</section>'
+        mods = ""
+        if c["id"] in COURSE_MODULES:
+            ml = "".join(f'<li><p>{E(t)}</p><p class="od">{E(d)}</p><div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div></li>' for t, d, tp in COURSE_MODULES[c["id"]])
+            mods = f'<h3 style="margin-top:22px">Official course modules</h3><ul class="out">{ml}</ul><h3 style="margin-top:34px">Outcomes from my own notes</h3><p class="note">Each outcome links to the page of my notes that covers it.</p>'
+        body += f'<section><h2>Learning outcomes</h2>{caveat}{mods}{outs}</section>'
         if demos:
             body += f'<section><h2>Interactive simulations</h2><p class="note">Small models of ideas from the course, with illustrative parameters.</p>{demos}</section>'
         body += gal

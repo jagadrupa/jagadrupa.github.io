@@ -525,3 +525,17 @@ COURSE_DETAIL = {
    ["Emotion", "Thalamic attention", "Memory types", "PTSD", "Semantic and episodic memory", "The story of H.M.", "Memory formation circuitry", "Amnesia", "Language and aphasias", "Prosody", "Intellectual disability"]),
  },
 }
+
+# Courses whose outcomes come from my own notes: the official modules are listed first. (module, description, lecture topics)
+COURSE_MODULES = {
+ "jhu-neuroimaging": [
+  ("Structural neuroanatomy of the human brain", "The terminology of neuroscience and the structure, development and blood supply of the human brain.",
+   ["Structure and anatomy", "Development of the brain", "Vascular organisation", "Terminology of brain organisation"]),
+  ("Functional neuroanatomy of the human brain", "How neurons communicate, how function maps onto anatomy, and how cognition is organised and assessed.",
+   ["Electrical and chemical communication in the brain", "Functional anatomy of the brain", "Organisation of cognitive domains", "Neuropsychological assessment of cognition"]),
+  ("Principles and methods of neuroimaging", "The main approaches to imaging the brain, the basics of MRI and fMRI, and what structural and functional studies show.",
+   ["Approaches to neuroimaging", "Basics of MRI", "Basics of fMRI", "Structural MRI studies", "Functional MRI studies"]),
+  ("Experimental design and special applications in neuroimaging", "How functional imaging experiments are designed, and the methods beyond standard fMRI.",
+   ["Experimental design", "Functional connectivity MRI", "Diffusion tensor imaging", "Magnetic resonance spectroscopy"]),
+ ],
+}
