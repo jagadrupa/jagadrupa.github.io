@@ -669,3 +669,10 @@ COURSE_DETAIL["harvardx-mcb80-3x"] = {
  "Subcortical brain areas": ("The structures beneath the cortex and what each contributes.",
   ["Hindbrain", "Midbrain", "Cerebellum", "Forebrain", "Limbic system"]),
 }
+
+COURSE_DETAIL["harvardx-mcb80-1x"].update({
+ "Action potential propagation": ("How an action potential travels along the axon, and how axon size and myelin make it faster.",
+  ["Signals in the nervous system", "Electrical signalling", "Getting from point A to point B", "Speeding up the action potential", "Giant axons", "Myelination in depth", "Field trip: sheep brain dissection"]),
+ "DIY labs": ("Optional do-it-yourself experiments for recording and stimulating real neurons at home.",
+  ["Recording and stimulating a nerve", "Rate coding", "Electrode referencing", "Neuropharmacology", "The electromyograph", "Grasshopper vision"]),
+})
