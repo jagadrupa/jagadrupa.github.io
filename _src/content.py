@@ -808,3 +808,10 @@ AD_LIMITS = [
  "The results are correlational; nothing here establishes cause or the order of events.",
 ]
 AD_TOOLS = ["Python", "Scanpy", "Squidpy", "AnnData", "GSEApy", "scikit-learn", "Jupyter", "Docker"]
+
+OTHER_DETAIL["covid"] = [
+ ("Import and prepare the data", "Importing the COVID-19 dataset and preparing it for analysis.", ["Dropping columns", "Aggregating rows"]),
+ ("Choose a measure", "Deciding on and calculating a good measure for the analysis.", []),
+ ("Merge and correlate", "Merging two datasets and finding correlations in the data.", ["Merging datasets", "Correlation"]),
+ ("Visualise the results", "Presenting the results of the analysis with Seaborn.", ["Seaborn plots"]),
+]
