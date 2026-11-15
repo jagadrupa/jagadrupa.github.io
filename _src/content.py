@@ -717,3 +717,73 @@ AUDIT_SUMMARY = {
  "Deep Learning with TensorFlow and Keras": "Advanced Keras: CNNs, transformers, generative models and reinforcement learning.",
  "Applied Deep Learning Capstone Project": "An end-to-end image classification project that combines a CNN with a vision transformer.",
 }
+
+# ---- detailed content for the other (non-neuroscience) certified courses: cert key -> [(module, description, topics)]
+OTHER_DETAIL = {
+ "dnaseq": [
+  ("DNA sequencing, strings and matching", "How sequencers produce reads, how DNA is handled as strings in Python, and the simplest way to match a read to a genome.",
+   ["DNA sequencing past and present", "Genomes as strings, reads as substrings", "Manipulating DNA strings", "FASTQ format and base qualities", "Read alignment", "Naive exact matching"]),
+  ("Preprocessing, indexing and approximate matching", "Faster matching through preprocessing and indexes, and matching that tolerates differences.",
+   ["Boyer-Moore", "Repetitive elements", "k-mer indexes", "Hash tables and ordered structures", "Hamming and edit distance", "The pigeonhole principle"]),
+  ("Edit distance, assembly, overlaps", "Dynamic programming for alignment, then the first steps of assembling a genome from reads.",
+   ["Dynamic programming for edit distance", "Global and local alignment", "The laws of assembly", "Overlap graphs", "Finding all overlaps"]),
+  ("Algorithms for assembly", "How assemblers build genomes, and why repeats make it hard.",
+   ["Shortest common superstring", "Greedy assembly", "Repeats", "De Bruijn graphs and Eulerian walks", "Assemblers in practice", "Long reads"])],
+ "bigdata": [
+  ("Genes and data", "The molecular biology behind gene-expression data, and a first look at large cancer datasets.",
+   ["DNA and genes", "RNA and proteins", "Transcription and translation", "Variables and big datasets", "cBioPortal"]),
+  ("Preparing datasets for analysis", "Cleaning and shaping data before analysis, with an introduction to R.",
+   ["Data sources", "Missing values", "Normalisation", "Discretisation", "Feature selection", "Sampling", "R and Jupyter notebooks"]),
+  ("Finding differentially expressed genes", "Selecting the genes that differ between groups.",
+   ["Filter methods", "Wrapper methods", "Evaluation schemes", "Heatmaps", "R scripts for feature selection"]),
+  ("Predicting diseases from genes", "Classifiers that predict disease from expression profiles.",
+   ["Nearest-neighbour and rule-based methods", "Neural networks", "Statistical and probabilistic classifiers", "Evaluation schemes", "Prediction workflow"]),
+  ("Determining gene alterations", "Mutations, methylation and copy number changes, and how they relate to expression.",
+   ["Genetic mutations", "Methylation", "Copy number alterations", "Alterations and gene expression"]),
+  ("Clustering and pathway analysis", "Grouping genes and samples, and reading results at the level of pathways.",
+   ["Similarity assessment", "k-means", "Density-based clustering", "Hierarchical clustering", "Pathway analysis and visualisation"])],
+ "pygen": [
+  ("Overview of Python and first steps", "What Python is and how to write and run a first program.", ["Overview of Python", "First steps toward programming"]),
+  ("Data structures, ifs and loops", "Holding sequence data in Python and controlling what a program does with it.", ["Data structures", "Conditionals", "Loops"]),
+  ("Functions, modules and packages", "Writing reusable code and organising it.", ["Functions", "Modules and packages"]),
+  ("Reading and writing data, and Biopython", "Getting sequence data in and out of a program, and using Biopython for common tasks.", ["Files and user input", "Communicating with other programs", "Biopython"])],
+ "gentech": [
+  ("Overview", "What genomics and genomic data science are, with the cell and molecular biology they need.",
+   ["Genomics", "Genomic data science", "Cell biology", "Molecules of molecular biology", "The Human Genome Project", "From genes to phenotypes"]),
+  ("Measurement technology", "How DNA is amplified and sequenced.", ["Polymerase chain reaction", "Next-generation sequencing", "Applications of sequencing"]),
+  ("Computing technology", "The computer science behind genomic software.", ["Algorithms", "Memory and data structures", "Efficiency", "Software engineering", "Computational biology software"]),
+  ("Data science technology", "The statistics needed to trust a genomic result.",
+   ["The central dogma of statistics", "Plotting data", "Sample size and variability", "Statistical significance", "Multiple testing", "Study design, batch effects and confounding"])],
+ "gut": [
+  ("Introduction to microbes and the human microbiome", "What microbes are and where the human microbiome comes from.", ["Microbes", "The human microbiome", "Where our microbes come from"]),
+  ("Studying the microbiome", "The sequencing and omics methods used to study microbial communities.", ["The history of studying microbes", "High-throughput DNA sequencing", "Omics technologies"]),
+  ("Making sense out of microbial data", "Identifying microbes and comparing communities.", ["Identifying a microbe", "Alpha-diversity", "Beta-diversity", "Visualising differences with QIIME"]),
+  ("The human gut microbiome and your health", "How diet, age and disease shape the gut community, and how it can be changed.", ["Diet and age", "Obesity", "Gut disease", "Faecal transplants"]),
+  ("Gut microbe-host interactions: beyond nutrition", "How gut microbes interact with the immune and nervous systems.", ["The immune system", "Autoimmune diseases and allergies", "The gut and the brain", "Machine learning on microbiome data"]),
+  ("What's in the American Gut", "A large citizen-science survey of gut microbiomes and what it found.", ["The American Gut Project", "Collecting samples", "Comparing populations"])],
+ "permed": [
+  ("Introduction to personalised medicine", "What personalised medicine is, and why the Nordic countries are well placed for it.", ["What personalised medicine is", "The Nordic perspective"]),
+  ("Health information used in personalised medicine", "The patient data behind personalised medicine and how it is made usable.", ["Patient information", "Data cleaning and validation", "Disease trajectories from longitudinal data", "Digital tools for patient engagement"]),
+  ("Biomarkers, genetics and omics", "How biomarkers are found and how genetic information is used in the clinic.", ["Biomarkers", "Omics approaches to biomarker discovery", "Genetic information in clinical medicine"]),
+  ("Evidence and documentation for clinical efficacy", "How evidence for personalised treatments is generated and brought into practice.", ["Novel trial designs", "Legal and ethical evidence generation", "From research to clinical practice"]),
+  ("Communication in personalised medicine", "Talking about screening and risk with patients and the public.", ["Screening for rare and common diseases", "Communicating risk", "Patient-centred care", "Living with a risk variant", "Media coverage"]),
+  ("Ethical, legal and social aspects", "The ethical, legal and social questions personalised medicine raises.", ["Ethical concerns", "Legal regulation", "Social aspects", "The future"])],
+ "biotech": [
+  ("Enzymes, enzyme discovery and engineering", "How enzymes work, how new ones are found, and how they are improved.", ["How enzymes work", "Discovering enzymes", "Characterising catalytic activity", "Directed evolution", "Rational design of biocatalysts"]),
+  ("Methods in systems and synthetic biology", "Designing, building and testing biological systems.", ["Synthetic biology", "Computational modelling and systems biology", "Genome synthesis and editing", "Engineering pathways", "Debugging with metabolomics"]),
+  ("Biochemical and bioprocess engineering", "Turning a biological process into an industrial one.", ["Microbial fermentation and bioreactor design", "Biocatalysis", "Recovery and purification of small and large molecules", "Process economics and scale-up"]),
+  ("Pharmaceuticals and fine chemicals", "Industrial examples of enzymes used to make drugs and fine chemicals.", ["Hydrolases", "Transaminases", "Aldolases", "Alcohol dehydrogenases", "Nitrile hydratases", "Amino acid oxidases"]),
+  ("Case studies: bioenergy and biomaterials", "Biotechnology applied to energy and materials.", ["Sustainable bioenergy", "New routes to biofuels", "Membrane processes", "Enzymatic biofuel cells", "Biomaterials and biomanufacturing"]),
+  ("Case studies: glycoscience and biotherapeutics", "Sugars in medicine, and how protein drugs are made.", ["Glycoscience", "Glycoscience in pharmaceuticals", "Biopharmaceuticals in the clinic", "Biopharmaceutical production"])],
+ "stem": [
+  ("Introduction to stem cells", "What stem cells are, how they differentiate and why they matter.", ["How stem cells differentiate", "The history of stem cells", "Why stem cells are important", "Stem cells in other organisms"]),
+  ("Using stem cells to study disease", "Reprogrammed cells as models of human disease.", ["Reprogramming", "Genome editing for disease modelling", "Developing new cures"]),
+  ("Using stem cells to treat disease", "Where stem-cell therapies stand, and common misconceptions.", ["Adult (somatic) stem cells", "Myths about stem-cell therapy"]),
+  ("The bioethics of stem cell research and therapy", "The ethical questions raised by stem-cell research and treatment.", ["Bioethics of research", "Bioethics of therapy"])],
+ "drug": [
+  ("Pharmaceutical and biotechnology industry landscape", "How the pharmaceutical and biotechnology industries are organised and where they are heading.", ["The pharma and biotechnology landscape", "Key issues for pharma", "Global outlook", "Patient-centric drug discovery", "A new approach to R&D", "Innovation"]),
+  ("Drug discovery: proteomics, genomics", "Using genomics and proteomics to find and validate drug targets.", []),
+  ("Compound selection and preclinical studies", "Choosing candidate compounds and testing them before human trials.", []),
+  ("Fragment-based drug discovery for protein kinases", "Building kinase inhibitors up from small fragments, and why it is difficult.", []),
+  ("Key concepts in drug delivery", "Getting a drug to the right place in the body at the right dose.", [])],
+}

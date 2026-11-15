@@ -185,7 +185,11 @@ NEURO_IDS = {c["id"] for c in COURSES}
 _have = {c["cert"] for c in COURSES if c.get("cert")}
 for k, v in sorted(CERTS.items(), key=lambda kv: kv[1][3], reverse=True):
     if k in _have or k == "spec": continue
-    m = CERT_META[k]; mods = CERT_MODULES.get(k, [])
+    m = CERT_META[k]
+    if k in OTHER_DETAIL:
+        CERT_MODULES[k] = [t_ for t_, _, _ in OTHER_DETAIL[k]]
+        COURSE_DETAIL[slug(v[0])] = {t_: (d_, tp_) for t_, d_, tp_ in OTHER_DETAIL[k]}
+    mods = CERT_MODULES.get(k, [])
     COURSES.append(dict(id=slug(v[0]), title=v[0], provider=v[1] if "edX" in v[1] else v[1] + " · Coursera", status="cert", cert=k,
                         url=m["url"] or "https://www.coursera.org/search?query=" + v[0].replace(" ", "%20"), outcomes=[("brain", "Official course modules", x) for x in mods],
                         kind="syllabus", summary=m["summary"], graphic="rail" if mods else None, demos=[]))
@@ -284,6 +288,7 @@ for c in COURSES:
                 if o[2] not in det: return ""
                 d, tp = det[o[2]]
                 if not d and not tp: return ""
+                if not tp: return f'<p class="od">{E(d)}</p>'
                 if not d: return f'<div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div>'
                 return f'<p class="od">{E(d)}</p><div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div>'
             refs = (lambda o: f'<div class="chips">{outcome_refs(c, o, rel)}</div>') if c["kind"] == "notes" else (lambda o: "")

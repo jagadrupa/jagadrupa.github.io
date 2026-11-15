@@ -293,3 +293,159 @@ PICTURES = {
  "Deep Learning with TensorFlow and Keras": (H, "", _figure(TFK)),
  "Applied Deep Learning Capstone Project": (H, "", _figure(CAP)),
 }
+
+# ---------------- machine learning, bioinformatics, biotechnology ----------------
+def _chain(labels, cols, y=96, w=58, gap=12, x0=14, h=28):
+    out = ""
+    for i, (l, c) in enumerate(zip(labels, cols)):
+        x = x0 + i * (w + gap); out += B(x, y, w, h, l, c, 10)
+        if i < len(labels) - 1: out += AR(x + w, y + h / 2, x + w + gap - 2, y + h / 2)
+    return out
+def _bell(cx, col, y0=190, h=96, w=44):
+    return P(f"M{cx - 2 * w} {y0}C{cx - w} {y0} {cx - w * .6} {y0 - h} {cx} {y0 - h}C{cx + w * .6} {y0 - h} {cx + w} {y0} {cx + 2 * w} {y0}", col)
+PH125 = [
+ ("Train and validate", "".join(GRID(30, 56 + 26 * r, 5, 1, 34, [70 if c == r else 16 for c in range(5)], "accent") for r in range(5)) + T(116, 204, "each fold is held out once", 10),
+  ["Cross-validation estimates how a", "model will do on new data"]),
+ ("Algorithms", AX(22, 200, 192, 140) + DOTS([(48, 170), (62, 150), (80, 176), (70, 132), (96, 158), (56, 186)], "cognition", 3.6) + DOTS([(150, 90), (168, 110), (184, 84), (140, 116), (176, 132), (198, 104)], "brain", 3.6) + P("M40 84C90 96 120 150 206 178", "accent", 2, "5 3") + T(150, 190, "decision boundary", 10),
+  ["kNN, trees, random forests and", "other classifiers, compared in R"]),
+ ("Regularisation", AX(22, 200, 192, 140) + P("M30 80C70 150 110 186 208 192", "networks") + P("M30 96C80 170 120 168 208 96", "brain") + T(150, 172, "training error", 10, "networks", "end") + T(206, 90, "test error", 10, "brain", "end") + T(116, 216, "model complexity", 10),
+  ["Penalising complexity keeps a model", "from fitting noise"]),
+ ("Recommendation", GRID(46, 56, 5, 5, 26, [80, 14, 60, 14, 30, 14, 70, 14, 40, 14, 50, 14, 14, 80, 14, 14, 30, 60, 14, 70, 60, 14, 14, 20, 14], "accent") + T(111, 100, "?", 14, "ink") + T(30, 124, "users", 10) + T(110, 200, "items rated", 10),
+  ["Predict the ratings a user has not", "given yet"]),
+]
+DNASEQ = [
+ ("Reads and genomes", f'<rect x="16" y="62" width="200" height="12" rx="3" fill="{TINT("molecules", 40)}" stroke="var(--molecules)"/>' + T(116, 54, "genome", 10)
+  + "".join(f'<rect x="{x}" y="{y}" width="54" height="8" rx="2" fill="{TINT("accent", 55)}"/>' for x, y in ((20, 92), (58, 108), (96, 92), (130, 124), (160, 108), (40, 124), (112, 140))) + T(116, 172, "millions of short reads", 10) + T(116, 196, "ACGTTGCA…", 11, "ink", font="mono"),
+  ["A sequencer returns fragments that", "must be matched back to the genome"]),
+ ("Indexing", B(16, 56, 46, 22, "ACG", "molecules") + B(16, 86, 46, 22, "CGT", "molecules") + B(16, 116, 46, 22, "GTA", "molecules") + AR(64, 67, 92, 67) + AR(64, 97, 92, 97) + AR(64, 127, 92, 127)
+  + T(100, 71, "3, 41, 97", 10.5, "ink", "start", "mono") + T(100, 101, "12, 58", 10.5, "ink", "start", "mono") + T(100, 131, "7", 10.5, "ink", "start", "mono") + T(40, 156, "k-mer", 10) + T(132, 156, "positions", 10) + B(40, 172, 152, 24, "look up, then verify", "gold", 10),
+  ["An index finds candidate positions", "without scanning the whole genome"]),
+ ("Alignment", GRID(46, 54, 6, 6, 24, [70 if r == c else (30 if abs(r - c) == 1 else 12) for r in range(6) for c in range(6)], "accent") + P("M52 60L184 192", "brain", 2) + T(116, 46, "read", 10) + T(34, 130, "ref", 10) + T(116, 214, "edit distance by dynamic programming", 9.5),
+  ["Dynamic programming finds the best", "match despite errors"]),
+ ("Assembly", "".join(C(x, y, 15, "molecules", 26) + T(x, y + 3.5, l, 9.5, "ink", font="mono") for x, y, l in ((50, 76, "AC"), (116, 60, "CG"), (182, 76, "GT"), (160, 150, "TA"), (72, 150, "AA")))
+  + AR(64, 70, 100, 62) + AR(132, 62, 166, 70) + AR(180, 92, 168, 134) + AR(144, 152, 90, 152) + AR(64, 136, 52, 94) + T(116, 196, "De Bruijn graph", 10.5, "ink"),
+  ["Overlapping reads are stitched into", "longer sequence; repeats make it hard"]),
+]
+BIGDATA = [
+ ("Genes as data", _chain(["DNA", "RNA", "protein"], ["molecules", "accent", "brain"], 58) + AR(116, 90, 116, 110) + GRID(60, 116, 8, 5, 14, [(i * 37) % 90 for i in range(40)], "molecules") + T(116, 204, "samples × genes", 10),
+  ["Expression of thousands of genes,", "measured across many patients"]),
+ ("Preparing data", B(40, 50, 152, 24, "replace missing values", "networks", 10) + B(40, 90, 152, 24, "normalise", "accent", 10) + B(40, 130, 152, 24, "select features", "cognition", 10) + AR(116, 74, 116, 88) + AR(116, 114, 116, 128) + T(116, 180, "in R and Jupyter", 10.5, "ink", font="mono"),
+  ["Most of the work is cleaning and", "shaping the data"]),
+ ("Differential expression", GRID(34, 56, 4, 7, 20, [80, 70, 90, 75, 85, 90, 70, 80, 78, 88, 72, 90, 12, 20, 10, 18, 16, 10, 22, 14, 20, 12, 18, 10, 15, 22, 12, 20], "brain") + GRID(120, 56, 4, 7, 20, [12, 20, 10, 18, 16, 10, 22, 14, 20, 12, 18, 10, 80, 70, 90, 75, 85, 90, 70, 80, 78, 88, 72, 90, 84, 76, 90, 70], "brain") + T(74, 210, "healthy", 10) + T(160, 210, "disease", 10),
+  ["Genes that differ between groups", "stand out in a heatmap"]),
+ ("Predict and cluster", AX(22, 200, 192, 140) + DOTS([(50, 90), (64, 76), (72, 100), (58, 110), (80, 84)], "accent", 3.8) + DOTS([(150, 96), (166, 84), (176, 108), (158, 116), (184, 92)], "brain", 3.8) + DOTS([(100, 160), (116, 172), (126, 152), (108, 182), (134, 168)], "cognition", 3.8)
+  + "".join(f'<ellipse cx="{x}" cy="{y}" rx="30" ry="26" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>' for x, y in ((66, 92), (168, 100), (116, 168))),
+  ["Classifiers predict disease; clustering", "finds groups and pathways"]),
+]
+PYGEN = [
+ ("First programs", f'<rect x="20" y="52" width="192" height="120" rx="6" fill="var(--tint)" stroke="var(--line)"/>' + T(32, 78, 'seq = "ATGCGT"', 11, "ink", "start", "mono") + T(32, 100, "print(len(seq))", 11, "ink", "start", "mono") + T(32, 134, "6", 11, "accent", "start", "mono") + T(116, 196, "variables, strings, numbers", 10),
+  ["Python from the first line, with", "DNA as the running example"]),
+ ("Data structures", GRID(26, 60, 6, 1, 30, [30, 50, 30, 60, 40, 30], "molecules") + "".join(T(40 + 30 * i, 79, ch, 11, "ink", font="mono") for i, ch in enumerate("ATGCGT")) + T(116, 108, "list", 10) + B(30, 126, 76, 24, '"ATG": M', "accent", 10) + B(126, 126, 76, 24, '"TAA": stop', "accent", 10) + T(116, 170, "dictionary", 10) + T(116, 198, "if · for · while", 11, "ink", font="mono"),
+  ["Lists, dictionaries and the control", "flow that walks through them"]),
+ ("Functions", T(40, 110, "seq", 11, "ink", font="mono") + AR(56, 106, 76, 106) + B(78, 84, 80, 44, "def gc(seq)", "gold", 11) + AR(158, 106, 178, 106) + T(196, 110, "0.5", 11, "ink", font="mono") + T(116, 166, "write once, reuse everywhere", 10) + T(116, 190, "modules and packages", 10),
+  ["Reusable functions, grouped into", "modules"]),
+ ("Files and Biopython", f'<path d="M30 56h44l14 14v62H30z" fill="{TINT("networks")}" stroke="var(--networks)" stroke-width="1.3"/>' + T(59, 96, ">seq1", 9.5, "ink", font="mono") + T(59, 110, "ATGC…", 9.5, "ink", font="mono") + T(59, 150, "FASTA file", 10) + AR(92, 96, 116, 96) + B(120, 80, 92, 32, "Biopython", "accent", 11) + T(166, 132, "parse, translate,", 10) + T(166, 146, "search", 10),
+  ["Read sequence files and use a", "ready-made toolkit"]),
+]
+GENTECH = [
+ ("Molecular biology", _chain(["DNA", "RNA", "protein"], ["molecules", "accent", "brain"], 80) + T(54, 130, "transcription", 9.5) + T(160, 130, "translation", 9.5) + T(116, 176, "from genes to phenotypes", 10.5, "ink"),
+  ["Just enough biology to know what", "is being measured"]),
+ ("Sequencing", f'<rect x="16" y="56" width="200" height="12" rx="3" fill="{TINT("molecules", 40)}" stroke="var(--molecules)"/>' + AR(116, 74, 116, 96) + T(150, 90, "fragment", 9.5, anchor="start")
+  + "".join(f'<rect x="{x}" y="{y}" width="40" height="8" rx="2" fill="{TINT("accent", 55)}"/>' for x, y in ((24, 106), (70, 106), (116, 106), (162, 106), (46, 122), (92, 122), (138, 122))) + B(50, 150, 132, 26, "PCR · next-generation", "gold", 10),
+  ["How DNA is amplified and read", "at scale"]),
+ ("Computing", B(20, 60, 90, 30, "algorithms", "networks") + B(122, 60, 90, 30, "data structures", "accent", 10) + B(20, 108, 90, 30, "efficiency", "cognition") + B(122, 108, 90, 30, "software", "gold") + T(116, 176, "the computer science behind the tools", 9.5),
+  ["Why genomic software is built the", "way it is"]),
+ ("Statistics", AX(22, 196, 192, 130) + _bell(90, "networks", 194, 100, 34) + _bell(140, "brain", 194, 100, 34) + T(60, 84, "control", 10, "networks") + T(172, 84, "treated", 10, "brain") + T(116, 214, "variability, significance, batch effects", 9.5),
+  ["What it takes to trust a difference", "between groups"]),
+]
+GALAXY = [
+ ("The platform", f'<rect x="18" y="52" width="196" height="130" rx="6" fill="var(--tint)" stroke="var(--line)"/><path d="M18 70H214M76 70V182M156 70V182" stroke="var(--line)"/>' + T(47, 90, "tools", 10) + T(116, 90, "analysis", 10) + T(185, 90, "history", 10)
+  + "".join(f'<rect x="26" y="{y}" width="42" height="7" rx="2" fill="{TINT("networks", 40)}"/>' for y in (102, 116, 130, 144)) + "".join(f'<rect x="164" y="{y}" width="42" height="12" rx="2" fill="{TINT("accent", 40)}"/>' for y in (100, 118, 136)) + T(116, 200, "genomics in the browser", 10),
+  ["A web interface to genomic tools,", "with no command line needed"]),
+ ("Workflows", C(40, 80, 13, "networks") + C(116, 80, 13, "accent") + C(192, 80, 13, "cognition") + C(116, 150, 13, "gold") + AR(54, 80, 100, 80) + AR(130, 80, 176, 80) + AR(116, 94, 116, 134) + T(40, 110, "trim", 10) + T(150, 110, "align", 10) + T(192, 110, "count", 10) + T(116, 182, "report", 10),
+  ["Chain tools into a pipeline that can", "be re-run on new data"]),
+ ("Sequence quality", AX(22, 196, 192, 130) + f'<rect x="23" y="66" width="190" height="44" fill="{TINT("accent", 14)}"/><rect x="23" y="150" width="190" height="45" fill="{TINT("disease", 16)}"/>' + P("M28 82C80 82 120 90 150 110C176 128 196 160 210 178") + T(210, 80, "good", 10, "accent", "end") + T(40, 186, "poor", 10, "disease", "start") + T(116, 214, "position in read", 10),
+  ["Check and clean reads before", "analysing them"]),
+ ("Reproducibility", "".join(B(30, 56 + 34 * i, 124, 24, l, "accent", 10) + T(176, 73 + 34 * i, "✓", 14, "accent") for i, l in enumerate(("inputs saved", "parameters saved", "versions saved"))) + B(50, 164, 132, 26, "share the history", "gold", 10),
+  ["Every step is recorded, so an", "analysis can be repeated exactly"]),
+]
+GUT = [
+ ("The microbiome", f'<ellipse cx="116" cy="118" rx="84" ry="64" fill="{TINT("gold", 12)}" stroke="var(--gold)" stroke-width="1.3"/>' + DOTS([(70, 100), (96, 84), (130, 96), (160, 110), (84, 130), (110, 120), (146, 140), (120, 156), (170, 136), (64, 126)], "accent", 5) + DOTS([(88, 108), (140, 118), (104, 146), (154, 92), (128, 134)], "cognition", 4) + DOTS([(76, 148), (112, 100), (160, 150), (136, 76)], "brain", 3.4) + T(116, 204, "trillions of microbes", 10),
+  ["A community of microbes lives in", "and on us"]),
+ ("Reading it", B(14, 80, 54, 30, "sample", "gold", 10) + AR(68, 95, 82, 95) + B(84, 80, 64, 30, "sequence", "networks", 10) + AR(148, 95, 162, 95) + GRID(166, 72, 3, 4, 15, [70, 20, 40, 10, 80, 30, 50, 10, 60, 20, 40, 90], "accent") + T(190, 146, "who is there", 10) + T(116, 190, "16S and shotgun sequencing", 10),
+  ["DNA sequencing identifies the", "microbes without culturing them"]),
+ ("Diversity", AX(22, 196, 192, 136) + DOTS([(54, 96), (70, 82), (82, 104), (60, 116), (90, 90)], "accent", 4) + DOTS([(150, 150), (166, 136), (178, 160), (156, 170), (188, 146)], "brain", 4) + T(70, 140, "group A", 10, "accent") + T(170, 122, "group B", 10, "brain") + T(116, 214, "alpha within, beta between", 10),
+  ["How rich a community is, and how", "communities differ"]),
+ ("Health", B(76, 52, 80, 28, "gut microbes", "gold") + B(14, 124, 62, 26, "diet", "accent") + B(85, 124, 62, 26, "immunity", "disease") + B(156, 124, 62, 26, "brain", "neurons") + P("M100 80L52 122M116 80V122M132 80L182 122", "muted", 1.4) + T(116, 184, "obesity · allergy · gut disease", 10),
+  ["Gut microbes interact with diet, the", "immune system and the brain"]),
+]
+COVID = [
+ ("Load", GRID(22, 60, 4, 5, 20, None, "networks") + GRID(130, 60, 4, 5, 20, None, "cognition") + T(62, 180, "cases", 10) + T(170, 180, "happiness report", 10) + T(116, 204, "pandas DataFrames", 10.5, "ink", font="mono"),
+  ["Two public datasets read into", "pandas"]),
+ ("Clean and merge", GRID(16, 70, 3, 4, 18, None, "networks") + GRID(86, 70, 3, 4, 18, None, "cognition") + AR(142, 106, 158, 106) + GRID(162, 70, 3, 4, 18, [40, 40, 60, 40, 40, 60, 40, 40, 60, 40, 40, 60], "accent") + T(110, 166, "join on country", 10) + T(116, 190, "drop, aggregate, normalise", 10),
+  ["Tidy each table, then join them", "on a shared key"]),
+ ("Visualise", AX(22, 196, 192, 136) + P("M26 190C90 188 130 170 210 70") + P("M26 192C100 190 150 176 210 120", "brain") + P("M26 193C110 192 170 186 210 160", "cognition") + T(116, 214, "cases over time, by country", 10),
+  ["Plot how the outbreak grew in", "each country"]),
+ ("Correlate", AX(22, 196, 192, 136) + DOTS([(40, 170), (56, 160), (70, 150), (84, 152), (98, 130), (112, 134), (128, 112), (144, 116), (160, 96), (178, 90), (194, 74)], "muted", 3.4) + P("M34 176L200 72") + T(60, 80, "r", 13, "ink", font="serif") + T(116, 214, "infection rate vs. life factors", 10),
+  ["Test whether spread relates to", "wealth, support or life expectancy"]),
+]
+PERMED = [
+ ("One size to tailored", "".join(C(30 + 26 * i, 76, 9, "muted", 30) for i in range(7)) + T(116, 104, "the same treatment for all", 10) + AR(116, 112, 116, 130) + "".join(C(30 + 26 * i, 148, 9, c, 50) for i, c in enumerate(("accent", "accent", "brain", "accent", "cognition", "brain", "accent"))) + T(116, 178, "treatment matched to the patient", 10),
+  ["Treat the individual, not the", "average patient"]),
+ ("Health data", B(14, 56, 62, 26, "records", "networks", 10) + B(85, 56, 62, 26, "registries", "accent", 10) + B(156, 56, 62, 26, "genomes", "molecules", 10) + P("M45 82L104 122M116 82V122M187 82L128 122", "muted", 1.4) + B(66, 124, 100, 30, "disease trajectory", "gold", 10) + T(116, 184, "Nordic nationwide registries", 10),
+  ["Linked health data show how", "disease unfolds over a lifetime"]),
+ ("Biomarkers and omics", "".join(B(40, 56 + 30 * i, 152, 22, l, c, 10) for i, (l, c) in enumerate((("genome", "molecules"), ("transcriptome", "accent"), ("proteome", "brain"), ("metabolome", "gold")))) + AR(116, 178, 116, 196) + T(116, 212, "a biomarker that guides treatment", 10),
+  ["Molecular layers are searched for", "markers of risk and response"]),
+ ("Into practice", B(20, 60, 192, 26, "evidence from new trial designs", "networks", 10) + B(20, 100, 192, 26, "communicating risk to patients", "accent", 10) + B(20, 140, 192, 26, "ethics, law and consent", "cognition", 10),
+  ["Evidence, communication and ethics", "decide what reaches the clinic"]),
+]
+BIOTECH = [
+ ("Enzyme engineering", f'<path d="M96 60a40 40 0 1 0 0 80l-14-22a16 16 0 1 1 0-36z" fill="{TINT("accent", 30)}" stroke="var(--accent)" stroke-width="1.4"/>' + C(112, 100, 10, "brain", 60) + T(64, 52, "enzyme", 10) + T(128, 104, "substrate", 10, anchor="start")
+  + '<path d="M70 176a46 16 0 1 0 92 0" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah)"/>' + T(116, 172, "mutate, screen, repeat", 10),
+  ["Enzymes are discovered, then improved", "by directed evolution and design"]),
+ ("Synthetic biology", '<path d="M116 62a46 46 0 0 1 40 69" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#ah)"/><path d="M150 140a46 46 0 0 1-74-6" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#ah)"/><path d="M72 126a46 46 0 0 1 36-63" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#ah)"/>'
+  + T(172, 84, "design", 11, "ink") + T(116, 176, "build", 11, "ink") + T(56, 84, "test", 11, "ink") + T(116, 112, "cell", 10) + T(116, 204, "pathways engineered like circuits", 10),
+  ["Biological systems are designed,", "built and tested in cycles"]),
+ ("Bioprocess", f'<path d="M72 60h88v100a16 16 0 0 1-16 16H88a16 16 0 0 1-16-16z" fill="{TINT("networks", 16)}" stroke="var(--ink)" stroke-width="1.5"/><path d="M73 96h86v64a15 15 0 0 1-15 15H88a15 15 0 0 1-15-15z" fill="{TINT("accent", 30)}"/>' + P("M116 48V150M96 150h40M100 124h32", "ink", 1.8) + DOTS([(90, 140), (140, 132), (132, 158), (98, 112), (146, 108)], "paper", 3)
+  + T(196, 100, "fermenter", 9.5) + T(116, 200, "then recovery and purification", 10),
+  ["Scaling a reaction from flask to", "industrial fermenter"]),
+ ("Products", B(18, 56, 94, 34, "pharmaceuticals", "cognition", 10) + B(120, 56, 94, 34, "fine chemicals", "accent", 10) + B(18, 104, 94, 34, "biofuels", "gold", 10) + B(120, 104, 94, 34, "biomaterials", "networks", 10) + B(69, 152, 94, 34, "biotherapeutics", "disease", 10),
+  ["Where industrial biotechnology is", "used today"]),
+]
+DRUG = [
+ ("The pipeline", B(14, 56, 62, 26, "target", "networks", 10) + AR(76, 69, 84, 69) + B(86, 56, 60, 26, "hit", "accent", 10) + AR(146, 69, 154, 69) + B(156, 56, 62, 26, "lead", "cognition", 10) + AR(187, 82, 187, 104)
+  + B(156, 106, 62, 26, "preclinical", "gold", 9.5) + AR(154, 119, 148, 119) + B(86, 106, 60, 26, "trials", "brain", 10) + AR(84, 119, 78, 119) + B(14, 106, 62, 26, "medicine", "disease", 10) + T(116, 176, "ten years or more, end to end", 10),
+  ["The stages a molecule passes on", "the way to patients"]),
+ ("Finding targets", B(22, 60, 84, 28, "genomics", "molecules") + B(126, 60, 84, 28, "proteomics", "brain") + P("M64 88L108 128M168 88L124 128", "muted", 1.4) + C(116, 142, 16, "accent", 50) + T(116, 146, "target", 9.5, "ink") + T(116, 190, "which protein drives the disease?", 10),
+  ["Omics data point to the proteins", "worth drugging"]),
+ ("Selecting compounds", f'<path d="M30 56H202L140 150V186H92V150Z" fill="{TINT("networks", 18)}" stroke="var(--networks)" stroke-width="1.4"/>' + T(116, 78, "10,000 compounds", 10.5, "ink") + T(116, 112, "screening", 10) + T(116, 144, "preclinical", 10) + T(116, 176, "1", 13, "accent") + T(116, 206, "fragment-based design for kinases", 9.5),
+  ["Thousands of candidates are narrowed", "to the few worth testing in people"]),
+ ("Delivery", f'<rect x="20" y="86" width="52" height="24" rx="12" fill="{TINT("cognition", 40)}" stroke="var(--cognition)" stroke-width="1.3"/><path d="M46 86V110" stroke="var(--cognition)"/>' + AR(76, 98, 96, 98) + B(100, 82, 56, 32, "blood", "disease", 10.5) + AR(156, 98, 176, 98) + C(196, 98, 16, "accent", 50) + T(196, 102, "site", 9.5, "ink") + T(46, 130, "dose form", 10) + T(116, 176, "right place, right dose, right time", 10),
+  ["A drug only works if it reaches", "its target"]),
+]
+STEM = [
+ ("Differentiation", C(40, 112, 18, "gold", 40) + T(40, 148, "stem cell", 10) + AR(60, 104, 148, 66) + AR(60, 112, 148, 112) + AR(60, 120, 148, 158) + NEURON(176, 64, "neurons", 18) + f'<rect x="156" y="102" width="44" height="20" rx="8" fill="{TINT("disease", 40)}" stroke="var(--disease)"/>' + C(178, 160, 12, "cognition", 40)
+  + T(212, 88, "neuron", 9.5, anchor="end") + T(212, 138, "muscle", 9.5, anchor="end") + T(212, 186, "blood", 9.5, anchor="end"),
+  ["One cell type can become many", "others"]),
+ ("Modelling disease", B(14, 80, 58, 30, "patient|cell", "brain", 10) + AR(72, 95, 84, 95) + B(86, 80, 60, 30, "iPSC", "gold", 11) + AR(146, 95, 158, 95) + f'<ellipse cx="190" cy="104" rx="26" ry="9" fill="{TINT("networks", 20)}" stroke="var(--ink)"/><path d="M164 104V92M216 104V92" stroke="var(--ink)"/>' + DOTS([(180, 104), (192, 100), (200, 106)], "neurons", 3)
+  + T(176, 134, "disease in a dish", 9.5) + T(116, 180, "reprogramming and genome editing", 10),
+  ["Patient cells are reprogrammed to", "study their disease in the lab"]),
+ ("Therapy", C(48, 100, 16, "gold", 40) + AR(68, 100, 104, 100) + C(152, 78, 15, "muted", 20) + P("M152 93V140M152 108L128 124M152 108L176 124M152 140L136 172M152 140L168 172", "ink", 1.8) + C(152, 118, 6, "accent", 80) + T(48, 132, "healthy cells", 10) + T(116, 204, "replace what is damaged", 10),
+  ["Cells grown outside the body are", "used to repair it"]),
+ ("Ethics", P("M116 60V170M76 170H156", "ink", 1.8) + P("M56 84H176", "ink", 1.8) + P("M56 84L40 120H72ZM176 84L160 120H192Z", "ink", 1.3, fill=TINT("gold", 22)) + T(56, 140, "benefit", 10) + T(176, 140, "risk", 10) + T(116, 200, "consent, embryos, unproven clinics", 10),
+  ["Research and therapy raise questions", "that science alone cannot settle"]),
+]
+PICTURES.update({
+ "Data Science: Building Machine Learning Models": (H, "From validating a model to building a recommendation system.", _figure(PH125)),
+ "Algorithms for DNA Sequencing": (H, "From raw reads to an assembled genome.", _figure(DNASEQ)),
+ "Big Data, Genes, and Medicine": (H, "From expression data to disease prediction.", _figure(BIGDATA)),
+ "Python for Genomic Data Science": (H, "Python, taught through sequence data.", _figure(PYGEN)),
+ "Introduction to Genomic Technologies": (H, "The biology, machines, computing and statistics behind genomics.", _figure(GENTECH)),
+ "Genomic Data Science with Galaxy": (H, "Reproducible genomic analysis in the browser.", _figure(GALAXY)),
+ "Gut Check: Exploring Your Microbiome": (H, "What lives in the gut, how we know, and why it matters.", _figure(GUT)),
+ "COVID19 Data Analysis Using Python (guided project)": (H, "A small analysis from raw tables to a tested relationship.", _figure(COVID)),
+ "Personalised Medicine from a Nordic Perspective": (H, "From data and biomarkers to the clinic.", _figure(PERMED)),
+ "Industrial Biotechnology": (H, "From an enzyme to an industrial product.", _figure(BIOTECH)),
+ "Drug Discovery": (H, "From a target to a medicine.", _figure(DRUG)),
+ "The Science of Stem Cells": (H, "What stem cells are and how they are used.", _figure(STEM)),
+})
