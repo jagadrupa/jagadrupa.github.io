@@ -322,7 +322,11 @@ for i, t in enumerate(TREE):
         href = f'#g-{t["key"]}-{br["key"]}' if n else br.get("link")
         pill = f'<a class="bpill" href="{href}">{E(br["name"])}{cnt}</a>' if href else f'<span class="bpill">{E(br["name"])}</span>'
         src = f'<span class="bsrc">{E(br["note"])}</span>' if br.get("note") else ""
-        kids += f'<div class="tbr"><div class="bhead">{pill}{src}</div><div class="leaves">{"".join(f"<span>{E(x)}</span>" for x in br["leaves"])}</div></div>'
+        pj = ""
+        if br.get("projects"):
+            items = "".join(f'<div class="pj"><p>{E(t0)}</p><small>{E(role)} · {E(st)}</small><div class="leaves">{"".join(f"<span>{E(x)}</span>" for x in ms)}</div></div>' for t0, role, st, ms in br["projects"])
+            pj = f'<details class="proj"><summary>{E(br.get("projects_label", "Research projects"))} ({len(br["projects"])})</summary>{items}</details>'
+        kids += f'<div class="tbr"><div class="bhead">{pill}{src}</div><div class="leaves">{"".join(f"<span>{E(x)}</span>" for x in br["leaves"])}</div>{pj}</div>'
         if n:
             nc = n_cert.get(g, 0); sub = f"{nc} certified" + (f" · {n-nc} audited" if n - nc else "") if nc else f"{n} audited"
             sec += f'<h4 id="g-{t["key"]}-{br["key"]}">{E(br["name"])} <small>{sub}</small></h4><div class="ccds">{"".join(groups[g])}</div>'
@@ -333,7 +337,7 @@ assert sum(len(v) for v in groups.values()) == len(CERTS) + len(AUDITS)
 n_inst = len({x.strip() for v in CERTS.values() for x in v[1].replace(" · edX", "").split(" and ")})
 js = "<script>(function(){var p=document.querySelectorAll('.tpill');function set(b,o){b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o}p.forEach(function(b){b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true')})});var a=document.getElementById('tall');a.addEventListener('click',function(){var o=a.dataset.o!=='1';p.forEach(function(b){set(b,o)});a.dataset.o=o?'1':'';a.textContent=o?'Collapse all':'Expand all'})})();</script><noscript><style>.tkids[hidden]{display:block!important}</style></noscript>"
 page("certificates.html", "Certificates", f"""<section><p class="eyebrow">Certificates</p><h1>Certificates and skills</h1><p class="lede">Certified coursework since 2020: {len(CERTS)} certificates from {n_inst} institutions, and {len(AUDITS)} further courses audited.</p></section>
-<section><h2>Summary map</h2><p class="note">Neuroscience first, then the fields I bring to it. Select an area to open its branches; a branch with courses links to them below. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
+<section><h2>Summary map</h2><p class="note">This map traces how my research interests have developed over the years, from biotechnology and bioinformatics towards neuroscience. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
 <section id="list"><h2>Certificates and courses</h2><p class="note">Select a card for the course details, the full certificate and the issuer's verification link. Audited courses are marked and carry no certificate.</p>{lists}</section>{js}""", "certs")
 (ROOT/".nojekyll").write_text("")
 print(f"built: {n_out} course outcomes, {checked} note references verified on their cited PDF page, {notes_pages} note pages")

@@ -328,10 +328,10 @@ MAJORS = [("neuro", "Neuroscience", "neurons"), ("imaging", "Neuroimaging", "bra
           ("ml", "Machine learning and modelling", "networks"), ("data", "Statistics, data and programming", "molecules"),
           ("bio", "Genomics and biomedicine", "disease")]
 SKILL_MAJOR = {
- "neuro": ["Neurology", "Anatomy", "Physiology", "Sensory Systems Analysis", "Blood Pressure", "Computational Neuroscience", "Network Model", "Complex Networks", "Electronic Circuits"],
+ "neuro": ["Neurology", "Anatomy", "Physiology", "Sensory Systems Analysis", "Blood Pressure", "Computational Neuroscience", "Network Model", "Complex Networks", "Electronic Circuits", "Neurophysiology", "Electrophysiology", "Biophysics", "Synaptic Transmission", "Neural Circuits", "Neuromodulation", "Synaptic Plasticity", "Neuroanatomy", "Motor Systems", "Dynamical Systems", "Associative Memory Models"],
  "imaging": ["Magnetic Resonance Imaging", "Medical Imaging", "Image Analysis", "Image Quality", "Scientific Visualization", "Software Visualization", "Medical Terminology"],
  "psych": ["Psychology", "Learning Theory", "Human Learning", "Mental Health Diseases and Disorders", "Psychotherapy", "Cognitive Behavioral Therapy", "Human Development", "Child Development", "Non-Verbal Communication", "Critical Thinking", "Problem Solving"],
- "ml": ["Machine Learning", "Machine Learning Algorithms", "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Artificial Neural Networks", "Recurrent Neural Networks (RNNs)", "Convolutional Neural Networks", "Deep Learning", "Artificial Intelligence", "Mathematical Modeling", "Mathematics", "Predictive Modeling", "Classification Algorithms", "Model Evaluation", "Predictive Analytics", "Principal Component Analysis", "Dimensionality Reduction", "Recommender Systems", "Forecasting", "PyTorch", "Keras", "TensorFlow", "Autoencoders", "Transfer Learning", "Transformer Models", "Linear Regression", "Logistic Regression", "Loss Functions"],
+ "ml": ["Machine Learning", "Machine Learning Algorithms", "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Artificial Neural Networks", "Recurrent Neural Networks (RNNs)", "Convolutional Neural Networks", "Deep Learning", "Artificial Intelligence", "Mathematical Modeling", "Mathematics", "Predictive Modeling", "Classification Algorithms", "Model Evaluation", "Predictive Analytics", "Principal Component Analysis", "Dimensionality Reduction", "Recommender Systems", "Forecasting", "PyTorch", "Keras", "TensorFlow", "Autoencoders", "Transfer Learning", "Transformer Models", "Linear Regression", "Logistic Regression", "Loss Functions", "Cross-Validation", "Regularization", "Backpropagation", "Gradient Descent", "Tensors", "Time Series", "Image Classification"],
  "data": ["Statistical Analysis", "Statistics", "Statistical Modeling", "Data Analysis", "Data Preprocessing", "Data Cleansing", "Data Visualization", "Data Manipulation", "Data Transformation", "Data Import/Export", "Data Processing", "Data Integration", "Data Quality", "Correlation Analysis", "Research Design", "Research Methodologies", "Research", "R Programming", "Python Programming", "Seaborn", "NumPy", "Pandas", "Package and Software Management", "Data Structures", "Algorithms", "Computer Programming", "Programming Principles", "Code Reusability", "File I/O", "Data Science", "Computer Science", "Software Engineering", "Big Data", "Application Frameworks", "Computing Platforms", "Data Analysis Software", "Software Installation", "Data-Driven Decision-Making"],
  "bio": ["Bioinformatics", "Molecular Biology", "Biology", "Cell Biology", "Microbiology", "Immunology", "Nutrition and Diet", "Precision Medicine", "Medical Science and Research", "Clinical Research", "Healthcare Ethics", "Risk Analysis", "Patient-centered Care", "Health Care Procedure and Regulation", "Patient Communication", "Healthcare Industry Knowledge", "Health Systems", "Biotechnology", "Pharmaceuticals", "Drug Development", "Pharmacology", "Clinical Trials", "Process Engineering", "Sustainable Technologies", "Manufacturing and Production", "Scalability"],
 }
@@ -358,7 +358,7 @@ CERT_META = {
  "cam_em": dict(major="psych", url=CAM_EM_URL, summary="How emotions are felt, studied and recognised in other people.",
                 skills=["Psychology", "Research Methodologies", "Research", "Non-Verbal Communication"]),
  "ph125": dict(major="ml", url="https://www.edx.org/learn/machine-learning/harvard-university-data-science-machine-learning", summary="Cross-validation, regularisation, common algorithms and a recommendation system, in R.",
-               skills=["Machine Learning", "Machine Learning Algorithms", "Principal Component Analysis", "Recommender Systems", "Forecasting", "Data Science", "Algorithms"]),
+               skills=["Machine Learning", "Cross-Validation", "Regularization", "Classification Algorithms", "Machine Learning Algorithms", "Principal Component Analysis", "Recommender Systems", "Model Evaluation", "Forecasting", "R Programming", "Data Science", "Algorithms"]),
  "covid": dict(major="data", url="https://www.coursera.org/projects/covid19-data-analysis-using-python", summary="A guided project: cleaning, merging and correlating public COVID-19 datasets.",
                skills=["Python Programming", "Data Analysis", "Data Visualization", "Statistical Analysis", "Correlation Analysis", "Data Preprocessing", "Data Cleansing", "Data Integration", "Statistics", "Seaborn"]),
  "gut": dict(major="bio", url="https://www.coursera.org/learn/microbiome", summary="The human gut microbiome, how it is studied and what it means for health.",
@@ -386,29 +386,29 @@ IBM = "IBM · edX"
 # Audited courses: lessons as named by the course, skills as listed on the course page where it lists any
 AUDITS = [
  dict(title="Fundamentals of Neuroscience, Part 1: The Electrical Properties of the Neuron", provider="HarvardX · edX · MCB80.1x", major="neuro", page="harvardx-mcb80-1x", url=H1, lessons_label="Lessons",
-      lessons=["Resting potential", "Passive membrane properties", "Action potentials", "Action potential propagation", "DIY labs"], skills=["Physiology", "Biology"]),
+      lessons=["Resting potential", "Passive membrane properties", "Action potentials", "Action potential propagation", "DIY labs"], skills=["Neurophysiology", "Electrophysiology", "Biophysics", "Physiology", "Biology"]),
  dict(title="Fundamentals of Neuroscience, Part 2: Neurons and Networks", provider="HarvardX · edX · MCB80.2x", major="neuro", page="harvardx-mcb80-2x", url=H2, lessons_label="Lessons",
-      lessons=["The synapse", "Excitation and inhibition", "Small circuits", "Neuromodulation", "Potentiation and depression"], skills=["Physiology", "Complex Networks", "Electronic Circuits"]),
+      lessons=["The synapse", "Excitation and inhibition", "Small circuits", "Neuromodulation", "Potentiation and depression"], skills=["Synaptic Transmission", "Neural Circuits", "Neuromodulation", "Synaptic Plasticity", "Neurophysiology", "Complex Networks", "Electronic Circuits"]),
  dict(title="Fundamentals of Neuroscience, Part 3: The Brain", provider="HarvardX · edX · MCB80.3x", major="neuro", page="harvardx-mcb80-3x", url=H3, lessons_label="Lessons",
-      lessons=["Vision", "Audition", "Touch, taste, smell and the remaining senses", "Movement and action", "Subcortical brain areas", "Brain anatomy"], skills=["Anatomy", "Physiology", "Sensory Systems Analysis"]),
+      lessons=["Vision", "Audition", "Touch, taste, smell and the remaining senses", "Movement and action", "Subcortical brain areas", "Brain anatomy"], skills=["Neuroanatomy", "Sensory Systems Analysis", "Motor Systems", "Physiology", "Anatomy"]),
  dict(title="Computational Neuroscience: Neuronal Dynamics of Cognition", provider="EPFLx · edX · BIO465.2x", major="neuro", page="epflx-neuronal-dynamics-of-cognition", url=EPFL2_URL, lessons_label="Weeks",
-      lessons=[o[2] for o in EPFL2], skills=["Computational Neuroscience", "Mathematics"]),
+      lessons=[o[2] for o in EPFL2], skills=["Computational Neuroscience", "Network Model", "Mathematical Modeling", "Dynamical Systems", "Associative Memory Models", "Synaptic Plasticity", "Mathematics"]),
  dict(title="Deep Learning Fundamentals with Keras", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-fundamentals-with-keras", lessons_label="Modules",
       lessons=["Introduction to deep learning: biological and artificial neural networks, forward propagation", "Artificial neural networks: gradient descent, backpropagation, vanishing gradient, activation functions",
                "Deep learning libraries: regression and classification models with Keras", "Deep learning models: shallow and deep networks, convolutional and recurrent networks, autoencoders"],
-      skills=["Deep Learning", "Keras", "Artificial Neural Networks", "Artificial Intelligence", "Data Science"]),
+      skills=["Deep Learning", "Keras", "Artificial Neural Networks", "Backpropagation", "Gradient Descent", "Convolutional Neural Networks", "Recurrent Neural Networks (RNNs)", "Autoencoders", "Artificial Intelligence", "Data Science"]),
  dict(title="PyTorch Basics for Machine Learning", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/pytorch/ibm-pytorch-basics-for-machine-learning", lessons_label="What the course covers",
       lessons=["Build a machine learning pipeline in PyTorch", "Train models in PyTorch", "Load large datasets", "Use NumPy and Pandas with PyTorch"],
-      skills=["PyTorch", "Machine Learning", "Linear Regression", "Logistic Regression", "Loss Functions", "NumPy", "Pandas"]),
+      skills=["PyTorch", "Machine Learning", "Tensors", "Gradient Descent", "Linear Regression", "Logistic Regression", "Loss Functions", "Python Programming", "NumPy", "Pandas"]),
  dict(title="Deep Learning with Python and PyTorch", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-with-python-and-pytorch", lessons_label="What the course covers",
       lessons=["Deep neural networks and related machine learning methods", "Build and train deep neural networks using PyTorch", "Build deep learning pipelines"],
-      skills=["PyTorch", "Deep Learning", "Convolutional Neural Networks", "Artificial Neural Networks", "Autoencoders", "Transfer Learning", "Dimensionality Reduction", "Principal Component Analysis"]),
+      skills=["PyTorch", "Deep Learning", "Convolutional Neural Networks", "Artificial Neural Networks", "Backpropagation", "Autoencoders", "Transfer Learning", "Dimensionality Reduction", "Principal Component Analysis", "Python Programming"]),
  dict(title="Deep Learning with TensorFlow and Keras", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-with-tensorflow-and-keras", lessons_label="What the course covers",
       lessons=["Custom layers and models in Keras with TensorFlow 2.x", "Advanced convolutional neural networks", "Transformer models for sequential data and time series", "Unsupervised learning, deep Q-networks and reinforcement learning"],
-      skills=["TensorFlow", "Keras", "Convolutional Neural Networks", "Transformer Models", "Reinforcement Learning", "Unsupervised Learning", "Transfer Learning", "Autoencoders"]),
+      skills=["TensorFlow", "Keras", "Convolutional Neural Networks", "Transformer Models", "Time Series", "Reinforcement Learning", "Unsupervised Learning", "Transfer Learning", "Autoencoders", "Deep Learning"]),
  dict(title="Applied Deep Learning Capstone Project", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-applied-deep-learning-capstone-project", lessons_label="What the course covers",
       lessons=["Choose a deep learning method for a given problem", "Build a deep learning model for a real problem", "Create a deep learning pipeline", "Improve models using real data", "Present the outcomes of a deep learning project"],
-      skills=["Deep Learning", "PyTorch", "Keras", "Data Preprocessing"]),
+      skills=["Deep Learning", "PyTorch", "Keras", "Image Classification", "Model Evaluation", "Data Preprocessing"]),
 ]
 
 # ---- toolkit, for the home page. (name, colour, "used" in my own projects | "course" for audited coursework only)
@@ -419,7 +419,7 @@ TOOLKIT = [
  ("Machine learning", [("scikit-learn", "#C96A00", "used"), ("PyTorch", "#EE4C2C", "used"), ("Keras", "#D00000", "course"), ("TensorFlow", "#E65C00", "course")]),
  ("Omics", [("Scanpy", "#6A4C93", "used"), ("Squidpy", "#8A3F7C", "used"), ("AnnData", "#2F7D7B", "used"), ("GSEApy", "#8D5A2B", "used"),
             ("Biopython", "#3A7CA5", "used"), ("MaAsLin3", "#7A5C00", "used"), ("MetaPhlAn", "#A8326A", "used"), ("HUMAnN", "#8D2C2C", "used")]),
- ("Workflow", [("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("pytest", "#0A7FB0", "used")]),
+ ("Workflow", [("Git", "#D9411E", "used"), ("Jupyter", "#C75B12", "used"), ("Docker", "#1D7FC4", "used"), ("Nextflow", "#1E9E73", "used"), ("Snakemake", "#03627A", "used"), ("pytest", "#0A7FB0", "used")]),
 ]
 TOOLKIT_METHODS = [
  ("Spatial and single-cell transcriptomics", "Xenium and Visium, clustering and annotation, differential expression, spatial statistics, ligand–receptor analysis"),
@@ -428,25 +428,54 @@ TOOLKIT_METHODS = [
  ("Neuroscience", "neural encoding and decoding models, neuron and network simulation, fMRI design and analysis"),
 ]
 
+# title, role, status, methods
+AD_PROJECTS = [
+ ("Spatial transcriptomics of human Alzheimer's cortex", "Independent project", "2026, public repository and technical report",
+  ["10x Xenium", "Cell-type annotation", "Spatial niche classifiers", "Spatially variable genes", "Ligand–receptor analysis", "Transcriptional noise", "Cell-type vulnerability index", "Validation against the SEA-AD atlas"]),
+ ("Multi-omics integration of published Alzheimer's disease datasets", "Independent project", "2026",
+  ["Genomic, transcriptomic and proteomic data", "MOFA+", "DIABLO", "sPLS", "Transcript–protein concordance"]),
+ ("Gut–brain axis signalling", "Research assistant, Amity University", "2020 to 2021",
+  ["Behavioural assays", "Biochemical readouts", "Network analysis", "Molecular docking"]),
+ ("Quercetin in a zebrafish model of Alzheimer's disease", "Bachelor's project, Amity University", "BSc, 2018 to 2021",
+  ["Zebrafish disease model"]),
+ ("GPCR-targeted therapeutic strategies in neurodegenerative disease", "Author of the review", "Ethical Edufabrica, 2020",
+  ["Literature review", "GPCR signalling", "Therapeutic strategies"]),
+]
+OMICS_PROJECTS = [
+ ("Westernized diets exacerbate tumorigenesis by upregulating H₂S-producing bacteria", "Co-first author", "Manuscript in preparation",
+  ["Reference-based metagenomic profiling", "Assembly-based metagenomics", "Sulfur and fatty-acid metabolism analysis", "16S rRNA amplicon analysis", "Protein structure analysis", "Variant analysis", "Metabolomics", "Metabolic modelling", "HPC", "Snakemake", "Nextflow"]),
+ ("Host-specific divergence in motility and sulfur metabolism across 2,000 Desulfovibrio genomes", "First author", "Manuscript in preparation",
+  ["Curation of public MAGs and isolate genomes", "Hybrid assembly", "Reference database expansion", "Interactive analysis tool", "Sulfur-metabolism, toxin and flagellar genes", "Gene and pathway analysis", "Protein structure analysis", "Genome-scale metabolic modelling", "Machine-learning models", "Pipeline development", "HPC and GPU computing", "Snakemake", "Nextflow"]),
+ ("An expanded flagellin repertoire in a mouse-restricted Desulfovibrio associated with XIAP deficiency", "Co-author", "Manuscript in preparation",
+  ["Reference-based metagenomic profiling", "Assembly-based metagenomics", "16S rRNA amplicon analysis", "Flagellar gene and pathway analysis", "Pipeline development", "Nextflow"]),
+ ("Gut microbiome of the small intestine and colon in mice, and a search for bacterial choline acetyltransferase", "Analysis and report", "Written report, 2026",
+  ["Shotgun metagenomics", "Taxonomic and functional profiling", "Diversity statistics", "Metagenome assembly and gene catalogue", "Metagenomic species pangenomes", "Metagenome-assembled genomes", "Sequence and protein-domain search", "Structural homology search", "Nextflow"]),
+ ("Methylation motifs of Veillonella parvula", "Exploratory project", "Not completed",
+  ["Nanopore assembly and analysis", "Illumina and hybrid assembly", "Prophage detection", "Methylation and motif detection", "Algorithm optimisation", "HPC and GPU computing"]),
+]
+
 # ---- summary map and grouping, for the certificates page
 # Each area: key, name, colour variable, where it comes from, branches (key, name, source note, leaves, optional link)
 TREE = [
- dict(key="neuro", name="Neuroscience", col="neurons", note="Certified and audited coursework, 2020 to 2026", branches=[
+ dict(key="neuro", name="Neuroscience", col="neurons", note="Coursework, research projects and a review, 2020 to 2026", branches=[
   dict(key="fund", name="Fundamental neuroscience", leaves=["Neuroanatomy", "Neurophysiology", "Synapses and circuits", "Sensory and motor systems", "Homeostasis"]),
   dict(key="comp", name="Computational neuroscience", leaves=["Neural encoding and decoding", "Information theory", "Neuron and network models", "Plasticity and learning", "Attractor networks"]),
   dict(key="imaging", name="Neuroimaging", leaves=["MRI", "fMRI experimental design", "General Linear Model", "Connectivity", "Multi-voxel pattern analysis", "Image processing in R"]),
   dict(key="psych", name="Psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
+  dict(key="ad", name="Alzheimer's disease and neurodegeneration", note="Research projects and a review, 2020 to 2026", link=REPO_AD, projects_label="Projects and review",
+       leaves=["Alzheimer's pathology", "Neurodegenerative diseases", "Selective cell-type vulnerability", "Spatial transcriptomics of human cortex", "Zebrafish disease model", "GPCR-targeted therapies", "Gut–brain axis"], projects=AD_PROJECTS),
  ]),
- dict(key="dl", name="Deep learning and machine learning", col="networks", note="Research at TUM, and certified and audited coursework", branches=[
-  dict(key="ml", name="Machine learning", leaves=["Cross-validation", "Regularisation", "Dimensionality reduction", "Classification", "Recommender systems"]),
+ dict(key="dl", name="Deep learning and machine learning", col="networks", note="MSc at Manchester, research at TUM, and certified and audited coursework", branches=[
+  dict(key="ml", name="Machine learning", note="MSc and certified coursework", leaves=["Cross-validation", "Regularisation", "Dimensionality reduction", "Classification", "Recommender systems"]),
   dict(key="keras", name="Keras and TensorFlow", leaves=["Regression models", "Classification models", "Custom layers and models"]),
   dict(key="pytorch", name="PyTorch", leaves=["Neural networks", "Deep networks", "Autoencoders", "Transfer learning"]),
   dict(key="cnn", name="Convolutional networks", leaves=["Keras", "PyTorch", "Variational CNNs on sequencing signal"]),
   dict(key="tfm", name="Transformers", leaves=["Sequential data", "Time-series prediction"]),
  ]),
  dict(key="bioinf", name="Bioinformatics", col="molecules", note="MSc at Manchester, research at TUM, an independent project and certified coursework", branches=[
-  dict(key="msc", name="MSc Bioinformatics and Systems Biology", note="University of Manchester, 2021 to 2022, Distinction", leaves=["Programming", "Sequence and structural bioinformatics", "Genomics and phylogenetics", "Statistics and experimental design", "Rare-variant burden testing", "Protein docking"]),
-  dict(key="omics", name="Multi-omics", note="Research at TUM, 2023 to 2025", leaves=["Metagenomics", "Epigenomics", "Metaproteomics", "Multi-omics integration", "Metabolic modelling"]),
+  dict(key="msc", name="MSc Bioinformatics and Systems Biology", note="University of Manchester, 2021 to 2022, Distinction", leaves=["Python", "R", "Bash", "Sequence and structural bioinformatics", "Genomics and phylogenetics", "Statistics and experimental design", "GWAS and rare-variant burden testing", "Protein docking", "Machine learning"]),
+  dict(key="omics", name="Multi-omics", note="Research at the Technical University of Munich, 2023 to 2026. Manuscripts in preparation, with submission planned for 2027.",
+       leaves=["Metagenomics", "Epigenomics", "Metaproteomics", "Metabolomics", "Multi-omics integration", "Genome-scale metabolic modelling", "Workflow development", "High-performance computing"], projects=OMICS_PROJECTS),
   dict(key="spatial", name="Spatial transcriptomics", note="Independent project, 2026", link=REPO_AD, leaves=["Xenium and Visium", "Cell-type annotation", "Spatially variable genes", "Ligand–receptor analysis"]),
   dict(key="courses", name="Genomic data science", leaves=["Sequencing algorithms", "Genomic technologies", "Python for genomics", "Galaxy workflows", "Gene-expression classification in R", "Microbiome analysis"]),
  ]),
@@ -455,6 +484,7 @@ TREE = [
   dict(key="biochem", name="Biochemistry and lab techniques", note="BSc", leaves=["Biochemistry", "Enzymology", "Bioanalytical techniques", "Molecular diagnostics"]),
   dict(key="micro", name="Microbiology and immunology", note="BSc", leaves=["Microbiology", "Microbial ecology", "Immunology"]),
   dict(key="physio", name="Physiology and anatomy", note="BSc", leaves=["Animal physiology", "Human anatomy", "Developmental biology"]),
+  dict(key="quant", name="Quantitative foundations", note="BSc", leaves=["Biostatistics", "Biophysics", "Bioinformatics", "Computer programming", "Database management"]),
   dict(key="applied", name="Applied biotechnology", note="BSc and courses", leaves=["Animal and plant biotechnology", "Tissue engineering", "Industrial bioprocessing", "Drug discovery", "Stem cells", "Personalised medicine"]),
  ]),
 ]
