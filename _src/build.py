@@ -232,7 +232,7 @@ for c in COURSES:
         elif c["graphic"] == "rail": g = RAIL(c)
         if c["id"] in PICTURES:
             pt, pc, ps = PICTURES[c["id"]]
-            g = f'<figure class="demo" style="margin:16px 0"><h4>{E(pt)}</h4><p>{E(pc)}</p><div class="scroll">{ps}</div></figure>'
+            g = f'<figure class="demo" style="margin:16px 0"><h4>{E(pt)}</h4><p>{E(pc)}</p>{ps}</figure>'
         demos = "".join(demo(d, rel) for d in c["demos"])
         gal = ""
         if c["id"].startswith("uw-"):
@@ -292,7 +292,7 @@ n_cert = {g: len(c) for g, c in groups.items()}
 for a, g in zip(AUDITS, AUDIT_GROUP):
     for sk in a["skills"]: assert sk in S2M, sk
     links = (f'<a class="chip course" href="courses/{a["page"]}.html">Course page</a>' if a["page"] else "") + f'<a class="chip src" href="{a["url"]}">Official course page ↗</a>'
-    card = f'<details class="card ccd"><summary><span class="thumb ph au">Audited<br>no certificate</span><span class="cs"><span class="ct">{E(a["title"])}</span><small>{E(a["provider"])}</small><span class="chips">{"".join(skchip(s) for s in a["skills"][:4])}</span></span></summary><div class="cd">{ol(a["lessons_label"], a["lessons"])}<p class="dl">Skills</p><div class="chips">{"".join(skchip(s) for s in a["skills"])}</div><div class="chips">{links}</div></div></details>'
+    card = f'<details class="card ccd"><summary><span class="thumb ph au">Audited<br>no certificate</span><span class="cs"><span class="ct">{E(a["title"])}</span><small>{E(a["provider"])}</small><span class="chips">{"".join(skchip(s) for s in a["skills"][:4])}</span></span></summary><div class="cd">{PICTURES[a["title"]][2] if a["title"] in PICTURES else ""}{ol(a["lessons_label"], a["lessons"])}<p class="dl">Skills</p><div class="chips">{"".join(skchip(s) for s in a["skills"])}</div><div class="chips">{links}</div></div></details>'
     groups.setdefault(g, []).append(card)
 tree = ""; lists = ""
 for i, t in enumerate(TREE):
