@@ -262,7 +262,7 @@ for bk, bn in BRANCHES:
 assert all(c["id"] in COURSE_BR for c in COURSES if c["status"] != "todo")
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
-page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary, learning outcomes and skills. This grid shows where each one contributes.</p><div style="margin-top:20px">{matrix}</div></section>
+page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary, learning outcomes and skills.</p></section>
 <section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="certificates.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><p class="note">Textbook chapters are mapped to each level on the <a href="by-scale.html">By scale</a> page.</p><ul class="out">{read}</ul></section>""", "courses")
