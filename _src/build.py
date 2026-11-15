@@ -245,8 +245,9 @@ for c in COURSES:
             def more(o):
                 if o[2] not in det: return ""
                 d, tp = det[o[2]]
-                return f'<p class="od">{E(d)}</p><details class="les"><summary>Lecture topics ({len(tp)})</summary><div class="leaves" style="--c:var(--accent);margin:8px 0 6px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div></details>'
-            lis = "".join(f'<li><p>{E(o[2])}</p>{more(o)}<div class="chips">{outcome_refs(c, o, rel)}</div></li>' for o in os_)
+                return f'<p class="od">{E(d)}</p><div class="leaves" style="--c:var(--accent);margin:8px 0 4px;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in tp)}</div>'
+            refs = (lambda o: f'<div class="chips">{outcome_refs(c, o, rel)}</div>') if c["kind"] == "notes" else (lambda o: "")
+            lis = "".join(f'<li><p>{E(o[2])}</p>{more(o)}{refs(o)}</li>' for o in os_)
             outs += f'<h3 style="margin-top:22px">{E(u)}</h3><ul class="out">{lis}</ul>'
         extra_note = "The course was audited, so there is no graded work or certificate behind them." if c["status"] == "audit" else "The certificate is the evidence of completion."
         caveat = "" if c["kind"] == "notes" else f'<p class="note">These are the outcomes listed by the course. {extra_note}</p>'
