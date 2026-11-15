@@ -62,10 +62,10 @@ def outcome_refs(c, o, rel):
     out += f'<a class="chip src" href="{c["url"]}">Official course page ↗</a>'
     return out
 
-def page(path, title, body, active="", desc="A learning record in neuroscience, from molecules to disease, where every claim links to its evidence."):
+def page(path, title, body, active="", desc="Skills, certificates and neuroscience coursework of Jagadrupa Sahoo, with the evidence attached."):
     depth = path.count("/")
     rel = "../" * depth
-    links = [("index.html", "Home", "home"), ("by-scale.html", "By scale", "scale"), ("courses.html", "By course", "courses"), ("certificates.html", "Certificates", "certs")]
+    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Courses", "courses")]
     nav = "".join(f'<a href="{rel}{h}"{" class=on" if a == active else ""}>{t}</a>' for h, t, a in links)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><meta name="author" content="Jagadrupa Sahoo">
@@ -164,9 +164,8 @@ def RAIL(c):
     o = f'<line x1="30" x2="30" y1="24" y2="{h-30}" stroke="var(--line)" stroke-width="2"/>'
     for i, it in enumerate(items):
         y = 28 + i * 44; k = it[0]
-        name = next(s[1] for s in SCALES if s[0] == k).upper()
-        o += f'<circle cx="30" cy="{y}" r="13" fill="var(--paper)" stroke="var(--{k})" stroke-width="2"/><text x="30" y="{y+4}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--ink)">{i+1}</text><text x="56" y="{y+5}" font-size="14" fill="var(--ink)">{E(it[2])}</text><text x="745" y="{y+4}" text-anchor="end" font-family="var(--mono)" font-size="10.5" fill="var(--{k})">{name}</text>'
-    return f'<figure class="demo" style="margin:16px 0"><h4>Course map</h4><p>Topics in order from the official course page, coloured by scale.</p><div class="scroll"><svg class="diag" style="min-width:680px" viewBox="0 0 760 {h}" font-family="var(--sans)" role="img" aria-label="Course topics in order">{o}</svg></div></figure>'
+        o += f'<circle cx="30" cy="{y}" r="13" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"/><text x="30" y="{y+4}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--ink)">{i+1}</text><text x="56" y="{y+5}" font-size="14" fill="var(--ink)">{E(it[2])}</text>'
+    return f'<figure class="demo" style="margin:16px 0"><h4>Course map</h4><p>Topics in the order the course teaches them.</p><div class="scroll"><svg class="diag" style="min-width:680px" viewBox="0 0 760 {h}" font-family="var(--sans)" role="img" aria-label="Course topics in order">{o}</svg></div></figure>'
 
 # ---- home
 tk_rows = ""
@@ -174,55 +173,11 @@ for label, items in TOOLKIT:
     bs = "".join(f'<span class="tb{" tc" if kind == "course" else ""}" style="--b:{col}">{E(n)}</span>' for n, col, kind in items)
     tk_rows += f'<div class="tkrow"><span class="tklabel">{E(label)}</span><div class="tbs">{bs}</div></div>'
 tk_m = "".join(f'<p><b>{E(a)}:</b> {E(d)}</p>' for a, d in TOOLKIT_METHODS)
-toolkit = f'<section><h2>Toolkit</h2><div class="tk">{tk_rows}</div><div class="tkm">{tk_m}</div><p class="note" style="margin-top:12px"><span class="tb" style="--b:var(--muted);font-size:10px;padding:2px 7px">Filled</span> used in my own projects &nbsp; <span class="tb tc" style="--b:var(--muted);font-size:10px;padding:2px 7px">Outlined</span> from audited coursework so far. Courses and certificates behind these are on the <a href="certificates.html">Certificates</a> page.</p></section>'
+toolkit = f'<section><h2>Toolkit</h2><div class="tk">{tk_rows}</div><div class="tkm">{tk_m}</div><p class="note" style="margin-top:12px"><span class="tb" style="--b:var(--muted);font-size:10px;padding:2px 7px">Filled</span> used in my own projects &nbsp; <span class="tb tc" style="--b:var(--muted);font-size:10px;padding:2px 7px">Outlined</span> from audited coursework so far. The courses and certificates behind these are listed below.</p></section>'
 def counts(k): return sum(1 for c, o in ALL if o[0] == k) + (len(AD_FINDINGS) if k == "disease" else 0)
 n_out = len(ALL) + len(AD_FINDINGS)
-home = f'''<section><p class="eyebrow">Neuroscience learning record</p><h1>From molecules to disease,<br>with the evidence attached.</h1>
-<p class="lede">I work in bioinformatics and study human Alzheimer's tissue with spatial transcriptomics. This record shows what I have learned about the brain, how I learned it, and where to check each claim.</p>
-{ladder()}
-<div class="stats"><a class="stat" href="by-scale.html"><b>{n_out}</b><span>learning outcomes and findings, each referenced</span></a><a class="stat" href="courses.html"><b>{sum(c["status"]=="cert" for c in COURSES)} + {sum(c["status"]=="audit" for c in COURSES)}</b><span>courses certified + audited</span></a><a class="stat" href="courses/uw-computational-neuroscience.html"><b>{notes_pages}</b><span>pages of my own public notes</span></a><a class="stat" href="certificates.html"><b>2020–26</b><span>span of certificates</span></a></div></section>
-{toolkit}
-<section><h2>Three ways in</h2><div class="grid" style="margin-top:16px">
-<a class="card ccard" href="by-scale.html"><span class="eyebrow">By scale</span><h3>Everything learned, from molecules up</h3><small>Six levels, with simulations, textbook chapters and sources.</small></a>
-<a class="card ccard" href="courses.html"><span class="eyebrow">By course</span><h3>Each course and its graphical summary</h3><small>Outcomes by unit, with a page reference for each.</small></a>
-<a class="card ccard" href="certificates.html"><span class="eyebrow">Certificates</span><h3>Certificates and a skills map</h3><small>Open the PDF, or verify it with the issuer.</small></a></div></section>
-<section><h2>How to read the evidence</h2><p class="note">A claim is only as strong as its source, so each one shows which kind it is.</p>
-<table class="plain" style="margin-top:12px"><tr><th>Label</th><th>What it means</th><th>Where the link goes</th></tr>
-<tr><td><a class="chip" href="notes/uw-w5.pdf#page=10">UW week 5 · p.10</a></td><td>I wrote this up in my own notes</td><td>The exact PDF page. The build fails if the section is not on that page.</td></tr>
-<tr><td>{BADGE["cert"]}</td><td>Course completed and certified by the institution</td><td>The certificate, and the issuer's verification page</td></tr>
-<tr><td>{BADGE["audit"]}</td><td>Course audited, so no graded work or certificate</td><td>The official outcomes on the course page</td></tr>
-<tr><td>{BADGE["todo"]}</td><td>Details will be added later</td><td>The official course page</td></tr>
-<tr><td>{BADGE["research"]}</td><td>My own analysis, with code and stated limitations</td><td>The relevant section of the public repository</td></tr></table></section>'''
-page("index.html", "Jagadrupa Sahoo: neuroscience learning record", home, "home")
-
-# ---- by scale
-sec = ""
-jump = '<div class="jump">' + "".join(f'<a href="#{k}" style="color:var(--{k})">{n} · {counts(k)}</a>' for k, n, _, _ in SCALES) + "</div>"
-for k, name, sub, why in SCALES:
-    items = ""
-    groups = {}
-    for c, o in ALL:
-        if o[0] == k: groups.setdefault(c["id"], (c, []))[1].append(o)
-    for cid, (c, os_) in groups.items():
-        for o in os_:
-            items += f'<li><p>{E(o[2])}</p><div class="chips"><a class="chip course" href="courses/{cid}.html">{SHORT[cid]}</a>{outcome_refs(c, o, "")}</div></li>'
-    if k == "disease":
-        for s, u, t, a in AD_FINDINGS:
-            items += f'<li><p>{E(t)}</p><div class="chips">{BADGE["research"]}<a class="chip" href="{REPO_AD}{a}">Repository section ↗</a></div></li>'
-    extra = ""
-    if k == "disease":
-        figs = "".join(f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)} · <a href="{REPO_AD}{a}">source ↗</a></figcaption></figure>' for f, cap, a in AD_FIGS)
-        extra = f'<h3 style="margin-top:22px">Original work: human Alzheimer\'s cortex, 10x Xenium</h3><p class="note">About 45,000 AD cells and 24,000 matched healthy cells. <a href="{REPO_AD}">Code, figures and limitations are public</a>.</p><div class="gallery">{figs}</div>' + TRANSMITTERS("")
-    book = "".join(f'<a class="chip src" href="{BOOK_BASE}{h}" title="{E(t)}">{l} · {E(t)} ↗</a>' for h, l, t in BOOK[k])
-    demos = "".join(demo(d, "") for d in SCALE_DEMOS[k])
-    sec += f'''<section id="{k}"><div class="lvl">{icon(k)}<div><span class="eyebrow">{sub}</span><h2>{name}</h2><p class="note" style="margin:6px 0 0">{why}</p></div></div>
-{demos}{extra}<ul class="out">{items}</ul>
-<h3 style="margin-top:20px;font-size:16px">Textbook chapters for this level</h3><div class="chips" style="margin-top:7px">{book}</div></section>'''
-
-page("by-scale.html", "By scale: molecules to disease", f"""<section><p class="eyebrow">By scale</p><h1>Molecules → disease</h1><p class="lede">Everything I have learned, arranged by the level of the nervous system it belongs to, not by the course it came from. Each line names its source.</p>{jump}</section>{sec}""", "scale")
 
 # ---- courses
-hdr = "".join(f'<th><a href="by-scale.html#{k}" style="color:var(--{k});font:inherit">{n}</a></th>' for k, n, _, _ in SCALES)
 S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
 MCOL = {k: col for k, _, col in MAJORS}
 def skchip(sk):
@@ -233,20 +188,6 @@ for c in COURSES:
 for a_, g_ in zip(AUDITS, AUDIT_GROUP):
     if a_["page"]: COURSE_SK[a_["page"]] = a_["skills"]; COURSE_BR[a_["page"]] = g_
 BRANCHES = [(f'neuro/{br["key"]}', br["name"]) for br in TREE[0]["branches"]]
-rows = ""
-for bk, bn in BRANCHES:
-  cs = [c for c in COURSES if c["status"] != "todo" and COURSE_BR.get(c["id"]) == bk]
-  if cs: rows += f'<tr class="mh"><td colspan="{len(SCALES)+1}">{E(bn)}</td></tr>'
-  for c in cs:
-    cells = ""
-    for k, *_ in SCALES:
-        v = sum(1 for o in c["outcomes"] if o[0] == k)
-        inner = '<a href="courses/%s.html">%d</a>' % (c["id"], v) if v else ""
-        cells += f'<td style="background:color-mix(in srgb,var(--{k}) {min(65,v*9)}%,transparent)">{inner}</td>'
-    rows += f'<tr><td><a href="courses/{c["id"]}.html" style="color:var(--ink)">{E(c["title"])}</a></td>{cells}</tr>'
-adc = len(AD_FINDINGS)
-rows += f'<tr><td><a href="{REPO_AD}" style="color:var(--ink)">Original research: Alzheimer\'s spatial transcriptomics ↗</a></td>' + "<td></td>" * 5 + f'<td style="background:color-mix(in srgb,var(--disease) 45%,transparent)"><a href="by-scale.html#disease">{adc}</a></td></tr>'
-matrix = f'<div class="scroll"><table class="matrix"><tr><th>Number of outcomes</th>{hdr}</tr>{rows}</table></div>'
 def ccard(c):
     td = " todo" if c["status"] == "todo" else ""
     sk = COURSE_SK.get(c["id"], [])
@@ -263,9 +204,9 @@ assert all(c["id"] in COURSE_BR for c in COURSES if c["status"] != "todo")
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
 page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary, learning outcomes and skills.</p></section>
-<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="certificates.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
+<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="index.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
-<section><h2>Reference texts</h2><p class="note">Textbook chapters are mapped to each level on the <a href="by-scale.html">By scale</a> page.</p><ul class="out">{read}</ul></section>""", "courses")
+<section><h2>Reference texts</h2><ul class="out">{read}</ul></section>""", "courses")
 
 for c in COURSES:
     rel = "../"
@@ -298,7 +239,7 @@ for c in COURSES:
         for o in c["outcomes"]: groups.setdefault(o[1], []).append(o)
         outs = ""
         for u, os_ in groups.items():
-            lis = "".join(f'<li><p>{E(o[2])}</p><div class="chips"><a class="chip course" href="{rel}by-scale.html#{o[0]}" style="color:var(--{o[0]})">{o[0]}</a>{outcome_refs(c, o, rel)}</div></li>' for o in os_)
+            lis = "".join(f'<li><p>{E(o[2])}</p><div class="chips">{outcome_refs(c, o, rel)}</div></li>' for o in os_)
             outs += f'<h3 style="margin-top:22px">{E(u)}</h3><ul class="out">{lis}</ul>'
         extra_note = "The course was audited, so there is no graded work or certificate behind them." if c["status"] == "audit" else "The certificate is the evidence of completion."
         caveat = "" if c["kind"] == "notes" else f'<p class="note">These are the outcomes listed by the course. {extra_note}</p>'
@@ -360,8 +301,10 @@ for i, t in enumerate(TREE):
 assert sum(len(v) for v in groups.values()) == len(CERTS) + len(AUDITS)
 n_inst = len({x.strip() for v in CERTS.values() for x in v[1].replace(" · edX", "").split(" and ")})
 js = "<script>(function(){var p=document.querySelectorAll('.tpill');function set(b,o){b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o}p.forEach(function(b){b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true')})});var a=document.getElementById('tall');a.addEventListener('click',function(){var o=a.dataset.o!=='1';p.forEach(function(b){set(b,o)});a.dataset.o=o?'1':'';a.textContent=o?'Collapse all':'Expand all'})})();</script><noscript><style>.tkids[hidden]{display:block!important}</style></noscript>"
-page("certificates.html", "Certificates", f"""<section><p class="eyebrow">Certificates</p><h1>Certificates and skills</h1><p class="lede">A summary of my skills, and the certifications that have helped me build them over the years. Expand any area to see how each skill was gained.</p></section>
+page("index.html", "Jagadrupa Sahoo: skills and certificates", f"""<section><p class="eyebrow">Bioinformatics · Neuroscience</p><h1>Skills and certificates</h1><p class="lede">I work in bioinformatics and study human Alzheimer's tissue with spatial transcriptomics. This is a summary of my skills, and the certifications that have helped me build them over the years. Expand any area to see how each skill was gained.</p></section>
 <section><h2>Summary map</h2><p class="note">This map traces how my research interests have developed over the years, from biotechnology and bioinformatics towards neuroscience. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
+{toolkit}
 <section id="list"><h2>Certificates and courses</h2><p class="note">Select a card for the course details, the full certificate and the issuer's verification link. Audited courses are marked and carry no certificate.</p>{lists}</section>{js}""", "certs")
+(ROOT/"certificates.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Skills and certificates</title><meta http-equiv="refresh" content="0; url=index.html"><link rel="canonical" href="index.html"></head><body><p><a href="index.html">Skills and certificates</a></p></body></html>')
 (ROOT/".nojekyll").write_text("")
 print(f"built: {n_out} course outcomes, {checked} note references verified on their cited PDF page, {notes_pages} note pages")
