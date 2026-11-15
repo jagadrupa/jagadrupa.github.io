@@ -179,20 +179,12 @@ YALE = [
 H1 = "https://www.edx.org/learn/neuroscience/harvard-university-fundamentals-of-neuroscience-part-1-the-electrical-properties-of-the-neuron"
 H2 = "https://www.edx.org/learn/neuroscience/harvard-university-fundamentals-of-neuroscience-part-2-neurons-and-networks"
 H3 = "https://www.edx.org/learn/neuroscience/harvard-university-fundamentals-of-neuroscience-part-3-the-brain"
-HARV1 = [("molecules", "Official learning outcomes", "Fundamentals of bioelectricity"),
-         ("neurons", "Official learning outcomes", "The importance of resting potential"),
-         ("neurons", "Official learning outcomes", "The properties of passive membranes"),
-         ("neurons", "Official learning outcomes", "Action potentials, their currents, and their role in the nervous system")]
-HARV2 = [("molecules", "Official learning outcomes", "Basics of synapses"),
-         ("networks", "Official learning outcomes", "How neurons communicate with each other"),
-         ("networks", "Official learning outcomes", "How interconnected neurons in neuronal circuits interact with each other"),
-         ("molecules", "Official learning outcomes", "The role of neuromodulation in the firing of synapses")]
-HARV3 = [("brain", "Official learning outcomes", "How sensory perception works in the brain"),
-         ("brain", "Official learning outcomes", "The physiology of vision, hearing, taste, smell, touch and motor control"),
-         ("brain", "Official learning outcomes", "The basic anatomy of functional areas of the brain"),
-         ("brain", "Official learning outcomes", "The visual system of the brain"),
-         ("brain", "Official learning outcomes", "How the motor subsystems of the brain execute and coordinate movement"),
-         ("brain", "Official learning outcomes", "The critical brain systems that keep us alive")]
+HARV1 = [("neurons", "Lessons", "Resting potential"), ("neurons", "Lessons", "Passive membrane properties"), ("neurons", "Lessons", "Action potentials"),
+         ("neurons", "Lessons", "Action potential propagation"), ("neurons", "Lessons", "DIY labs")]
+HARV2 = [("molecules", "Lessons", "The synapse"), ("networks", "Lessons", "Excitation and inhibition"), ("networks", "Lessons", "Small circuits"),
+         ("molecules", "Lessons", "Neuromodulation"), ("networks", "Lessons", "Potentiation and depression")]
+HARV3 = [("brain", "Lessons", "Vision"), ("brain", "Lessons", "Audition"), ("brain", "Lessons", "Touch, taste, smell and the remaining senses"),
+         ("brain", "Lessons", "Movement and action"), ("brain", "Lessons", "Subcortical brain areas"), ("brain", "Lessons", "Brain anatomy")]
 
 AD_FINDINGS = [
  ("disease", "Original research", "The oligodendrocyte lineage is the main axis of disruption in this tissue, rising from 19.7% to 36.0% of cells.", "#biological-conclusions"),

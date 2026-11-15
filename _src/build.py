@@ -223,10 +223,21 @@ page("by-scale.html", "By scale: molecules to disease", f"""<section><p class="e
 
 # ---- courses
 hdr = "".join(f'<th><a href="by-scale.html#{k}" style="color:var(--{k});font:inherit">{n}</a></th>' for k, n, _, _ in SCALES)
-rows = ""
+S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
+MCOL = {k: col for k, _, col in MAJORS}
+def skchip(sk):
+    return f'<span class="chip sk" style="--c:var(--{MCOL[S2M[sk]]})">{E(sk)}</span>'
+COURSE_SK = {}; COURSE_BR = {}
 for c in COURSES:
-    if c["status"] == "todo":
-        continue
+    if c.get("cert"): COURSE_SK[c["id"]] = CERT_META[c["cert"]]["skills"]; COURSE_BR[c["id"]] = CERT_GROUP[c["cert"]]
+for a_, g_ in zip(AUDITS, AUDIT_GROUP):
+    if a_["page"]: COURSE_SK[a_["page"]] = a_["skills"]; COURSE_BR[a_["page"]] = g_
+BRANCHES = [(f'neuro/{br["key"]}', br["name"]) for br in TREE[0]["branches"]]
+rows = ""
+for bk, bn in BRANCHES:
+  cs = [c for c in COURSES if c["status"] != "todo" and COURSE_BR.get(c["id"]) == bk]
+  if cs: rows += f'<tr class="mh"><td colspan="{len(SCALES)+1}">{E(bn)}</td></tr>'
+  for c in cs:
     cells = ""
     for k, *_ in SCALES:
         v = sum(1 for o in c["outcomes"] if o[0] == k)
@@ -238,12 +249,21 @@ rows += f'<tr><td><a href="{REPO_AD}" style="color:var(--ink)">Original research
 matrix = f'<div class="scroll"><table class="matrix"><tr><th>Number of outcomes</th>{hdr}</tr>{rows}</table></div>'
 def ccard(c):
     td = " todo" if c["status"] == "todo" else ""
-    return f'<a class="card ccard{td}" href="courses/{c["id"]}.html"><div>{BADGE[c["status"]]}</div><h3>{E(c["title"])}</h3><small>{E(c["provider"])}</small><span style="font-size:14px">{E(c["summary"])}</span></a>'
-done = "".join(ccard(c) for c in COURSES if c["status"] != "todo")
+    sk = COURSE_SK.get(c["id"], [])
+    chips_ = f'<span class="chips">{"".join(skchip(x) for x in sk[:3])}{f"""<span class="chip src">+{len(sk)-3}</span>""" if len(sk) > 3 else ""}</span>' if sk else ""
+    return f'<a class="card ccard{td}" href="courses/{c["id"]}.html"><div>{BADGE[c["status"]]}</div><h3>{E(c["title"])}</h3><small>{E(c["provider"])}</small><span style="font-size:14px">{E(c["summary"])}</span>{chips_}</a>'
+done = ""
+for bk, bn in BRANCHES:
+    cs = [c for c in COURSES if c["status"] != "todo" and COURSE_BR.get(c["id"]) == bk]
+    if cs:
+        nc = sum(c["status"] == "cert" for c in cs); na = len(cs) - nc
+        sub = " · ".join(x for x in [f"{nc} certified" if nc else "", f"{na} audited" if na else ""] if x)
+        done += f'<div class="cgroup" style="--c:var(--neurons);margin-top:22px"><h4 id="{bk.split("/")[1]}">{E(bn)} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{"".join(ccard(c) for c in cs)}</div></div>'
+assert all(c["id"] in COURSE_BR for c in COURSES if c["status"] != "todo")
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
-page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary and learning outcomes. This grid shows where each one contributes.</p><div style="margin-top:20px">{matrix}</div></section>
-<section><h2>Completed and audited</h2><div class="grid" style="margin-top:14px">{done}</div></section>
+page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary, learning outcomes and skills. This grid shows where each one contributes.</p><div style="margin-top:20px">{matrix}</div></section>
+<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="certificates.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><p class="note">Textbook chapters are mapped to each level on the <a href="by-scale.html">By scale</a> page.</p><ul class="out">{read}</ul></section>""", "courses")
 
@@ -255,8 +275,9 @@ for c in COURSES:
     if c.get("cert"):
         cc = CERTS[c["cert"]]
         proof = f'<a class="chip" href="{rel}{cc[4]}.pdf">Certificate · {cc[2]}</a><a class="chip" href="{cc[5]}">Verify with issuer ↗</a>' + proof
+    skl = f'<p class="eyebrow" style="margin:18px 0 6px">Skills</p><div class="chips">{"".join(skchip(x) for x in COURSE_SK[c["id"]])}</div>' if c["id"] in COURSE_SK else ""
     if c.get("repo"): proof += f'<a class="chip" href="{c["repo"]}">Public notes repository ↗</a>'
-    body = f'<section><a href="{rel}courses.html" class="eyebrow" style="text-decoration:none">← All courses</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div></section>'
+    body = f'<section><a href="{rel}courses.html" class="eyebrow" style="text-decoration:none">← All courses</a><h1 style="font-size:clamp(28px,5vw,42px);margin-top:8px">{E(c["title"])}</h1>{meta}<p class="lede" style="font-size:19px">{E(c["summary"])}</p><div class="chips" style="margin-top:12px">{proof}</div>{skl}</section>'
     if c["kind"] == "todo":
         body = body.replace(f'<p class="lede" style="font-size:19px">{E(c["summary"])}</p>', "")
         body += '<section><div class="card ccard todo"><h3>To be updated</h3><span style="font-size:14px">Learning outcomes and a graphical summary will be added here.</span></div></section>'
