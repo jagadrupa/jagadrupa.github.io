@@ -95,3 +95,5 @@ details.les summary{padding:0}details.les summary::before{content:"▸ "}details
 .out .od{font-size:14px;color:var(--muted);margin:0 0 6px;max-width:52em}.out li>p:first-child{font-weight:500}.out details.les{margin:0 0 7px}
 
 .pics{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:10px}.pics svg{width:100%;height:auto;display:block}.cd .pics{grid-template-columns:repeat(2,1fr);margin-top:12px}
+
+.ah{font-size:24px;margin:26px 0 0;padding-left:12px;border-left:4px solid var(--c)}

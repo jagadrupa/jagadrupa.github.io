@@ -194,7 +194,7 @@ def ccard(c):
     sk = COURSE_SK.get(c["id"], [])
     chips_ = f'<span class="chips">{"".join(skchip(x) for x in sk[:3])}{f"""<span class="chip src">+{len(sk)-3}</span>""" if len(sk) > 3 else ""}</span>' if sk else ""
     return f'<a class="card ccard{td}" href="courses/{c["id"]}.html"><div>{BADGE[c["status"]]}</div><h3>{E(c["title"])}</h3><small>{E(c["provider"])}</small><span style="font-size:14px">{E(c["summary"])}</span>{chips_}</a>'
-done = ""
+done = '<h3 class="ah" style="--c:var(--neurons)">Neuroscience</h3>'
 for bk, bn in BRANCHES:
     cs = [c for c in COURSES if c["status"] != "todo" and COURSE_BR.get(c["id"]) == bk]
     if cs:
@@ -202,10 +202,27 @@ for bk, bn in BRANCHES:
         sub = " · ".join(x for x in [f"{nc} certified" if nc else "", f"{na} audited" if na else ""] if x)
         done += f'<div class="cgroup" style="--c:var(--neurons);margin-top:22px"><h4 id="{bk.split("/")[1]}">{E(bn)} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{"".join(ccard(c) for c in cs)}</div></div>'
 assert all(c["id"] in COURSE_BR for c in COURSES if c["status"] != "todo")
+def xcard(status, title, provider, summary, skills, href):
+    chips_ = f'<span class="chips">{"".join(skchip(x) for x in skills[:3])}{f"""<span class="chip src">+{len(skills)-3}</span>""" if len(skills) > 3 else ""}</span>'
+    return f'<a class="card ccard" href="{href}"><div>{BADGE[status]}</div><h3>{E(title)}</h3><small>{E(provider)}</small><span style="font-size:14px">{E(summary)}</span>{chips_}</a>'
+with_page = {c["cert"] for c in COURSES if c.get("cert")}
+for t in TREE[1:]:
+    sec_ = ""
+    for br in t["branches"]:
+        g_ = f'{t["key"]}/{br["key"]}'
+        cs_ = [(CERTS[k][3], xcard("cert", CERTS[k][0], f"{CERTS[k][1]} · {CERTS[k][2]}", CERT_META[k]["summary"], CERT_META[k]["skills"], f'index.html#g-{t["key"]}-{br["key"]}'))
+               for k in CERTS if CERT_GROUP[k] == g_ and k not in with_page]
+        au_ = [xcard("audit", a_["title"], a_["provider"], AUDIT_SUMMARY.get(a_["title"], ""), a_["skills"], f'index.html#g-{t["key"]}-{br["key"]}')
+               for a_, gg in zip(AUDITS, AUDIT_GROUP) if gg == g_ and not a_["page"]]
+        if cs_ or au_:
+            sub = " · ".join(x for x in [f"{len(cs_)} certified" if cs_ else "", f"{len(au_)} audited" if au_ else ""] if x)
+            cards_ = "".join(c for _, c in sorted(cs_, reverse=True)) + "".join(au_)
+            sec_ += f'<div class="cgroup" style="margin-top:22px"><h4>{E(br["name"])} <small>{sub}</small></h4><div class="grid" style="margin-top:10px">{cards_}</div></div>'
+    if sec_: done += f'<div style="--c:var(--{t["col"]})"><h3 class="ah" style="margin-top:44px">{E(t["name"])}</h3>{sec_}</div>'
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
-page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Each course has its own page with a graphical summary, learning outcomes and skills.</p></section>
-<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="index.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
+page("courses.html", "By course", f"""<section><p class="eyebrow">By course</p><h1>Courses</h1><p class="lede">Every course I have completed or audited, by area. Each neuroscience course has its own page with a graphical summary, learning outcomes and skills.</p></section>
+<section><h2>Completed and audited</h2><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Neuroscience courses open their own page; the others open their certificate card.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><ul class="out">{read}</ul></section>""", "courses")
 

@@ -709,3 +709,11 @@ COURSE_DETAIL["epflx-neuronal-dynamics-of-cognition"] = {
  "Synaptic plasticity and learning": ("Models of how synapses change, from short-term effects to spike-timing rules and memory formation.",
   ["Classification of plasticity", "Short-term plasticity", "Long-term plasticity", "Spike-timing models of plasticity", "From spiking models to rate models", "The triplet STDP model", "Online learning of memories"]),
 }
+
+AUDIT_SUMMARY = {
+ "Deep Learning Fundamentals with Keras": "The building blocks of neural networks and how they are trained, with first models in Keras.",
+ "PyTorch Basics for Machine Learning": "Tensors, automatic differentiation and regression models in PyTorch.",
+ "Deep Learning with Python and PyTorch": "Shallow, deep and convolutional networks, built and trained in PyTorch.",
+ "Deep Learning with TensorFlow and Keras": "Advanced Keras: CNNs, transformers, generative models and reinforcement learning.",
+ "Applied Deep Learning Capstone Project": "An end-to-end image classification project that combines a CNN with a vision transformer.",
+}
