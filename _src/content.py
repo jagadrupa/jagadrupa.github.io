@@ -823,3 +823,13 @@ OTHER_DETAIL["stem"] = [
  ("Using stem cells to treat disease", "Using the body's own stem cells as therapy, and how to judge a proposed treatment.", ["Adult stem cells of the retinal pigment epithelium", "Age-related macular degeneration", "Myths about adult stem cells", "Evaluating stem-cell treatments"]),
  ("The bioethics of stem cell research and therapy", "The controversies around embryonic stem cells, and the legal, policy and ethical questions in research and treatment.", ["Embryonic stem cell controversies", "Legal and policy challenges", "The future of reproductive technology"]),
 ]
+
+OTHER_DETAIL["ph125"] = [
+ ("Introduction to machine learning", "What machine learning is, and the vocabulary used to describe a prediction problem.", []),
+ ("Machine learning basics", "How to judge an algorithm, and the probability that prediction rests on.", ["Evaluating machine learning algorithms", "Conditional probabilities"]),
+ ("Smoothing and linear regression for prediction", "Using regression as a predictor, and smoothing to capture trends that are not straight lines.", ["Linear regression for prediction", "Smoothing"]),
+ ("Cross-validation and k-nearest neighbours", "A simple, flexible classifier, and the standard way to tune and test a model without fooling yourself.", ["Nearest neighbours", "Cross-validation"]),
+ ("The caret package", "One R interface for training and comparing many algorithms.", ["The caret package", "Titanic survival exercises"]),
+ ("Model fitting and recommendation systems", "Fitting models to a large real dataset, building a recommendation system, and regularising it.", ["Case study: MNIST digits", "Recommendation systems", "Regularisation"]),
+ ("Final assessment", "A graded project applying the course's methods to a medical dataset.", ["Breast cancer prediction project"]),
+]
