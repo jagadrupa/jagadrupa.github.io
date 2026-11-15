@@ -48,7 +48,7 @@ def chips(refs, rel=""):
         seen.add((d, p)); out += chip(d, f, rel)
     return out
 BADGE = {"cert": '<span class="badge b-cert">Certificate</span>', "audit": '<span class="badge b-audit">Audited</span>', "todo": '<span class="badge b-todo">To be updated</span>', "research": '<span class="badge b-research">Original research</span>'}
-SHORT = {"uw-computational-neuroscience": "UW", "jhu-neuroimaging": "JHU", "uchicago-understanding-the-brain": "UChicago", "yale-introduction-to-psychology": "Yale", "harvardx-mcb80-1x": "HarvardX 1", "harvardx-mcb80-2x": "HarvardX 2", "harvardx-mcb80-3x": "HarvardX 3"}
+SHORT = {"uw-computational-neuroscience": "UW", "jhu-neuroimaging": "JHU", "uchicago-understanding-the-brain": "UChicago", "yale-introduction-to-psychology": "Yale", "harvardx-mcb80-1x": "HarvardX 1", "harvardx-mcb80-2x": "HarvardX 2", "harvardx-mcb80-3x": "HarvardX 3", "jhu-neurohacking-in-r": "JHU Neurohacking", "jhu-principles-of-fmri-1": "JHU fMRI 1", "jhu-principles-of-fmri-2": "JHU fMRI 2", "cambridge-neuropsychology-of-decision-making": "Cambridge", "cambridge-psychology-of-emotions": "Cambridge", "epflx-neuronal-dynamics-of-cognition": "EPFLx"}
 
 def outcome_refs(c, o, rel):
     if c["kind"] == "notes":
@@ -280,21 +280,55 @@ for c in COURSES:
     page(f'courses/{c["id"]}.html', c["title"], body, "courses", c["summary"])
 
 # ---- certificates
-order = sorted(CERTS.items(), key=lambda kv: kv[1][3])
-yr = lambda d: int(d[:4]) + (int(d[5:7]) - 1) / 12 + (int(d[8:]) - 1) / 365
-X = lambda v: 40 + (v - 2020) / 7 * 680
-ticks = "".join(f'<line x1="{X(y):.0f}" x2="{X(y):.0f}" y1="60" y2="68" stroke="var(--muted)"/><text x="{X(y):.0f}" y="84" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">{y}</text>' for y in range(2020, 2028))
-marks = ""
-for i, (k, v) in enumerate(order):
-    marks += f'<circle cx="{X(yr(v[3])) + i*5:.1f}" cy="60" r="6" fill="var(--accent)" fill-opacity=".8"/>'
-marks += f'<text x="{X(2020.5):.0f}" y="38" font-size="13" font-family="var(--serif)" fill="var(--ink)">July 2020: three certificates</text><text x="{X(2026.67)+6:.0f}" y="38" text-anchor="end" font-size="13" font-family="var(--serif)" fill="var(--ink)">September 2026: Computational Neuroscience</text>'
-tl = f'<svg class="diag" viewBox="0 0 760 94" role="img" aria-label="Timeline of certificates"><line x1="40" x2="720" y1="60" y2="60" stroke="var(--line)" stroke-width="2"/>{ticks}{marks}</svg>'
+MJ = {k: (n, col) for k, n, col in MAJORS}
+S2M = {sk: m for m, sks in SKILL_MAJOR.items() for sk in sks}
+# one entry per course: (major, skills, certified?)
+units = [(m["major"], m["skills"], True) for k, m in CERT_META.items() if k != "spec"] + [("imaging", FMRI1_SKILLS, True)] + [(a["major"], a["skills"], False) for a in AUDITS]
+for _, sks, _ in units:
+    for sk in sks: assert sk in S2M, f"skill without a major: {sk}"
+assert set(CERT_META) == set(CERTS), set(CERTS) ^ set(CERT_META)
+tally = {}
+for _, sks, _ in units:
+    for sk in set(sks): tally[sk] = tally.get(sk, 0) + 1
+def skchip(sk, n=None):
+    cnt = f'<b>×{n}</b>' if n and n > 1 else ""
+    return f'<span class="chip sk" style="--c:var(--{MJ[S2M[sk]][1]})">{E(sk)}{cnt}</span>'
+def skchips(sks, show=5):
+    out = "".join(skchip(s) for s in sks[:show])
+    if len(sks) > show:
+        out += f'<details class="more"><summary>+{len(sks)-show} more</summary>{"".join(skchip(s) for s in sks[show:])}</details>'
+    return f'<div class="chips">{out}</div>'
+tiles = ""
+for k, (name, col) in MJ.items():
+    nc = sum(1 for m, _, c in units if m == k and c); na = sum(1 for m, _, c in units if m == k and not c)
+    dots = '<i class="u"></i>' * nc + '<i class="u a"></i>' * na
+    cnt = f"{nc} certified" + (f" · {na} audited" if na else "")
+    ranked = sorted((s for s in SKILL_MAJOR[k] if s in tally), key=lambda s: (-tally[s], SKILL_MAJOR[k].index(s)))
+    top = "".join(skchip(s, tally[s]) for s in ranked[:6])
+    rest = f'<details class="more"><summary>All {len(ranked)} skills</summary>{"".join(skchip(s, tally[s]) for s in ranked[6:])}</details>' if len(ranked) > 6 else ""
+    tiles += f'<div class="card mj" data-m="{k}" style="--c:var(--{col})"><h3>{E(name)}</h3><div class="units" role="img" aria-label="{cnt}">{dots}</div><small>{cnt}</small><div class="chips">{top}{rest}</div><button type="button" class="mjb" data-m="{k}" aria-pressed="false">Show these courses</button></div>'
+order = sorted(CERTS.items(), key=lambda kv: kv[1][3], reverse=True)
 cards = ""
-for k, v in reversed(order):
-    cid = next(c["id"] for c in COURSES if c.get("cert") == k)
-    cards += f'<div class="card cert"><a href="{v[4]}.pdf"><img loading="lazy" src="{v[4]}.png" alt="Certificate: {E(v[0])}"></a><h3 style="font-size:17px">{E(v[0])}</h3><small style="color:var(--muted)">{E(v[1])} · {v[2]}</small><div class="chips"><a class="chip" href="{v[4]}.pdf">PDF</a><a class="chip" href="{v[5]}">Verify with issuer ↗</a><a class="chip course" href="courses/{cid}.html">Course page</a></div></div>'
-aud = "".join(f'<li><p><a href="courses/{c["id"]}.html">{E(c["title"])}</a></p><small style="color:var(--muted)">{E(c["provider"])}</small></li>' for c in COURSES if c["status"] == "audit")
-page("certificates.html", "Certificates", f"""<section><p class="eyebrow">Certificates</p><h1>Certificates</h1><p class="lede">Each one can be opened as a PDF or checked directly with the issuer.</p>{tl}<div class="grid" style="margin-top:16px">{cards}</div></section>
-<section><h2>Audited, without a certificate</h2><p class="note">Listed separately so that nothing here reads as a credential it is not.</p><ul class="out">{aud}</ul></section>""", "certs")
+for k, v in order:
+    m = CERT_META[k]; name, col = MJ[m["major"]]
+    cid = next((c["id"] for c in COURSES if c.get("cert") == k), None)
+    thumb = f'<a class="thumb" href="{v[4]}.pdf"><img loading="lazy" src="{v[4]}.png" alt="Certificate: {E(v[0])}"></a>' if v[4] else '<a class="thumb ph" href="%s"><span>Verified<br>certificate<br>on edX ↗</span></a>' % v[5]
+    links = (f'<a class="chip" href="{v[4]}.pdf">PDF</a>' if v[4] else "") + f'<a class="chip" href="{v[5]}">Verify with issuer ↗</a>'
+    if cid: links += f'<a class="chip course" href="courses/{cid}.html">Course page</a>'
+    elif m["url"]: links += f'<a class="chip src" href="{m["url"]}">Official course page ↗</a>'
+    cards += f'<article class="card crow" data-m="{m["major"]}" style="--c:var(--{col})">{thumb}<div class="cbody"><span class="mtag">{E(name)}</span><h3>{E(v[0])}</h3><small>{E(v[1])} · {v[2]}</small><p>{E(m["summary"])}</p>{skchips(m["skills"])}<div class="chips">{links}</div></div></article>'
+aud = ""
+for a in AUDITS:
+    name, col = MJ[a["major"]]
+    link = f'<a class="chip course" href="courses/{a["page"]}.html">Course page</a>' if a["page"] else ""
+    link += f'<a class="chip src" href="{a["url"]}">Official course page ↗</a>'
+    les = "".join(f"<li>{E(x)}</li>" for x in a["lessons"])
+    aud += f'<article class="card crow noimg" data-m="{a["major"]}" style="--c:var(--{col})"><div class="cbody"><span class="mtag">{E(name)}</span><h3>{E(a["title"])}</h3><small>{E(a["provider"])}</small><details class="les"><summary>{E(a["lessons_label"])} ({len(a["lessons"])})</summary><ol>{les}</ol></details>{skchips(a["skills"])}<div class="chips">{link}</div></div></article>'
+n_inst = len({x.strip() for v in CERTS.values() for x in v[1].replace(" · edX", "").split(" and ")})
+filt = "<script>(function(){var b=document.querySelectorAll('.mjb'),r=document.querySelectorAll('.crow'),cur=null,s=document.getElementById('fstate');function go(m){cur=cur===m?null:m;r.forEach(function(e){e.hidden=!!cur&&e.dataset.m!==cur});b.forEach(function(e){var on=e.dataset.m===cur;e.setAttribute('aria-pressed',on);e.textContent=on?'Show all courses':'Show these courses';e.parentNode.classList.toggle('on',on)});s.hidden=!cur;if(cur){s.querySelector('b').textContent=document.querySelector('.mj.on h3').textContent;document.getElementById('list').scrollIntoView({behavior:'smooth'})}}b.forEach(function(e){e.addEventListener('click',function(){go(e.dataset.m)})});s.querySelector('button').addEventListener('click',function(){go(cur)})})();</script>"
+page("certificates.html", "Certificates", f"""<section><p class="eyebrow">Certificates</p><h1>Certificates and skills</h1><p class="lede">Certified coursework since 2020: {len(CERTS)} certificates from {n_inst} institutions, and {len(AUDITS)} further courses audited.</p></section>
+<section><h2>Skills at a glance</h2><p class="note">Six areas. Each square is one course: filled for certified, outlined for audited. Skill names are the ones the course pages list, and ×n counts the courses behind a skill.</p><div class="grid mjgrid" style="margin-top:16px">{tiles}</div></section>
+<section id="list"><h2>Certificates</h2><p class="note">Each one can be opened as a PDF or checked directly with the issuer.</p><p class="fstate" id="fstate" hidden>Showing <b></b> only. <button type="button">Show all</button></p><div class="crows">{cards}</div></section>
+<section><h2>Audited, without a certificate</h2><p class="note">Listed separately so that nothing here reads as a credential it is not.</p><div class="crows">{aud}</div></section>{filt}""", "certs")
 (ROOT/".nojekyll").write_text("")
 print(f"built: {n_out} course outcomes, {checked} note references verified on their cited PDF page, {notes_pages} note pages")

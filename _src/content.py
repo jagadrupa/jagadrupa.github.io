@@ -34,6 +34,34 @@ CERTS = {
                  "certificates/uchicago-brain", "https://coursera.org/verify/6UDPHE85PSS3"),
     "yale": ("Introduction to Psychology", "Yale University", "19 Jul 2020", "2020-07-19",
              "certificates/yale-psychology", "https://coursera.org/verify/DR5BAPD97DNZ"),
+    "cam_dm": ("The Neuropsychology of Decision Making", "University of Cambridge", "12 Nov 2026", "2026-11-12",
+               "certificates/cambridge-decision-making", "https://coursera.org/verify/DHLJY1GK73T3"),
+    "cam_em": ("The Psychology of Emotions: An Introduction to Embodied Cognition", "University of Cambridge", "13 Nov 2026", "2026-11-13",
+               "certificates/cambridge-emotions", "https://coursera.org/verify/SHSP2TR2NRWS"),
+    "nh": ("Introduction to Neurohacking in R", "Johns Hopkins University", "13 Nov 2026", "2026-11-13",
+           "certificates/jhu-neurohacking", "https://coursera.org/verify/B8TCDT85UFX5"),
+    "fmri2": ("Principles of fMRI 2", "Johns Hopkins University", "13 Nov 2026", "2026-11-13",
+              "certificates/jhu-fmri-2", "https://coursera.org/verify/0UPYX3T9B2PO"),
+    "spec": ("Neuroscience and Neuroimaging Specialization (four courses)", "Johns Hopkins University", "13 Nov 2026", "2026-11-13",
+             "certificates/jhu-neuroimaging-specialization", "https://coursera.org/verify/specialization/V07M7VQV6RBT"),
+    "ph125": ("Data Science: Building Machine Learning Models", "HarvardX · edX", "9 Jun 2026", "2026-06-09",
+              None, "https://courses.edx.org/certificates/5336d0f75ab34976a54176ceaddf48c9"),
+    "gut": ("Gut Check: Exploring Your Microbiome", "University of Colorado Boulder and UC San Diego", "3 Jan 2024", "2024-01-03",
+            "certificates/ucsd-gut-microbiome", "https://coursera.org/verify/MAYNZFYME84M"),
+    "pygen": ("Python for Genomic Data Science", "Johns Hopkins University", "23 Feb 2023", "2023-02-23",
+              "certificates/jhu-python-genomics", "https://coursera.org/verify/6KMNE3VGRSRZ"),
+    "permed": ("Personalised Medicine from a Nordic Perspective", "University of Copenhagen and University of Iceland", "21 Feb 2023", "2023-02-21",
+               "certificates/copenhagen-personalised-medicine", "https://coursera.org/verify/XU2AGBX8XXV4"),
+    "galaxy": ("Genomic Data Science with Galaxy", "Johns Hopkins University", "4 Jul 2021", "2021-07-04",
+               "certificates/jhu-galaxy", "https://coursera.org/verify/HMU9G7PVXRV7"),
+    "gentech": ("Introduction to Genomic Technologies", "Johns Hopkins University", "13 Jun 2021", "2021-06-13",
+                "certificates/jhu-genomic-technologies", "https://coursera.org/verify/CU83YTNHGRNA"),
+    "covid": ("COVID19 Data Analysis Using Python (guided project)", "Coursera Project Network", "8 Jan 2021", "2021-01-08",
+              "certificates/coursera-covid19-python", "https://coursera.org/verify/UHPRLKTYMFTM"),
+    "biotech": ("Industrial Biotechnology", "University of Manchester", "22 Jun 2020", "2020-06-22",
+                "certificates/manchester-industrial-biotechnology", "https://coursera.org/verify/KXTX6VU3ANZ9"),
+    "stem": ("The Science of Stem Cells", "American Museum of Natural History", "6 Jun 2020", "2020-06-06",
+             "certificates/amnh-stem-cells", "https://coursera.org/verify/VP7RHFMX5RMZ"),
 }
 
 # Outcome: (scale, unit, statement, [note refs as (doc, section-title fragment)])
@@ -166,6 +194,35 @@ AD_FINDINGS = [
  ("disease", "Original research", "Limits stated up front: one section per condition, and a detection gap (median 28 vs 69 genes per cell) that confounds cross-section differential expression.", "#limitations"),
 ]
 
+M = "Official course modules"
+FMRI1 = [("brain", M, "Introduction to fMRI, data acquisition and reconstruction"),
+         ("brain", M, "The fMRI signal, experimental design and pre-processing"),
+         ("brain", M, "The General Linear Model"),
+         ("brain", M, "Group-level analysis and the multiple comparison problem")]
+FMRI2 = [("cognition", M, "Psychological and behavioural inference, and advanced experimental design"),
+         ("brain", M, "Advanced experimental design and advanced GLM modelling"),
+         ("brain", M, "Brain connectivity"),
+         ("brain", M, "Multi-voxel pattern analysis")]
+NEUROHACK = [("brain", M, "Introduction"), ("brain", M, "Neuroimaging: formats and visualization"),
+             ("brain", M, "Image processing"), ("brain", M, "Extended image processing")]
+CAM_DM_URL = "https://www.coursera.org/learn/neuropsychology-of-decision-making"
+CAM_DM = [("brain", M, "Introduction to neuroanatomy and neurodevelopment"),
+          ("brain", M, "The importance of the prefrontal cortex"),
+          ("molecules", M, "Neurotransmitters, neurophysiology and decision networks"),
+          ("cognition", M, "Decision making styles and the role of childhood experiences"),
+          ("cognition", M, "Decision making deficits")]
+CAM_EM_URL = "https://www.coursera.org/learn/the-psychology-of-emotions-an-introduction-to-embodied-cognition"
+CAM_EM = [("cognition", M, "What is cognitive psychology?"), ("cognition", M, "How we feel emotions"),
+          ("cognition", M, "How do we study emotions?"),
+          ("cognition", M, "How do we recognise others' emotional facial expressions?"),
+          ("cognition", M, "Is it always easy to understand others' emotions?")]
+
+EPFL2_URL = "https://www.edx.org/learn/neuroscience/ecole-polytechnique-federale-de-lausanne-computational-neuroscience-neuronal-dynamics-of-cognition"
+W = "Course contents by week"
+EPFL2 = [("networks", W, "Associative memory and the Hopfield model"), ("networks", W, "Attractor networks and spiking neurons"),
+         ("networks", W, "Neuronal populations and mean-field theory"), ("brain", W, "Perception and cortical field models"),
+         ("cognition", W, "Decision making and competitive dynamics"), ("networks", W, "Synaptic plasticity and learning")]
+
 # id, title, provider, status, url, summary
 COURSES = [
  dict(id="uw-computational-neuroscience", title="Computational Neuroscience", provider="University of Washington · Coursera", tutors="Rajesh P. N. Rao, Adrienne Fairhall", status="cert", cert="uw", url="https://www.coursera.org/learn/computational-neuroscience", outcomes=UW, kind="notes",
@@ -186,14 +243,18 @@ COURSES = [
       summary="How the subsystems of the brain turn information into thought and action.", graphic="rail", demos=[]),
  dict(id="epflx-neuronal-dynamics", title="Neuronal Dynamics", provider="EPFLx · edX · BIO465.1x", tutors="Wulfram Gerstner", status="todo", url="https://lcnwww.epfl.ch/gerstner/NeuronalDynamics-MOOCall.html", outcomes=[], kind="todo",
       summary="To be updated.", graphic=None, demos=[]),
- dict(id="epflx-neuronal-dynamics-of-cognition", title="Computational Neuroscience: Neuronal Dynamics of Cognition", provider="EPFLx · edX · BIO465.2x", tutors="Wulfram Gerstner", status="todo", url="https://lcnwww.epfl.ch/gerstner/NeuronalDynamics-MOOCall.html", outcomes=[], kind="todo",
-      summary="To be updated.", graphic=None, demos=[]),
- dict(id="jhu-neurohacking-in-r", title="Introduction to Neurohacking in R", provider="Johns Hopkins University · Coursera", status="todo", url="https://www.coursera.org/learn/neurohacking", outcomes=[], kind="todo",
-      summary="To be updated.", graphic=None, demos=[]),
- dict(id="jhu-principles-of-fmri-1", title="Principles of fMRI 1", provider="Johns Hopkins University · Coursera", tutors="Martin Lindquist, Tor Wager", status="todo", url="https://www.coursera.org/learn/functional-mri", outcomes=[], kind="todo",
-      summary="To be updated.", graphic=None, demos=[]),
- dict(id="jhu-principles-of-fmri-2", title="Principles of fMRI 2", provider="Johns Hopkins University · Coursera", tutors="Martin Lindquist, Tor Wager", status="todo", url="https://www.coursera.org/learn/functional-mri-2", outcomes=[], kind="todo",
-      summary="To be updated.", graphic=None, demos=[]),
+ dict(id="epflx-neuronal-dynamics-of-cognition", title="Computational Neuroscience: Neuronal Dynamics of Cognition", provider="EPFLx · edX · BIO465.2x", tutors="Wulfram Gerstner", status="audit", url=EPFL2_URL, outcomes=EPFL2, kind="syllabus",
+      summary="Six weeks on how networks of neurons give rise to memory, perception and decisions.", graphic="rail", demos=[]),
+ dict(id="jhu-neurohacking-in-r", title="Introduction to Neurohacking in R", provider="Johns Hopkins University · Coursera", tutors="Elizabeth Sweeney, Ciprian Crainiceanu, John Muschelli", status="cert", cert="nh", url="https://www.coursera.org/learn/neurohacking", outcomes=NEUROHACK, kind="syllabus",
+      summary="Reading, visualising and processing structural brain images in R.", graphic="rail", demos=[]),
+ dict(id="jhu-principles-of-fmri-1", title="Principles of fMRI 1", provider="Johns Hopkins University · Coursera", tutors="Martin Lindquist, Tor Wager", status="cert", cert="spec", url="https://www.coursera.org/learn/functional-mri", outcomes=FMRI1, kind="syllabus",
+      summary="How fMRI data are acquired, pre-processed and analysed with the General Linear Model. Certified through the four-course specialization.", graphic="rail", demos=[]),
+ dict(id="jhu-principles-of-fmri-2", title="Principles of fMRI 2", provider="Johns Hopkins University · Coursera", tutors="Martin Lindquist, Tor Wager", status="cert", cert="fmri2", url="https://www.coursera.org/learn/functional-mri-2", outcomes=FMRI2, kind="syllabus",
+      summary="Advanced design and modelling, brain connectivity and multi-voxel pattern analysis.", graphic="rail", demos=[]),
+ dict(id="cambridge-neuropsychology-of-decision-making", title="The Neuropsychology of Decision Making", provider="University of Cambridge · Coursera", tutors="Stacey Bedwell", status="cert", cert="cam_dm", url=CAM_DM_URL, outcomes=CAM_DM, kind="syllabus",
+      summary="The neuroanatomy, prefrontal function and neurochemistry behind how decisions are made.", graphic="rail", demos=[]),
+ dict(id="cambridge-psychology-of-emotions", title="The Psychology of Emotions: An Introduction to Embodied Cognition", provider="University of Cambridge · Coursera", tutors="Giulia Mangiaracina", status="cert", cert="cam_em", url=CAM_EM_URL, outcomes=CAM_EM, kind="syllabus",
+      summary="How emotions are felt, studied and recognised in others, from a cognitive psychology view.", graphic="rail", demos=[]),
 ]
 
 READING = [
@@ -252,3 +313,86 @@ BOOK = {
  "cognition": [("s3/chapter04.html", "S3 Ch 4", "Basal ganglia"), ("s4/chapter05.html", "S4 Ch 5", "Limbic system: hippocampus"), ("s4/chapter07.html", "S4 Ch 7", "Learning and memory"), ("s4/chapter08.html", "S4 Ch 8", "Higher cortical functions: language"), ("s4/chapter09.html", "S4 Ch 9", "Association and executive processing")],
  "disease": [("s4/chapter10.html", "S4 Ch 10", "CNS aging and Alzheimer's disease"), ("s4/chapter12.html", "S4 Ch 12", "Neurotransmitter and cell death"), ("s1/chapter15.html", "S1 Ch 15", "Genetics and neuronal disease"), ("s3/chapter06.html", "S3 Ch 6", "Disorders of the motor system")],
 }
+
+# ---- skills, for the certificates page
+# key, name, colour variable
+MAJORS = [("neuro", "Neuroscience", "neurons"), ("imaging", "Neuroimaging", "brain"), ("psych", "Psychology and cognition", "cognition"),
+          ("ml", "Machine learning and modelling", "networks"), ("data", "Statistics, data and programming", "molecules"),
+          ("bio", "Genomics and biomedicine", "disease")]
+SKILL_MAJOR = {
+ "neuro": ["Neurology", "Anatomy", "Physiology", "Sensory Systems Analysis", "Blood Pressure", "Computational Neuroscience", "Network Model", "Complex Networks", "Electronic Circuits"],
+ "imaging": ["Magnetic Resonance Imaging", "Medical Imaging", "Image Analysis", "Image Quality", "Scientific Visualization", "Software Visualization", "Medical Terminology"],
+ "psych": ["Psychology", "Learning Theory", "Human Learning", "Mental Health Diseases and Disorders", "Psychotherapy", "Cognitive Behavioral Therapy", "Human Development", "Child Development", "Non-Verbal Communication", "Critical Thinking", "Problem Solving"],
+ "ml": ["Machine Learning", "Machine Learning Algorithms", "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Artificial Neural Networks", "Recurrent Neural Networks (RNNs)", "Convolutional Neural Networks", "Deep Learning", "Artificial Intelligence", "Mathematical Modeling", "Mathematics", "Predictive Modeling", "Classification Algorithms", "Model Evaluation", "Predictive Analytics", "Principal Component Analysis", "Dimensionality Reduction", "Recommender Systems", "Forecasting", "PyTorch", "Keras", "TensorFlow", "Autoencoders", "Transfer Learning", "Transformer Models", "Linear Regression", "Logistic Regression", "Loss Functions"],
+ "data": ["Statistical Analysis", "Statistics", "Statistical Modeling", "Data Analysis", "Data Preprocessing", "Data Cleansing", "Data Visualization", "Data Manipulation", "Data Transformation", "Data Import/Export", "Data Processing", "Data Integration", "Data Quality", "Correlation Analysis", "Research Design", "Research Methodologies", "Research", "R Programming", "Python Programming", "Seaborn", "NumPy", "Pandas", "Package and Software Management", "Data Structures", "Algorithms", "Computer Programming", "Programming Principles", "Code Reusability", "File I/O", "Data Science", "Computer Science", "Software Engineering", "Big Data", "Application Frameworks", "Computing Platforms", "Data Analysis Software", "Software Installation", "Data-Driven Decision-Making"],
+ "bio": ["Bioinformatics", "Molecular Biology", "Biology", "Cell Biology", "Microbiology", "Immunology", "Nutrition and Diet", "Precision Medicine", "Medical Science and Research", "Clinical Research", "Healthcare Ethics", "Risk Analysis", "Patient-centered Care", "Health Care Procedure and Regulation", "Patient Communication", "Healthcare Industry Knowledge", "Health Systems", "Biotechnology", "Pharmaceuticals", "Process Engineering", "Sustainable Technologies", "Manufacturing and Production", "Scalability"],
+}
+# certificate key -> major, one-line summary, skills as listed on the course page, official page
+CERT_META = {
+ "uw": dict(major="neuro", url="https://www.coursera.org/learn/computational-neuroscience", summary="How neurons encode and decode information, and how networks compute and learn.",
+            skills=["Network Model", "Mathematical Modeling", "Reinforcement Learning", "Supervised Learning", "Artificial Neural Networks", "Recurrent Neural Networks (RNNs)", "Machine Learning Algorithms"]),
+ "uchicago": dict(major="neuro", url=UCHI, summary="Functional neuroanatomy, perception, movement and homeostasis.",
+                  skills=["Anatomy", "Neurology", "Physiology", "Sensory Systems Analysis", "Biology", "Blood Pressure"]),
+ "cam_dm": dict(major="neuro", url=CAM_DM_URL, summary="Prefrontal cortex, neurotransmitters and the networks behind decisions.",
+                skills=["Neurology", "Anatomy", "Physiology", "Psychology", "Biology", "Mental Health Diseases and Disorders"]),
+ "jhu": dict(major="imaging", url="https://www.coursera.org/learn/neuroscience-neuroimaging", summary="Structural and functional neuroanatomy, imaging methods and experimental design.",
+             skills=["Magnetic Resonance Imaging", "Medical Imaging", "Anatomy", "Research Design", "Medical Terminology"]),
+ "nh": dict(major="imaging", url="https://www.coursera.org/learn/neurohacking", summary="Reading, visualising and processing structural brain images in R.",
+            skills=["Image Analysis", "Medical Imaging", "R Programming", "Data Preprocessing", "Scientific Visualization", "Image Quality", "Neurology", "Data Manipulation", "Data Transformation", "Data Import/Export", "Software Visualization", "Package and Software Management"]),
+ "fmri2": dict(major="imaging", url="https://www.coursera.org/learn/functional-mri-2", summary="Advanced fMRI design and modelling, connectivity and multi-voxel pattern analysis.",
+               skills=["Magnetic Resonance Imaging", "Statistical Modeling", "Statistical Analysis", "Data Analysis", "Psychology"]),
+ "spec": dict(major="imaging", url="https://www.coursera.org/specializations/computational-neuroscience", summary="All four Johns Hopkins courses: fundamental neuroscience, fMRI 1 and 2, and neurohacking in R.",
+              skills=["Magnetic Resonance Imaging", "Medical Imaging", "Image Analysis", "Statistical Analysis", "Research Design", "Anatomy", "Neurology", "Data Preprocessing"]),
+ "yale": dict(major="psych", url=YALE_URL, summary="The scientific study of thought and behaviour, from development to mental illness.",
+              skills=["Psychology", "Learning Theory", "Human Learning", "Human Development", "Child Development", "Mental Health Diseases and Disorders", "Psychotherapy", "Cognitive Behavioral Therapy", "Critical Thinking", "Problem Solving"]),
+ "cam_em": dict(major="psych", url=CAM_EM_URL, summary="How emotions are felt, studied and recognised in other people.",
+                skills=["Psychology", "Research Methodologies", "Research", "Non-Verbal Communication"]),
+ "ph125": dict(major="ml", url="https://www.edx.org/learn/machine-learning/harvard-university-data-science-machine-learning", summary="Cross-validation, regularisation, common algorithms and a recommendation system, in R.",
+               skills=["Machine Learning", "Machine Learning Algorithms", "Principal Component Analysis", "Recommender Systems", "Forecasting", "Data Science", "Algorithms"]),
+ "covid": dict(major="data", url="https://www.coursera.org/projects/covid19-data-analysis-using-python", summary="A guided project: cleaning, merging and correlating public COVID-19 datasets.",
+               skills=["Python Programming", "Data Analysis", "Data Visualization", "Statistical Analysis", "Correlation Analysis", "Data Preprocessing", "Data Cleansing", "Data Integration", "Statistics", "Seaborn"]),
+ "gut": dict(major="bio", url="https://www.coursera.org/learn/microbiome", summary="The human gut microbiome, how it is studied and what it means for health.",
+             skills=["Microbiology", "Immunology", "Nutrition and Diet", "Data Analysis"]),
+ "pygen": dict(major="bio", url="https://www.coursera.org/learn/python-genomics", summary="Python programming applied to sequence data.",
+               skills=["Bioinformatics", "Python Programming", "Data Structures", "Computer Programming", "Programming Principles", "Code Reusability", "File I/O"]),
+ "permed": dict(major="bio", url="https://www.coursera.org/learn/personalised-medicine-from-a-nordic-perspective", summary="Biomarkers, genetics and omics in personalised medicine, with its evidence, ethics and communication.",
+                skills=["Precision Medicine", "Medical Science and Research", "Clinical Research", "Healthcare Ethics", "Data Science", "Risk Analysis", "Patient-centered Care", "Patient Communication", "Health Systems", "Healthcare Industry Knowledge", "Health Care Procedure and Regulation", "Data-Driven Decision-Making"]),
+ "galaxy": dict(major="bio", url=None, summary="Reproducible genomic analysis on the Galaxy platform.",
+                skills=["Bioinformatics", "Data Analysis", "Big Data", "Data Quality", "Data Analysis Software", "Application Frameworks", "Computing Platforms", "Software Installation"]),
+ "gentech": dict(major="bio", url="https://www.coursera.org/learn/introduction-genomics", summary="The measurement, computing and data science behind modern genomics.",
+                 skills=["Bioinformatics", "Molecular Biology", "Biology", "Statistical Analysis", "Data Analysis", "Algorithms", "Statistics", "Correlation Analysis", "Data Processing", "Data Science", "Computer Science", "Software Engineering"]),
+ "biotech": dict(major="bio", url="https://www.coursera.org/learn/industrial-biotech", summary="Enzyme engineering, synthetic biology and bioprocessing, with industrial case studies.",
+                 skills=["Biotechnology", "Pharmaceuticals", "Process Engineering", "Sustainable Technologies", "Manufacturing and Production", "Scalability"]),
+ "stem": dict(major="bio", url="https://www.coursera.org/learn/stem-cells", summary="What stem cells are, and how they are used to study and treat disease.",
+              skills=["Cell Biology", "Biology", "Precision Medicine", "Medical Science and Research", "Healthcare Ethics"]),
+}
+# Completed through the specialization certificate, so counted as a course but shown without its own card
+FMRI1_SKILLS = ["Magnetic Resonance Imaging", "Statistical Analysis", "Statistical Modeling", "Data Analysis", "Data Preprocessing", "Research Design", "Statistics"]
+IBM = "IBM · edX"
+# Audited courses: lessons as named by the course, skills as listed on the course page where it lists any
+AUDITS = [
+ dict(title="Fundamentals of Neuroscience, Part 1: The Electrical Properties of the Neuron", provider="HarvardX · edX · MCB80.1x", major="neuro", page="harvardx-mcb80-1x", url=H1, lessons_label="Lessons",
+      lessons=["Resting potential", "Passive membrane properties", "Action potentials", "Action potential propagation", "DIY labs"], skills=["Physiology", "Biology"]),
+ dict(title="Fundamentals of Neuroscience, Part 2: Neurons and Networks", provider="HarvardX · edX · MCB80.2x", major="neuro", page="harvardx-mcb80-2x", url=H2, lessons_label="Topics on the course page",
+      lessons=[o[2] for o in HARV2], skills=["Physiology", "Complex Networks", "Electronic Circuits"]),
+ dict(title="Fundamentals of Neuroscience, Part 3: The Brain", provider="HarvardX · edX · MCB80.3x", major="neuro", page="harvardx-mcb80-3x", url=H3, lessons_label="Topics on the course page",
+      lessons=[o[2] for o in HARV3], skills=["Anatomy", "Physiology", "Sensory Systems Analysis"]),
+ dict(title="Computational Neuroscience: Neuronal Dynamics of Cognition", provider="EPFLx · edX · BIO465.2x", major="neuro", page="epflx-neuronal-dynamics-of-cognition", url=EPFL2_URL, lessons_label="Weeks",
+      lessons=[o[2] for o in EPFL2], skills=["Computational Neuroscience", "Mathematics"]),
+ dict(title="Deep Learning Fundamentals with Keras", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-fundamentals-with-keras", lessons_label="Modules",
+      lessons=["Introduction to deep learning: biological and artificial neural networks, forward propagation", "Artificial neural networks: gradient descent, backpropagation, vanishing gradient, activation functions",
+               "Deep learning libraries: regression and classification models with Keras", "Deep learning models: shallow and deep networks, convolutional and recurrent networks, autoencoders"],
+      skills=["Deep Learning", "Keras", "Artificial Neural Networks", "Artificial Intelligence", "Data Science"]),
+ dict(title="PyTorch Basics for Machine Learning", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/pytorch/ibm-pytorch-basics-for-machine-learning", lessons_label="What the course covers",
+      lessons=["Build a machine learning pipeline in PyTorch", "Train models in PyTorch", "Load large datasets", "Use NumPy and Pandas with PyTorch"],
+      skills=["PyTorch", "Machine Learning", "Linear Regression", "Logistic Regression", "Loss Functions", "NumPy", "Pandas"]),
+ dict(title="Deep Learning with Python and PyTorch", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-with-python-and-pytorch", lessons_label="What the course covers",
+      lessons=["Deep neural networks and related machine learning methods", "Build and train deep neural networks using PyTorch", "Build deep learning pipelines"],
+      skills=["PyTorch", "Deep Learning", "Convolutional Neural Networks", "Artificial Neural Networks", "Autoencoders", "Transfer Learning", "Dimensionality Reduction", "Principal Component Analysis"]),
+ dict(title="Deep Learning with TensorFlow and Keras", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-deep-learning-with-tensorflow-and-keras", lessons_label="What the course covers",
+      lessons=["Custom layers and models in Keras with TensorFlow 2.x", "Advanced convolutional neural networks", "Transformer models for sequential data and time series", "Unsupervised learning, deep Q-networks and reinforcement learning"],
+      skills=["TensorFlow", "Keras", "Convolutional Neural Networks", "Transformer Models", "Reinforcement Learning", "Unsupervised Learning", "Transfer Learning", "Autoencoders"]),
+ dict(title="Applied Deep Learning Capstone Project", provider=IBM, major="ml", page=None, url="https://www.edx.org/learn/deep-learning/ibm-applied-deep-learning-capstone-project", lessons_label="What the course covers",
+      lessons=["Choose a deep learning method for a given problem", "Build a deep learning model for a real problem", "Create a deep learning pipeline", "Improve models using real data", "Present the outcomes of a deep learning project"],
+      skills=["Deep Learning", "PyTorch", "Keras", "Data Preprocessing"]),
+]
