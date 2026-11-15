@@ -554,3 +554,14 @@ COURSE_DETAIL["yale-introduction-to-psychology"] = {
  "The good life: happiness": ("How psychologists measure happiness and what contributes to a good life.",
   ["Positive psychology", "What is happiness?", "The happiness set point", "Happiness is relative", "Skewed judgments of past events", "Humility and optimism"]),
 }
+
+COURSE_DETAIL["jhu-principles-of-fmri-1"] = {
+ "Introduction to fMRI, data acquisition and reconstruction": ("What fMRI analysis aims to show, how psychological inferences are drawn from it, and how the scanner turns signal into an image.",
+  ["Goals of fMRI analysis", "fMRI data structure", "Psychological inference", "MR physics", "Forming an image", "K-space"]),
+ "The fMRI signal, experimental design and pre-processing": ("Where the BOLD signal comes from and what limits it, how experiments are designed, and how the data are cleaned before analysis.",
+  ["Signal, noise and BOLD physiology", "fMRI artefacts and types of noise", "Spatial and temporal resolution of BOLD", "Experimental design", "Kinds of designs", "Pre-processing of fMRI data"]),
+ "The General Linear Model": ("Building, estimating and testing the General Linear Model for fMRI time series.",
+  ["The General Linear Model", "Applying the GLM to fMRI data", "Building GLM models", "Linear basis sets", "Filtering and nuisance covariates", "GLM estimation", "Autoregressive noise models", "Contrasts and t-tests"]),
+ "Group-level analysis and the multiple comparison problem": ("Combining subjects in group analyses, and controlling false positives across thousands of voxels.",
+  ["Group-level analysis", "The multiple comparison problem in fMRI", "Family-wise error correction", "False discovery rate correction", "Pitfalls in multiple comparisons"]),
+}
