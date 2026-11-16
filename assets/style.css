@@ -106,3 +106,7 @@ details.les summary{padding:0}details.les summary::before{content:"▸ "}details
 @media (max-width:760px){.finding{grid-template-columns:1fr}}
 
 .qs{margin:10px 0 0;padding-left:22px;font-size:16.5px;line-height:1.55}.qs li{margin:6px 0;padding-left:4px}.qs li::marker{color:var(--accent);font-family:var(--mono);font-size:13px}
+
+.mlq{border-left:3px solid var(--accent);padding:4px 0 4px 16px;font:400 19px/1.45 var(--serif) !important;color:var(--ink)}.mlh{font-size:20px;margin:34px 0 4px}.mll{margin:8px 0 0;padding-left:18px;font-size:14.5px;line-height:1.7}
+.mlfig{margin:16px 0 0;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;color:#1d2329;max-width:760px}.mlfig img{width:100%;display:block}.mlfig figcaption{font-size:12.5px;padding:7px 10px;border-top:1px solid #e3e0d6}
+table.plain td b{font-weight:600}.scroll{overflow-x:auto}
