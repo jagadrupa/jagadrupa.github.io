@@ -908,6 +908,28 @@ RESEARCH_EARLIER = [
 # ---- what I can do: area, colour, where it comes from, [(group, [abilities])]
 # Built from the projects, courses and degree subjects recorded on this site, and from what the author has stated; not from a CV.
 CAN_DO = [
+ ("Programming and reproducible research", "cognition", "Used across all of my research", [
+  ("Languages", ["Python", "R", "Bash", "C", "C++", "HTML", "Database management"]),
+  ("Pipelines and computing", ["Pipeline development", "Nextflow", "Snakemake", "High-performance and GPU computing", "Docker", "Linux"]),
+  ("Sharing work", ["Git and GitHub", "Jupyter notebooks", "Unit tests", "Interactive analysis tools", "Public repositories with written reports"])]),
+ ("Neuroscience", "neurons", "Coursework, written up as my own notes and simulations, and the Alzheimer's project", [
+  ("Neural data and models", ["Encoding and decoding models", "Spike-triggered averages", "Signal detection theory", "Information in spike trains"]),
+  ("Simulating neurons and networks", ["Hodgkin–Huxley and integrate-and-fire neurons", "Hebbian and Oja learning rules", "Temporal-difference learning"]),
+  ("Neuroimaging", ["fMRI experimental design", "General Linear Model analysis", "Structural MRI processing in R"]),
+  ("Disease tissue", ["Cell-type composition in human cortex", "Mapping pathological zones"])]),
+ ("Modelling and machine learning", "networks", "Independent projects, research at TUM and coursework", [
+  ("Machine learning", ["Cell-type and tissue-niche classifiers", "Logistic regression, SVM, random forests, gradient boosting", "Cross-validation and regularisation", "Spatial hold-out validation", "Transfer between datasets", "Feature importance"]),
+  ("Deep learning", ["Neural networks in PyTorch", "Keras and TensorFlow", "Convolutional networks", "Autoencoders", "Transformers"]),
+  ("Statistics", ["Experimental design", "Hypothesis testing with multiple-testing correction", "PERMANOVA", "Correlation and enrichment analysis"])]),
+ ("Multi-omics data analysis", "molecules", "Research at TUM, my MSc and independent projects", [
+  ("Data types", ["RNA-seq", "Metagenomics", "Metatranscriptomics", "16S amplicon sequencing", "Metabolomics", "Methylation prediction"]),
+  ("Spatial and single-cell transcriptomics", ["10x Xenium and Visium", "Quality control, clustering and annotation", "Neighbourhood enrichment and Moran's I", "Spatial zoning", "Differential expression by zone and cell type", "Pseudotime", "Ligand–receptor analysis"]),
+  ("Metagenomics", ["Assembly", "Binning", "MAG reconstruction", "Pangenomes", "Taxonomic and functional profiling", "Diversity statistics and differential abundance"]),
+  ("Long-read sequencing", ["Nanopore assembly and analysis", "Hybrid assembly", "Mobile genetic elements", "Methylation and motif detection", "Prophage detection"]),
+  ("Multi-omics integration", ["sPLS-DA", "CCA", "DIABLO", "MOFA+", "MINT", "Integration across molecular layers"]),
+  ("Metabolic modelling", ["Genome-scale metabolic models", "Flux analysis for MAGs and isolates", "Predicting community metabolism"]),
+  ("Protein structure and docking", ["Variant analysis on protein structures", "Structure prediction with AlphaFold", "Active-site analysis", "Protein–protein docking", "Small-molecule docking", "Structural homology search", "Sequence and protein-domain search", "Structure visualisation"]),
+  ("Comparative and statistical genetics", ["Curating public genomes and isolates", "Gene and pathway analysis", "GWAS", "Rare-variant burden testing", "LD score regression"])]),
  ("In the laboratory", "brain", "Practical training during my BSc in Biotechnology, my bachelor's project and a research internship", [
   ("Molecular biology and genetic engineering", ["Genomic and plasmid DNA isolation", "RNA isolation", "Agarose gel electrophoresis", "PCR", "Restriction digestion and ligation", "Competent cells and bacterial transformation", "Blue–white screening", "Nucleic acid quantification"]),
   ("Proteins and biochemistry", ["Protein extraction", "Protein estimation (Bradford, Lowry, Biuret)", "PAGE and SDS-PAGE", "Qualitative tests for biomolecules", "Enzyme assays and kinetics", "UV–visible spectrophotometry and colorimetry", "Paper, thin-layer and column chromatography", "Centrifugation", "Buffer preparation and pH measurement"]),
@@ -917,28 +939,4 @@ CAN_DO = [
   ("Cell and tissue culture", ["Plant tissue culture", "Callus induction and micropropagation", "Animal cell culture basics", "Cell viability testing"]),
   ("Physiology and model organisms", ["Histology", "Plant pigment extraction and separation", "Zebrafish disease model", "Behavioural analysis"]),
   ("Chemistry", ["Solution preparation", "Volumetric analysis"])]),
- ("Analysing omics data", "molecules", "Research at TUM, my MSc and independent projects", [
-  ("Spatial and single-cell transcriptomics", ["10x Xenium and Visium", "Quality control, clustering and annotation", "Neighbourhood enrichment and Moran's I", "Spatial zoning", "Differential expression by zone and cell type", "Pseudotime", "Ligand–receptor analysis"]),
-  ("Metagenomics", ["Reference-based taxonomic and functional profiling", "Assembly-based analysis and genome bins", "Metagenomic species pangenomes", "16S amplicon analysis", "Diversity statistics and differential abundance"]),
-  ("Comparative genomics", ["Curating public genomes and isolates", "Hybrid assembly", "Gene and pathway analysis", "Reference database expansion"]),
-  ("Long-read sequencing and epigenomics", ["Nanopore assembly and analysis", "Methylation and motif detection", "Prophage detection"]),
-  ("Multi-omics integration", ["Metabolomics", "Metaproteomics", "Integration across molecular layers"]),
-  ("Statistical genetics", ["GWAS", "Rare-variant burden testing", "LD score regression"])]),
- ("Modelling and machine learning", "networks", "Independent projects, research at TUM and coursework", [
-  ("Machine learning", ["Cell-type and tissue-niche classifiers", "Logistic regression, SVM, random forests, gradient boosting", "Cross-validation and regularisation", "Spatial hold-out validation", "Transfer between datasets", "Feature importance"]),
-  ("Deep learning", ["Neural networks in PyTorch", "Keras and TensorFlow", "Convolutional networks", "Autoencoders", "Transformers"]),
-  ("Metabolic modelling", ["Genome-scale metabolic models", "Predicting community metabolism"]),
-  ("Statistics", ["Experimental design", "Hypothesis testing with multiple-testing correction", "PERMANOVA", "Correlation and enrichment analysis"])]),
- ("Protein structure and docking", "gold", "MSc research, research at TUM and my bachelor's project", [
-  ("Structure analysis", ["Protein structure analysis", "Structural homology search", "Sequence and protein-domain search"]),
-  ("Docking", ["Protein–protein docking", "Small-molecule docking"])]),
- ("Neuroscience", "neurons", "Coursework, written up as my own notes and simulations, and the Alzheimer's project", [
-  ("Neural data and models", ["Encoding and decoding models", "Spike-triggered averages", "Signal detection theory", "Information in spike trains"]),
-  ("Simulating neurons and networks", ["Hodgkin–Huxley and integrate-and-fire neurons", "Hebbian and Oja learning rules", "Temporal-difference learning"]),
-  ("Neuroimaging", ["fMRI experimental design", "General Linear Model analysis", "Structural MRI processing in R"]),
-  ("Disease tissue", ["Cell-type composition in human cortex", "Mapping pathological zones"])]),
- ("Programming and reproducible research", "cognition", "Used across all of my research", [
-  ("Languages", ["Python", "R", "Bash", "C", "C++", "HTML", "Database management"]),
-  ("Pipelines and computing", ["Pipeline development", "Nextflow", "Snakemake", "High-performance and GPU computing", "Docker", "Linux"]),
-  ("Sharing work", ["Git and GitHub", "Jupyter notebooks", "Unit tests", "Interactive analysis tools", "Public repositories with written reports"])]),
 ]
