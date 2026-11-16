@@ -431,7 +431,7 @@ _why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)
 def _ri(t, sub, href): return f'<a class="ri" href="{href}"><b>{E(t)}</b><small>{E(sub)}</small></a>'
 _ad0 = RESEARCH_INDEP[0]
 _ri1 = f'<a class="ri ri1" href="alzheimers-project.html"><small>{E(_ad0[1])} · {E(_ad0[2])}</small><b>{E(_ad0[0])}</b><span>{E(_ad0[3])}</span><span class="btn">Open the project →</span></a>'
-_tabs = [("Independent projects", _ri1 + "".join(_ri(t, f"{w} · {st}", "research.html#independent") for t, w, st, *_ in RESEARCH_INDEP[1:])),
+_tabs = [("spatial_AD", _ri1), ("Independent projects", "".join(_ri(t, f"{w} · {st}", "research.html#independent") for t, w, st, *_ in RESEARCH_INDEP[1:])),
          ("Research at TUM", "".join(_ri(t, f"{role} · {st}", "research.html#tum") for t, role, st, _ in OMICS_PROJECTS)),
          ("Research during my studies", "".join(_ri(t, w, "research.html#studies") for t, w, *_ in RESEARCH_EARLIER))]
 _RI = 'class="ri'
