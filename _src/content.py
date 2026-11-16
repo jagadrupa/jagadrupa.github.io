@@ -851,3 +851,13 @@ AD_KEY = [
  ("The core claims replicate in an independent cohort", "Reactive-glia induction, loss of myelin genes (MAG, FDR 0.019) and rising SNCA all hold in SEA-AD, an independent whole-transcriptome atlas.",
   "ad-32_seaad_myelin_oligo", "Myelin genes in oligodendrocytes across disease progression in SEA-AD", "#external-validation-against-sea-ad"),
 ]
+
+# short title, question, colour
+AD_QUESTIONS = [
+ ("Composition", "Which cortical cell types are present in each section, and how do their proportions shift in Alzheimer's disease?", "neurons"),
+ ("Spatial zones", "Is the pathology spread evenly, or does the tissue contain distinct affected and preserved zones?", "disease"),
+ ("Cell identity", "Does the same cell type express its defining gene programme at the same level in both conditions, or is identity itself eroded?", "cognition"),
+ ("Gene programmes", "Do the programmes that hold together in healthy tissue, the myelin module in particular, stay coherent?", "molecules"),
+ ("Shared or specific", "Is the disease signature specific to one cell type, or a local zone effect shared by every cell type living there?", "brain"),
+ ("Machine learning", "Can a model learn cell-type identity from expression and spatial context, and does it transfer across regions and disease state?", "networks"),
+]

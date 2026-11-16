@@ -3,7 +3,7 @@
 import re, subprocess, html, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from content import *
-from pictures import PICTURES
+from pictures import PICTURES, AD_QUESTION
 from icons import icon_svg
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
@@ -315,16 +315,13 @@ _key = "".join(f'<div class="finding"><div><p class="eyebrow">Finding {i + 1}</p
                f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)}</figcaption></figure></div>' for i, (t, d, f, cap, a) in enumerate(AD_KEY))
 page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of human cortex", f"""<div style="--c:var(--neurons)"><section><p class="eyebrow">Independent research project · 2026</p><h1 style="font-size:clamp(30px,5vw,46px)">Spatial transcriptomics of human Alzheimer's cortex</h1>
 <div class="chips" style="margin-top:14px"><a class="chip" href="{REPO_AD}">Code, notebooks and report on GitHub ↗</a></div></section>
-<section><h2>Introduction</h2><div class="prose"><p>Alzheimer's disease does not damage the brain evenly. Some cell populations and some regions fail early while their neighbours hold on for years, and the reasons for that selectivity are still not understood. Answering the question needs measurements that keep each cell in its place in the tissue, which is what spatial transcriptomics provides.</p>
-<p>In this project I analysed single-cell spatial transcriptomics of human cortex, comparing a section from a person with Alzheimer's disease with a matched healthy section. The project is in two halves: bioinformatics, to establish what is happening biologically and where, and machine learning, to test whether a model can learn the tissue's cellular organisation.</p>
-<p>These were the questions I set before the analysis:</p>
-<ol class="qs"><li>Which cortical cell types are present in each section, and how do their proportions shift in Alzheimer's disease?</li>
-<li>Is the pathology spread evenly across the section, or does the tissue contain distinct affected and preserved zones?</li>
-<li>Does the same cell type express its defining gene programme at the same level in both conditions, or is cell identity itself eroded?</li>
-<li>Do the gene programmes that hold together in healthy tissue, the myelin module in particular, stay coherent in Alzheimer's disease?</li>
-<li>Is the disease signature specific to one cell type, or a local zone effect shared by every cell type living there?</li>
-<li>Can a machine-learning model learn cell-type identity from expression and spatial context, and does it transfer across tissue regions and across disease state?</li></ol>
-<p>The analysis runs from quality control to external validation. Its main result is that the oligodendrocyte lineage, the cells that make myelin, is the dominant axis of disruption in this tissue.</p></div>
+<section><h2>Introduction</h2>
+<div class="intro3"><div class="card"><p class="eyebrow">The problem</p><p>Alzheimer's disease does not damage the brain evenly. Some cell populations and regions fail early while their neighbours hold on for years, and why is still not understood.</p></div>
+<div class="card"><p class="eyebrow">The approach</p><p>Spatial transcriptomics measures gene activity in each cell while keeping the cell in its place in the tissue. I compared one Alzheimer's section of human cortex with a matched healthy one.</p></div>
+<div class="card"><p class="eyebrow">The main result</p><p>The oligodendrocyte lineage, the cells that make myelin, is the dominant axis of disruption: more numerous, less mature and concentrated in the pathological zones.</p></div></div>
+<figure class="demo qfig"><div class="scroll">{AD_QUESTION}</div></figure>
+<h3 class="mlh">The questions, set before the analysis</h3>
+<div class="qgrid">{"".join(f'<div class="card qc" style="--c:var(--{col})"><span class="qn">{i + 1}</span><h4>{E(t)}</h4><p>{E(q)}</p></div>' for i, (t, q, col) in enumerate(AD_QUESTIONS))}</div>
 <div class="stats"><div class="stat"><b>44,955</b><span>cells in the Alzheimer's section</span></div><div class="stat"><b>24,406</b><span>cells in the matched healthy section</span></div><div class="stat"><b>19.7 → 36.0%</b><span>oligodendrocyte share, healthy to Alzheimer's</span></div><div class="stat"><b>58% vs 15%</b><span>oligodendrocytes in AD-hot against preserved zones</span></div></div></section>
 <section><h2>Data</h2><p style="margin:10px 0 0">The public <a href="{REPO_AD}#dataset">10x Genomics Xenium In Situ human brain dataset</a>: one Alzheimer's and one matched healthy cortical section, prepared and processed the same way.</p></section>
 <section><h2>Methods</h2><ol class="out" style="list-style:none">{_steps}</ol></section>

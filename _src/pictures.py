@@ -467,3 +467,28 @@ ADPROJ = [
   ["Classifiers transfer unevenly; core", "claims hold in an independent atlas"]),
 ]
 PICTURES["ad-project"] = ("The project in one picture", "From a tissue section to a tested claim.", _figure(ADPROJ))
+
+# ---------------- Alzheimer's project: the question, as a picture ----------------
+_r.seed(11)
+def _tissue(cx, cy, hot):
+    out = f'<ellipse cx="{cx}" cy="{cy}" rx="104" ry="74" fill="var(--tint)" stroke="var(--line)" stroke-width="1.4"/>'
+    n = 0
+    while n < 150:
+        x = cx + (_r.random() * 2 - 1) * 98; y = cy + (_r.random() * 2 - 1) * 68
+        if ((x - cx) / 100) ** 2 + ((y - cy) / 70) ** 2 > 1: continue
+        n += 1
+        inhot = hot and ((x - (cx + 38)) / 52) ** 2 + ((y - (cy - 8)) / 46) ** 2 < 1
+        col = ("disease" if _r.random() < .72 else "accent") if inhot else _r.choice(["accent", "accent", "networks", "cognition", "gold", "disease"] if not hot else ["accent", "accent", "networks", "cognition", "gold", "disease", "disease"])
+        out += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="2.7" fill="var(--{col})"/>'
+    if hot: out += f'<ellipse cx="{cx + 38}" cy="{cy - 8}" rx="54" ry="48" fill="none" stroke="var(--disease)" stroke-width="1.5" stroke-dasharray="5 4"/>'
+    return out
+AD_QUESTION = ('<svg viewBox="0 0 760 300" font-family="var(--sans)" role="img" aria-label="A healthy and an Alzheimer\'s cortex section side by side, asking what is reorganised and where, and whether a model can learn it">' + _DEFS
+  + _tissue(130, 112, False) + _tissue(630, 112, True)
+  + T(130, 212, "Healthy cortex", 14, "ink", font="serif") + T(130, 230, "24,406 cells", 11, font="mono")
+  + T(630, 212, "Alzheimer's cortex", 14, "ink", font="serif") + T(630, 230, "44,955 cells", 11, font="mono")
+  + T(380, 78, "What is reorganised,", 21, "ink", font="serif") + T(380, 104, "and where?", 21, "ink", font="serif")
+  + AR(262, 122, 244, 122) + AR(498, 122, 516, 122) + P("M262 122H498", "accent", 1.7)
+  + T(380, 146, "same platform, same preparation", 11)
+  + T(676, 44, "a pathological zone?", 11, "disease")
+  + B(116, 254, 254, 34, "Biology: which cells change, and where", "accent", 11.5) + B(390, 254, 254, 34, "Machine learning: can a model learn it", "networks", 11.5)
+  + P("M380 156V236M380 236H243V252M380 236H517V252", "muted", 1.3) + '</svg>')
