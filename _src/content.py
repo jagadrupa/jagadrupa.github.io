@@ -865,11 +865,16 @@ AD_QUESTIONS = [
 # ---- home and research pages
 EMAIL = "jagadrupa.sahoo@gmail.com"
 REPO = "https://github.com/jagadrupa/"
-PATH_STEPS = [("Biotechnology", "BSc (Hons), Amity University", "2018 to 2021", "brain"), ("Bioinformatics", "MSc, University of Manchester", "2021 to 2022", "molecules"),
-              ("Multi-omics research", "Technical University of Munich", "2023 to 2026", "networks"), ("Neuroscience and computational neuroscience", "Courses, own notes and an Alzheimer's project", "2026 onwards", "neurons")]
-WHY = [("Where I started", "I trained in biotechnology and bioinformatics, and my research years have been spent finding structure in large biological datasets."),
-       ("What drew me to the brain", "Working on human Alzheimer's tissue showed me that the questions I care most about are about the brain: why particular cells and circuits are vulnerable, and how a molecular change becomes a change in function."),
-       ("Where I am heading", "I want to work where neuroscience meets computation, on models that connect what cells express to what circuits do. I have been building that foundation through courses, my own notes and simulations.")]
+PATH_STEPS = [("Biotechnology", "BSc (Hons), Amity University", "2018 to 2021", "brain", "Gold Medallist · CGPA 9.51 / 10"),
+              ("Bioinformatics", "MSc, University of Manchester", "2021 to 2022", "molecules", "Distinction · unit marks 75, 78 and 81"),
+              ("Multi-omics research", "Technical University of Munich", "2023 to 2026", "networks", "Three manuscripts in preparation"),
+              ("Neuroscience and computational neuroscience", "Courses, own notes and an Alzheimer's project", "2026 onwards", "neurons", "")]
+NEURO_STEPS = [("2018 to 2021", "First work on the nervous system", "A review of GPCR-targeted therapies in neurodegenerative disease and a project on quercetin in a zebrafish model of Alzheimer's disease, alongside an interest in the gut–brain axis. First neuroscience courses in 2020."),
+               ("2024 to 2025", "Neurotransmitters and deep learning", "A search for bacterial enzymes of acetylcholine metabolism in the gut microbiome, and courses in deep learning."),
+               ("2026", "Neuroscience and computational neuroscience", "Courses across fundamental and computational neuroscience, neuroimaging and psychology, written up as my own notes, and an independent project on human Alzheimer's cortex.")]
+WHY = [("Where I started", "I trained in biotechnology and bioinformatics, with a particular interest in neuroscience from the outset: my first research as an undergraduate was on neurodegeneration."),
+       ("What drew me to the brain", "The brain is the most intricate system in biology: billions of cells whose coordinated activity gives rise to perception, memory and thought. What holds my attention most is how it fails in neurodegenerative disease, where particular cells and circuits are lost while others are spared."),
+       ("Where I am heading", "I want to study how neurons and neural circuits compute, and how that computation breaks down in disease, combining computational models with molecular and imaging data. My aim is graduate training and research in neuroscience and computational neuroscience.")]
 # title, when/role, status, summary, methods, links
 RESEARCH_INDEP = [
  ("Spatial transcriptomics of human Alzheimer's cortex", "Independent project, 2026", "Public repository and technical report",

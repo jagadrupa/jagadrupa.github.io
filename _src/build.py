@@ -368,24 +368,6 @@ page("research.html", "Research", f"""<section><p class="eyebrow">Research</p><h
 <h3 class="mlh">Talks and posters</h3><ul class="out"><li><p style="font-weight:400">Talk at the Seeon conference, 2025: Westernized diets exacerbate tumorigenesis by expanding H₂S-producing Desulfovibrio in murine models of Atf6-driven colon cancer.</p></li><li><p style="font-weight:400">Talk at the Collaborative Research Centre 1371 retreat, 2025.</p></li><li><p style="font-weight:400">Three poster presentations.</p></li></ul></section>
 <section id="earlier" style="--c:var(--brain)"><h2>Earlier research</h2><p class="note">During my MSc at Manchester and my BSc at Amity University.</p><div class="rcs">{_early}</div></section>""", "research", "Research projects of Jagadrupa Sahoo: spatial transcriptomics, multi-omics and genetics.")
 
-# ---- home page
-_n_neuro = sum(1 for c in COURSES if c["id"] in NEURO_IDS and c["status"] != "todo")
-_path = "".join(f'<div class="pstep" style="--c:var(--{col})"><span class="pdot"></span><b>{E(t)}</b><span>{E(d)}</span><small>{E(w)}</small></div>' for t, d, w, col in PATH_STEPS)
-_why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)">{E(t)}</p><p style="margin:8px 0 0;font-size:15.5px;line-height:1.55">{E(d)}</p></div>' for t, d in WHY)
-_areas = "".join(f'<a class="card ccard" href="skills.html" style="border-top:3px solid var(--{t["col"]})"><h3>{E(t["name"])}</h3><small>{E(", ".join(br["name"] for br in t["branches"][:4]))}</small></a>' for t in TREE)
-_ms = "".join(f'<li><p style="font-weight:400">{E(t)}</p><small style="color:var(--muted)">{E(role)} · {E(st)}</small></li>' for t, role, st, _ in OMICS_PROJECTS[:3])
-page("index.html", "Jagadrupa Sahoo", f"""<section class="hero"><img class="me" src="assets/jagadrupa-sahoo.jpg" alt="Jagadrupa Sahoo" width="150" height="150"><div><p class="eyebrow">Bioinformatics · Neuroscience · Computational neuroscience</p><h1>Jagadrupa Sahoo</h1>
-<p class="lede">I am a bioinformatician working towards neuroscience and computational neuroscience. I study how the cells of the human cortex are reorganised in Alzheimer's disease, and I am interested in how molecular change becomes a change in what neural circuits do.</p>
-<div class="chips" style="margin-top:16px"><a class="chip big" href="mailto:{EMAIL}">{EMAIL}</a><a class="chip big" href="https://github.com/jagadrupa">GitHub ↗</a><a class="chip big course" href="research.html">Research</a><a class="chip big course" href="skills.html">Skills and certificates</a></div></div></section>
-<section><h2>Why neuroscience and computational neuroscience</h2><div class="intro3">{_why}</div><div class="ppath">{_path}</div></section>
-<section><h2>Featured project</h2><a class="card feat" href="alzheimers-project.html"><img loading="lazy" src="figs/ad-f3_zone_map.png" alt="Spatial zone map of the Alzheimer's section"><div><p class="eyebrow">Independent research project · 2026</p><h3>Spatial transcriptomics of human Alzheimer's cortex</h3>
-<p>About 45,000 cells from an Alzheimer's section and 24,000 from a matched healthy one. The oligodendrocyte lineage is the main axis of disruption, the pathology is spatially zoned, and the core result replicates in an independent atlas.</p>
-<div class="stats" style="margin-top:14px"><div class="stat"><b>19.7 → 36.0%</b><span>oligodendrocyte share</span></div><div class="stat"><b>0.59 vs 0.43</b><span>classifier transfer, by direction</span></div></div><span class="chip course" style="margin-top:14px;align-self:flex-start">Read the project →</span></div></a></section>
-<section><h2>Research in progress</h2><p class="note">Manuscripts in preparation from my research at the Technical University of Munich, with submission planned for 2027. <a href="research.html#tum">All research →</a></p><ul class="out">{_ms}</ul></section>
-<section><h2>Skills and training</h2><div class="stats"><a class="stat" href="skills.html#list"><b>{len(CERTS)}</b><span>verifiable certificates</span></a><a class="stat" href="courses.html"><b>{_n_neuro}</b><span>neuroscience courses completed or audited</span></a><a class="stat" href="courses/uw-computational-neuroscience.html"><b>{notes_pages}</b><span>pages of my own course notes</span></a></div>
-<div class="grid" style="margin-top:18px">{_areas}</div></section>
-<section><h2>Contact</h2><p style="font-size:17px;margin:10px 0 0">I am glad to hear from researchers and programmes working in neuroscience and computational neuroscience: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>""", "home", "Jagadrupa Sahoo: bioinformatics, neuroscience and computational neuroscience.")
-
 # ---- certificates
 assert set(CERT_META) == set(CERTS) == set(CERT_GROUP), "certificate tables out of step"
 assert len(AUDIT_GROUP) == len(AUDITS)
@@ -440,6 +422,33 @@ page("skills.html", "Skills and certificates", f"""<section><p class="eyebrow">S
 <section><h2>Summary map</h2><p class="note">This map traces how my research interests have developed over the years, from biotechnology and bioinformatics towards neuroscience. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
 {toolkit}
 <section id="list"><h2>Certificates and courses</h2><p class="note">Select a card for the course details, the full certificate and the issuer's verification link. Audited courses are marked and carry no certificate.</p>{lists}</section>{js}""", "certs")
+# ---- home page (built last, so it can reuse the summary map)
+_n_neuro = sum(1 for c in COURSES if c["id"] in NEURO_IDS and c["status"] != "todo")
+_path = "".join(f'<div class="pstep" style="--c:var(--{col})"><span class="pdot"></span><b>{E(t)}</b><span>{E(d)}</span><small>{E(w)}</small>{f"""<em>{E(x)}</em>""" if x else ""}</div>' for t, d, w, col, x in PATH_STEPS)
+_npath = "".join(f'<div class="pstep" style="--c:var(--neurons)"><span class="pdot"></span><small>{E(w)}</small><b>{E(t)}</b><span>{E(d)}</span></div>' for w, t, d in NEURO_STEPS)
+_why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)">{E(t)}</p><p style="margin:8px 0 0;font-size:15.5px;line-height:1.55">{E(d)}</p></div>' for t, d in WHY)
+def _ri(t, sub, href): return f'<a class="ri" href="{href}"><b>{E(t)}</b><small>{E(sub)}</small></a>'
+_tabs = [("Independent projects", "".join(_ri(t, f"{w} · {st}", "alzheimers-project.html" if i == 0 else "research.html#independent") for i, (t, w, st, *_) in enumerate(RESEARCH_INDEP))),
+         ("Research at TUM", "".join(_ri(t, f"{role} · {st}", "research.html#tum") for t, role, st, _ in OMICS_PROJECTS)),
+         ("Earlier research", "".join(_ri(t, w, "research.html#earlier") for t, w, *_ in RESEARCH_EARLIER))]
+_RI = 'class="ri"'
+_tabbtn = "".join(f'<button type="button" role="tab" class="tabb" aria-selected="{"true" if i == 0 else "false"}" data-t="{i}">{E(n)} <small>{h.count(_RI)}</small></button>' for i, (n, h) in enumerate(_tabs))
+_tabpan = "".join(f'<div class="tabp" role="tabpanel" data-t="{i}"{"" if i == 0 else " hidden"}>{h}</div>' for i, (n, h) in enumerate(_tabs))
+_tabjs = "<script>(function(){var b=document.querySelectorAll('.tabb'),p=document.querySelectorAll('.tabp');b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.setAttribute('aria-selected',y===x)});p.forEach(function(q){q.hidden=q.dataset.t!==x.dataset.t})})})})();</script><noscript><style>.tabp[hidden]{display:grid!important}</style></noscript>"
+page("index.html", "Jagadrupa Sahoo", f"""<section class="hero"><img class="me" src="assets/jagadrupa-sahoo.jpg" alt="Jagadrupa Sahoo" width="150" height="150"><div><h1>Jagadrupa Sahoo</h1>
+<p class="lede">I am a bioinformatician working towards neuroscience and computational neuroscience. I study how the cells of the human cortex are reorganised in Alzheimer's disease, and I am interested in how molecular change becomes a change in what neural circuits do.</p>
+<div class="chips" style="margin-top:16px"><a class="chip big" href="mailto:{EMAIL}">{EMAIL}</a><a class="chip big" href="https://github.com/jagadrupa">GitHub ↗</a><a class="chip big course" href="research.html">Research</a><a class="chip big course" href="skills.html">Skills and certificates</a></div></div></section>
+<section><h2>Why neuroscience and computational neuroscience</h2><div class="intro3">{_why}</div>
+<h3 class="mlh">Education and research</h3><div class="ppath">{_path}</div>
+<h3 class="mlh">My path in neuroscience</h3><div class="ppath">{_npath}</div></section>
+<section><h2>Featured project</h2><a class="card feat" href="alzheimers-project.html"><img loading="lazy" src="figs/ad-f3_zone_map.png" alt="Spatial zone map of the Alzheimer's section"><div><p class="eyebrow">Independent research project · 2026</p><h3>Spatial transcriptomics of human Alzheimer's cortex</h3>
+<p class="eyebrow" style="margin-top:6px;color:var(--accent)">Conclusion</p>
+<p>In this tissue the oligodendrocyte lineage, the cells that make myelin, is more numerous, less mature, less coherent in its myelin programme, and concentrated in the zones where pathology is highest. The change is spatially organised and not uniform, and the most disturbed zones impose a shared signature on every cell type living in them. The core signal survives a test against an independent atlas.</p>
+<span class="chip course" style="margin-top:14px;align-self:flex-start">Read the project →</span></div></a></section>
+<section><h2>Research</h2><p class="note">All projects, by where they were done. Select a project for the detail.</p><div class="tabs" role="tablist">{_tabbtn}</div>{_tabpan}</section>
+<section><h2>Skills and training</h2><p class="note">{len(CERTS)} certificates, {_n_neuro} neuroscience courses and {notes_pages} pages of my own notes stand behind these. Select an area to open it; a branch with courses links to them. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree.replace('href="#g-', 'href="skills.html#g-')}</div></section>
+<section><h2>Contact</h2><p style="font-size:17px;margin:10px 0 0">I am glad to hear from researchers and programmes working in neuroscience and computational neuroscience: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>{js}{_tabjs}""", "home", "Jagadrupa Sahoo: bioinformatics, neuroscience and computational neuroscience.")
+
 (ROOT/"certificates.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Skills and certificates</title><meta http-equiv="refresh" content="0; url=skills.html"><link rel="canonical" href="skills.html"></head><body><p><a href="skills.html">Skills and certificates</a></p></body></html>')
 (ROOT/".nojekyll").write_text("")
 print(f"built: {n_out} course outcomes, {checked} note references verified on their cited PDF page, {notes_pages} note pages")
