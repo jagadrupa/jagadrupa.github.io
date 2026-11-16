@@ -457,11 +457,11 @@ OMICS_PROJECTS = [
 # Each area: key, name, colour variable, where it comes from, branches (key, name, source note, leaves, optional link)
 TREE = [
  dict(key="neuro", name="Neuroscience", col="neurons", note="Coursework, research projects and a review, 2020 to 2026", branches=[
-  dict(key="fund", name="Fundamental neuroscience", leaves=["Neuroanatomy", "Neurophysiology", "Synapses and circuits", "Sensory and motor systems", "Homeostasis"]),
+  dict(key="fund", name="Basic neurobiology", leaves=["Neuroanatomy", "Neurophysiology", "Synapses and circuits", "Sensory and motor systems", "Homeostasis"]),
   dict(key="comp", name="Computational neuroscience", leaves=["Neural encoding and decoding", "Information theory", "Neuron and network models", "Plasticity and learning", "Attractor networks"]),
+  dict(key="psych", name="Cognitive psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
   dict(key="imaging", name="Neuroimaging", leaves=["MRI", "fMRI experimental design", "General Linear Model", "Connectivity", "Multi-voxel pattern analysis", "Image processing in R"]),
-  dict(key="psych", name="Psychology", leaves=["Cognitive psychology", "Decision making", "Emotion", "Development and learning", "Mental health"]),
-  dict(key="ad", name="Alzheimer's disease and neurodegeneration", note="Research projects and a review, 2020 to 2026", link="alzheimers-project.html", projects_label="Projects and review",
+  dict(key="ad", name="Neurodegenerative diseases", note="Research projects and a review, 2020 to 2026", link="alzheimers-project.html", projects_label="Projects and review",
        leaves=["Alzheimer's pathology", "Neurodegenerative diseases", "Selective cell-type vulnerability", "Spatial transcriptomics of human cortex", "Zebrafish disease model", "GPCR-targeted therapies"], projects=AD_PROJECTS),
  ]),
  dict(key="dl", name="Deep learning and machine learning", col="networks", note="MSc at Manchester, research at TUM, and certified and audited coursework", branches=[
@@ -912,12 +912,13 @@ CAN_DO = [
   ("Languages", ["Python", "R", "Bash", "C", "C++", "HTML", "Database management"]),
   ("Pipelines and computing", ["Pipeline development", "Nextflow", "Snakemake", "High-performance and GPU computing", "Docker", "Linux"]),
   ("Sharing work", ["Git and GitHub", "Jupyter notebooks", "Unit tests", "Interactive analysis tools", "Public repositories with written reports"])]),
- ("Neuroscience", "neurons", "Coursework, written up as my own notes and simulations, and the Alzheimer's project", [
-  ("Mathematics", ["Linear algebra: vectors, eigenvalues, change of basis", "Calculus and differential equations", "Probability and Bayes' rule", "Stochastic processes: Poisson spiking", "Dynamical systems: fixed points and nullclines", "Information theory", "Optimisation by gradient descent"]),
-  ("Neural data and models", ["Encoding and decoding models", "Spike-triggered averages", "Signal detection theory", "Information in spike trains"]),
-  ("Simulating neurons and networks", ["Hodgkin–Huxley and integrate-and-fire neurons", "Hebbian and Oja learning rules", "Temporal-difference learning"]),
-  ("Neuroimaging", ["fMRI experimental design", "General Linear Model analysis", "Structural MRI processing in R"]),
-  ("Disease tissue", ["Cell-type composition in human cortex", "Mapping pathological zones"])]),
+ ("Neuroscience", "neurons", "Coursework, written up as my own notes and simulations, and my research on Alzheimer's disease", [
+  ("Basic neurobiology", ["Neuroanatomy and functional anatomy", "Resting and action potentials", "Synaptic transmission", "Excitation, inhibition and plasticity", "Neuromodulation", "Sensory and motor systems"]),
+  ("Computational neuroscience", ["Encoding and decoding models", "Spike-triggered averages", "Information in spike trains", "Hodgkin–Huxley and integrate-and-fire models", "Network and attractor models", "Hebbian, Oja and reinforcement learning rules"]),
+  ("Cognitive psychology", ["Perception and attention", "Working memory", "Language", "Decision making", "Emotion recognition", "Methods: lesion studies, EEG, fMRI, TMS"]),
+  ("Neuroimaging", ["MRI and the fMRI signal", "fMRI experimental design", "General Linear Model analysis", "Connectivity and multi-voxel pattern analysis", "Structural MRI processing in R"]),
+  ("Neurodegenerative diseases", ["Alzheimer's pathology in human cortex", "Cell-type composition and vulnerability", "Mapping pathological zones", "Zebrafish disease model", "GPCR-targeted therapies"]),
+  ("Mathematics for neuroscience", ["Linear algebra: vectors, eigenvalues, change of basis", "Calculus and differential equations", "Probability and Bayes' rule", "Stochastic processes: Poisson spiking", "Dynamical systems: fixed points and nullclines", "Information theory", "Optimisation by gradient descent"])]),
  ("Modelling and machine learning", "networks", "Independent projects, research at TUM and coursework", [
   ("Machine learning", ["Cell-type and tissue-niche classifiers", "Logistic regression, SVM, random forests, gradient boosting", "Cross-validation and regularisation", "Spatial hold-out validation", "Transfer between datasets", "Feature importance"]),
   ("Deep learning", ["Neural networks in PyTorch", "Keras and TensorFlow", "Convolutional networks", "Autoencoders", "Transformers"]),
