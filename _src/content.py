@@ -908,11 +908,15 @@ RESEARCH_EARLIER = [
 # ---- what I can do: area, colour, where it comes from, [(group, [abilities])]
 # Built from the projects, courses and degree subjects recorded on this site, and from what the author has stated; not from a CV.
 CAN_DO = [
- ("In the laboratory", "brain", "Practical training during my BSc and my bachelor's project", [
-  ("Molecular biology", ["DNA extraction", "RNA extraction", "Protein extraction", "PAGE and SDS-PAGE", "Recombinant DNA techniques"]),
-  ("Biochemistry", ["Enzymology", "Bioanalytical techniques", "Biochemical analysis of tissue"]),
-  ("Microbiology and immunology", ["Microbiological techniques", "Immunological methods"]),
-  ("Model organisms", ["Zebrafish disease model", "Behavioural analysis"])]),
+ ("In the laboratory", "brain", "Practical training during my BSc in Biotechnology, my bachelor's project and a research internship", [
+  ("Molecular biology and genetic engineering", ["Genomic and plasmid DNA isolation", "RNA isolation", "Agarose gel electrophoresis", "PCR", "Restriction digestion and ligation", "Competent cells and bacterial transformation", "Blue–white screening", "Nucleic acid quantification"]),
+  ("Proteins and biochemistry", ["Protein extraction", "Protein estimation (Bradford, Lowry, Biuret)", "PAGE and SDS-PAGE", "Qualitative tests for biomolecules", "Enzyme assays and kinetics", "UV–visible spectrophotometry and colorimetry", "Paper, thin-layer and column chromatography", "Centrifugation", "Buffer preparation and pH measurement"]),
+  ("Microbiology", ["Aseptic technique", "Media preparation and sterilisation", "Streak, spread and pour plating", "Pure culture isolation", "Gram staining", "Serial dilution and colony counts", "Bacterial growth curves", "Antibiotic sensitivity testing", "Biochemical identification tests", "Isolating microbes from soil and water"]),
+  ("Cell biology and genetics", ["Light microscopy and slide preparation", "Mitosis and meiosis preparations", "Cell counting with a haemocytometer", "Karyotyping"]),
+  ("Immunology and diagnostics", ["Blood grouping", "Blood smears and differential counts", "Haemoglobin estimation", "Agglutination and immunodiffusion", "ELISA"]),
+  ("Cell and tissue culture", ["Plant tissue culture", "Callus induction and micropropagation", "Animal cell culture basics", "Cell viability testing"]),
+  ("Physiology and model organisms", ["Histology", "Plant pigment extraction and separation", "Zebrafish disease model", "Behavioural analysis"]),
+  ("Chemistry", ["Solution preparation", "Volumetric analysis"])]),
  ("Analysing omics data", "molecules", "Research at TUM, my MSc and independent projects", [
   ("Spatial and single-cell transcriptomics", ["10x Xenium and Visium", "Quality control, clustering and annotation", "Neighbourhood enrichment and Moran's I", "Spatial zoning", "Differential expression by zone and cell type", "Pseudotime", "Ligand–receptor analysis"]),
   ("Metagenomics", ["Reference-based taxonomic and functional profiling", "Assembly-based analysis and genome bins", "Metagenomic species pangenomes", "16S amplicon analysis", "Diversity statistics and differential abundance"]),
