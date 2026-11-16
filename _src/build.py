@@ -419,7 +419,12 @@ for i, t in enumerate(TREE):
 assert sum(len(v) for v in groups.values()) == len(CERTS) + len(AUDITS)
 n_inst = len({x.strip() for v in CERTS.values() for x in v[1].replace(" · edX", "").split(" and ")})
 js = "<script>(function(){var p=document.querySelectorAll('.tpill');function set(b,o){b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o}p.forEach(function(b){b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true')})});var a=document.getElementById('tall');a.addEventListener('click',function(){var o=a.dataset.o!=='1';p.forEach(function(b){set(b,o)});a.dataset.o=o?'1':'';a.textContent=o?'Collapse all':'Expand all'})})();</script><noscript><style>.tkids[hidden]{display:block!important}</style></noscript>"
+def _educard(t, inst, yrs, res, col, docs):
+    d = "".join(f'<a class="edoc" href="education/{f}.jpg"><img loading="lazy" src="education/{f}-thumb.jpg" alt="{E(l)}"><span>{E(l)}</span></a>' for l, f in docs)
+    return f'<article class="card edu" style="--c:var(--{col})"><p class="eyebrow">{E(yrs)}</p><h3>{E(t)}</h3><p class="einst">{E(inst)}</p><p class="eres">{E(res)}</p><div class="edocs">{d}</div></article>'
+_edu = "".join(_educard(*e) for e in EDUCATION)
 page("skills.html", "Skills and certificates", f"""<section><p class="eyebrow">Skills and certificates</p><h1>Skills and certificates</h1><p class="lede">This is a summary of my skills, and the certifications that have helped me build them over the years. Expand any area to see how each skill was gained.</p></section>
+<section id="education"><h2>Education</h2><div class="edus">{_edu}</div><p class="note" style="margin-top:12px">Select a document to open it. Identification numbers, date of birth and family names are covered.</p></section>
 <section><h2>Summary map</h2><p class="note">This map traces how my research interests have developed over the years, from biotechnology and bioinformatics towards neuroscience. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
 {toolkit}
 <section id="list"><h2>Certificates and courses</h2><p class="note">Select a card for the course details, the full certificate and the issuer's verification link. Audited courses are marked and carry no certificate.</p>{lists}</section>{js}""", "certs")

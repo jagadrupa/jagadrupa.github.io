@@ -940,3 +940,11 @@ CAN_DO = [
   ("Physiology and model organisms", ["Histology", "Plant pigment extraction and separation", "Zebrafish disease model", "Behavioural analysis"]),
   ("Chemistry", ["Solution preparation", "Volumetric analysis"])]),
 ]
+
+# ---- education, for the top of the skills page: title, institution, years, result, colour, [(label, file stem in education/)]
+EDUCATION = [
+ ("BSc (Hons) Biotechnology", "Amity University, Noida, India", "2018 to 2021", "Gold Medallist · CGPA 9.51 / 10 · First Division with Distinction", "brain",
+  [("Degree certificate", "bsc-degree"), ("Statement of grades, semesters I to IV", "bsc-grades-1"), ("Statement of grades, semesters V and VI", "bsc-grades-2")]),
+ ("MSc Bioinformatics and Systems Biology", "The University of Manchester, United Kingdom", "2021 to 2022", "Distinction", "molecules",
+  [("Degree certificate", "msc-degree"), ("Academic transcript", "msc-transcript-1")]),
+]
