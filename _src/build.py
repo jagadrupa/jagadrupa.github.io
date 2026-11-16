@@ -353,8 +353,9 @@ page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of
 
 # ---- research page
 def rcard(t, when, status, summary, methods, links=()):
-    lk = "".join(f'<a class="chip{"" if "↗" in l else " course"}" href="{u}">{E(l)}</a>' for l, u in links)
-    return f'<article class="card rc"><p class="eyebrow">{E(when)} · {E(status)}</p><h3>{E(t)}</h3><p>{E(summary)}</p><div class="leaves" style="margin:10px 0 0;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in methods)}</div>{f"""<div class="chips" style="margin-top:10px">{lk}</div>""" if lk else ""}</article>'
+    lk = "".join(f'<a class="btn" href="{u}">Open the project →</a>' if l == "Project page" else f'<a class="chip" href="{u}">{E(l)}</a>' for l, u in links)
+    big = " rc1" if any(l == "Project page" for l, _ in links) else ""
+    return f'<article class="card rc{big}"><p class="eyebrow">{E(when)} · {E(status)}</p><h3>{E(t)}</h3><p>{E(summary)}</p><div class="leaves" style="margin:10px 0 0;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in methods)}</div>{f"""<div class="chips" style="margin-top:12px;align-items:center">{lk}</div>""" if lk else ""}</article>'
 _indep = "".join(rcard(*r) for r in RESEARCH_INDEP)
 _tum = "".join(rcard(t, role, st, "", ms) for t, role, st, ms in OMICS_PROJECTS)
 _tm = "".join(f'<div class="card"><h3 style="font-size:17px">{E(t)}</h3><p style="margin:8px 0 0;font-size:14.5px">{E(d)}</p></div>' for t, d in TUM_METHODS)
@@ -428,10 +429,12 @@ _path = "".join(f'<div class="pstep" style="--c:var(--{col})"><span class="pdot"
 _npath = "".join(f'<div class="pstep" style="--c:var(--neurons)"><span class="pdot"></span><small>{E(w)}</small><b>{E(t)}</b><span>{E(d)}</span></div>' for w, t, d in NEURO_STEPS)
 _why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)">{E(t)}</p><p style="margin:8px 0 0;font-size:15.5px;line-height:1.55">{E(d)}</p></div>' for t, d in WHY)
 def _ri(t, sub, href): return f'<a class="ri" href="{href}"><b>{E(t)}</b><small>{E(sub)}</small></a>'
-_tabs = [("Independent projects", "".join(_ri(t, f"{w} · {st}", "alzheimers-project.html" if i == 0 else "research.html#independent") for i, (t, w, st, *_) in enumerate(RESEARCH_INDEP))),
+_ad0 = RESEARCH_INDEP[0]
+_ri1 = f'<a class="ri ri1" href="alzheimers-project.html"><small>{E(_ad0[1])} · {E(_ad0[2])}</small><b>{E(_ad0[0])}</b><span>{E(_ad0[3])}</span><span class="btn">Open the project →</span></a>'
+_tabs = [("Independent projects", _ri1 + "".join(_ri(t, f"{w} · {st}", "research.html#independent") for t, w, st, *_ in RESEARCH_INDEP[1:])),
          ("Research at TUM", "".join(_ri(t, f"{role} · {st}", "research.html#tum") for t, role, st, _ in OMICS_PROJECTS)),
          ("Research during my studies", "".join(_ri(t, w, "research.html#studies") for t, w, *_ in RESEARCH_EARLIER))]
-_RI = 'class="ri"'
+_RI = 'class="ri'
 _tabbtn = "".join(f'<button type="button" role="tab" class="tabb" aria-selected="{"true" if i == 0 else "false"}" data-t="{i}">{E(n)} <small>{h.count(_RI)}</small></button>' for i, (n, h) in enumerate(_tabs))
 _tabpan = "".join(f'<div class="tabp" role="tabpanel" data-t="{i}"{"" if i == 0 else " hidden"}>{h}</div>' for i, (n, h) in enumerate(_tabs))
 _can = ""
