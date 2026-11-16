@@ -866,7 +866,7 @@ AD_QUESTIONS = [
 EMAIL = "jagadrupa.sahoo@gmail.com"
 REPO = "https://github.com/jagadrupa/"
 PATH_STEPS = [("Biotechnology", "BSc (Hons), Amity University", "2018 to 2021", "brain", "Gold Medallist · CGPA 9.51 / 10"),
-              ("Bioinformatics", "MSc, University of Manchester", "2021 to 2022", "molecules", "Distinction · unit marks 75, 78 and 81"),
+              ("Bioinformatics", "MSc, University of Manchester", "2021 to 2022", "molecules", "Distinction"),
               ("Multi-omics research", "Technical University of Munich", "2023 to 2026", "networks", "Three manuscripts in preparation"),
               ("Neuroscience and computational neuroscience", "Courses, own notes and an Alzheimer's project", "2026 onwards", "neurons", "")]
 NEURO_STEPS = [("2018 to 2021", "First work on the nervous system", "A review of GPCR-targeted therapies in neurodegenerative disease and a project on quercetin in a zebrafish model of Alzheimer's disease, alongside an interest in the gut–brain axis. First neuroscience courses in 2020."),
