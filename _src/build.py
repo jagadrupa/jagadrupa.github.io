@@ -67,7 +67,7 @@ def outcome_refs(c, o, rel):
 def page(path, title, body, active="", desc="Skills, certificates and neuroscience coursework of Jagadrupa Sahoo, with the evidence attached."):
     depth = path.count("/")
     rel = "../" * depth
-    links = [("index.html", "Skills and certificates", "certs"), ("courses.html", "Neuroscience courses", "courses"), ("other-courses.html", "Other courses", "other"), ("alzheimers-project.html", "Alzheimer's project", "ad")]
+    links = [("index.html", "Home", "home"), ("research.html", "Research", "research"), ("skills.html", "Skills and certificates", "certs"), ("courses.html", "Neuroscience courses", "courses"), ("other-courses.html", "Other courses", "other")]
     nav = "".join(f'<a href="{rel}{h}"{" class=on" if a == active else ""}>{t}</a>' for h, t, a in links)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><meta name="author" content="Jagadrupa Sahoo">
@@ -240,9 +240,9 @@ AREA_COL = {t["key"]: t["col"] for t in TREE}
 todo = "".join(ccard(c) for c in COURSES if c["status"] == "todo")
 read = "".join(f'<li><p><a href="{u}">{E(t)} ↗</a></p><small style="color:var(--muted)">{E(a)}</small></li>' for t, a, u in READING)
 page("other-courses.html", "Other courses", f"""<section><p class="eyebrow">Other courses</p><h1>Other courses</h1><p class="lede">Courses outside neuroscience that I have completed or audited: deep learning and machine learning, bioinformatics and biotechnology.</p></section>
-<section><p class="note">Grouped and coloured as on the <a href="index.html">summary map</a>. Each course has its own page with its modules, skills and certificate.</p>{other}</section>""", "other")
+<section><p class="note">Grouped and coloured as on the <a href="skills.html">summary map</a>. Each course has its own page with its modules, skills and certificate.</p>{other}</section>""", "other")
 page("courses.html", "Neuroscience courses", f"""<section><p class="eyebrow">Neuroscience courses</p><h1>Neuroscience courses</h1><p class="lede">Every neuroscience course I have completed or audited. Each has its own page with a graphical summary, learning outcomes and skills.</p></section>
-<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="index.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
+<section><h2>Completed and audited</h2><p class="note">Grouped as on the <a href="skills.html">summary map</a>. Each card shows the first skills listed for the course.</p>{done}</section>
 <section><h2>To be updated</h2><div class="grid" style="margin-top:14px">{todo}</div></section>
 <section><h2>Reference texts</h2><ul class="out">{read}</ul></section>""", "courses")
 
@@ -313,7 +313,7 @@ for c in COURSES:
 _steps = "".join(f'<li><p>{E(t)}</p><p class="od">{E(d)}</p></li>' for t, d in AD_STEPS)
 _key = "".join(f'<div class="finding"><div><p class="eyebrow">Finding {i + 1}</p><h3>{E(t)}</h3><p>{E(d)}</p><div class="chips"><a class="chip" href="{REPO_AD}{a}">Evidence in the repository ↗</a></div></div>'
                f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)}</figcaption></figure></div>' for i, (t, d, f, cap, a) in enumerate(AD_KEY))
-page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of human cortex", f"""<div style="--c:var(--neurons)"><section><p class="eyebrow">Independent research project · 2026</p><h1 style="font-size:clamp(30px,5vw,46px)">Spatial transcriptomics of human Alzheimer's cortex</h1>
+page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of human cortex", f"""<div style="--c:var(--neurons)"><section><a href="research.html" class="eyebrow" style="text-decoration:none">← Research</a><p class="eyebrow" style="margin-top:14px">Independent research project · 2026</p><h1 style="font-size:clamp(30px,5vw,46px)">Spatial transcriptomics of human Alzheimer's cortex</h1>
 <div class="chips" style="margin-top:14px"><a class="chip" href="{REPO_AD}">Code, notebooks and report on GitHub ↗</a></div>
 <nav class="jump" aria-label="Sections of this page"><a href="#introduction">Introduction</a><a href="#data">Data</a><a href="#methods">Methods</a><a href="#findings">Key findings</a><a href="#biology">Biological analysis</a><a href="#ml">Machine learning</a><a href="#conclusion">Conclusion</a><a href="#limitations">Limitations</a><a href="#tools">Tools</a></nav></section>
 <section id="introduction"><h2>Introduction</h2>
@@ -349,7 +349,42 @@ page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of
 <section id="conclusion"><h2>Conclusion</h2><div class="prose"><p>Taken together, the findings point one way. In this tissue the oligodendrocyte lineage is more numerous, less mature, less coherent in its myelin programme, and concentrated in the zones where pathology-associated genes are highest. The change is spatially organised and not uniform, and the most disturbed zones impose a shared signature on every cell type living in them.</p>
 <p>The project compares one section per condition, so it cannot say how general this is or what comes first. What it does show is that the core oligodendrocyte signal survives a test against an independent atlas, and that a careful spatial analysis can separate what is robust from what is an artefact of the measurement. The next step is to repeat the analysis across more donors and across disease stages.</p></div></section>
 <section id="limitations"><h2>Limitations</h2><p class="note">Stated in the repository before any result. This is research and a portfolio project, not a clinical tool.</p><ul class="out">{"".join(f"<li><p style='font-weight:400'>{E(x)}</p></li>" for x in AD_LIMITS)}</ul></section>
-<section id="tools"><h2>Tools</h2><div class="chips" style="margin-top:10px">{"".join(skchip(x) for x in AD_TOOLS)}</div></section></div>""", "ad", "An independent analysis of 10x Xenium spatial transcriptomics of human Alzheimer's cortex.")
+<section id="tools"><h2>Tools</h2><div class="chips" style="margin-top:10px">{"".join(skchip(x) for x in AD_TOOLS)}</div></section></div>""", "research", "An independent analysis of 10x Xenium spatial transcriptomics of human Alzheimer's cortex.")
+
+# ---- research page
+def rcard(t, when, status, summary, methods, links=()):
+    lk = "".join(f'<a class="chip{"" if "↗" in l else " course"}" href="{u}">{E(l)}</a>' for l, u in links)
+    return f'<article class="card rc"><p class="eyebrow">{E(when)} · {E(status)}</p><h3>{E(t)}</h3><p>{E(summary)}</p><div class="leaves" style="margin:10px 0 0;padding:0;border:0">{"".join(f"<span>{E(x)}</span>" for x in methods)}</div>{f"""<div class="chips" style="margin-top:10px">{lk}</div>""" if lk else ""}</article>'
+_indep = "".join(rcard(*r) for r in RESEARCH_INDEP)
+_tum = "".join(rcard(t, role, st, "", ms) for t, role, st, ms in OMICS_PROJECTS)
+_tm = "".join(f'<div class="card"><h3 style="font-size:17px">{E(t)}</h3><p style="margin:8px 0 0;font-size:14.5px">{E(d)}</p></div>' for t, d in TUM_METHODS)
+_early = "".join(rcard(t, when, "", s, ms).replace(" · </p>", "</p>") for t, when, s, ms in RESEARCH_EARLIER)
+page("research.html", "Research", f"""<section><p class="eyebrow">Research</p><h1>Research</h1><p class="lede">My research so far: independent projects in spatial transcriptomics and genetics, multi-omics research at the Technical University of Munich, and earlier work during my degrees.</p>
+<nav class="jump" aria-label="Sections of this page"><a href="#independent">Independent projects</a><a href="#tum">Research at TUM</a><a href="#earlier">Earlier research</a></nav></section>
+<section id="independent" style="--c:var(--neurons)"><h2>Independent projects</h2><p class="note">Designed, analysed and written up on my own. Code and reports are public where a repository is linked.</p><div class="rcs">{_indep}</div></section>
+<section id="tum" style="--c:var(--networks)"><h2>Research at the Technical University of Munich</h2><p class="note">2023 to 2026, on microbial sulfur metabolism in chronic intestinal inflammation and colitis-associated cancer, within Collaborative Research Centre 1371. Manuscripts are in preparation, with submission planned for 2027.</p>
+<div class="rcs">{_tum}</div>
+<h3 class="mlh">Methods I developed and applied</h3><div class="grid" style="margin-top:12px">{_tm}</div>
+<h3 class="mlh">Talks and posters</h3><ul class="out"><li><p style="font-weight:400">Talk at the Seeon conference, 2025: Westernized diets exacerbate tumorigenesis by expanding H₂S-producing Desulfovibrio in murine models of Atf6-driven colon cancer.</p></li><li><p style="font-weight:400">Talk at the Collaborative Research Centre 1371 retreat, 2025.</p></li><li><p style="font-weight:400">Three poster presentations.</p></li></ul></section>
+<section id="earlier" style="--c:var(--brain)"><h2>Earlier research</h2><p class="note">During my MSc at Manchester and my BSc at Amity University.</p><div class="rcs">{_early}</div></section>""", "research", "Research projects of Jagadrupa Sahoo: spatial transcriptomics, multi-omics and genetics.")
+
+# ---- home page
+_n_neuro = sum(1 for c in COURSES if c["id"] in NEURO_IDS and c["status"] != "todo")
+_path = "".join(f'<div class="pstep" style="--c:var(--{col})"><span class="pdot"></span><b>{E(t)}</b><span>{E(d)}</span><small>{E(w)}</small></div>' for t, d, w, col in PATH_STEPS)
+_why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)">{E(t)}</p><p style="margin:8px 0 0;font-size:15.5px;line-height:1.55">{E(d)}</p></div>' for t, d in WHY)
+_areas = "".join(f'<a class="card ccard" href="skills.html" style="border-top:3px solid var(--{t["col"]})"><h3>{E(t["name"])}</h3><small>{E(", ".join(br["name"] for br in t["branches"][:4]))}</small></a>' for t in TREE)
+_ms = "".join(f'<li><p style="font-weight:400">{E(t)}</p><small style="color:var(--muted)">{E(role)} · {E(st)}</small></li>' for t, role, st, _ in OMICS_PROJECTS[:3])
+page("index.html", "Jagadrupa Sahoo", f"""<section class="hero"><img class="me" src="assets/jagadrupa-sahoo.jpg" alt="Jagadrupa Sahoo" width="150" height="150"><div><p class="eyebrow">Bioinformatics · Neuroscience · Computational neuroscience</p><h1>Jagadrupa Sahoo</h1>
+<p class="lede">I am a bioinformatician working towards neuroscience and computational neuroscience. I study how the cells of the human cortex are reorganised in Alzheimer's disease, and I am interested in how molecular change becomes a change in what neural circuits do.</p>
+<div class="chips" style="margin-top:16px"><a class="chip big" href="mailto:{EMAIL}">{EMAIL}</a><a class="chip big" href="https://github.com/jagadrupa">GitHub ↗</a><a class="chip big course" href="research.html">Research</a><a class="chip big course" href="skills.html">Skills and certificates</a></div></div></section>
+<section><h2>Why neuroscience and computational neuroscience</h2><div class="intro3">{_why}</div><div class="ppath">{_path}</div></section>
+<section><h2>Featured project</h2><a class="card feat" href="alzheimers-project.html"><img loading="lazy" src="figs/ad-f3_zone_map.png" alt="Spatial zone map of the Alzheimer's section"><div><p class="eyebrow">Independent research project · 2026</p><h3>Spatial transcriptomics of human Alzheimer's cortex</h3>
+<p>About 45,000 cells from an Alzheimer's section and 24,000 from a matched healthy one. The oligodendrocyte lineage is the main axis of disruption, the pathology is spatially zoned, and the core result replicates in an independent atlas.</p>
+<div class="stats" style="margin-top:14px"><div class="stat"><b>19.7 → 36.0%</b><span>oligodendrocyte share</span></div><div class="stat"><b>0.59 vs 0.43</b><span>classifier transfer, by direction</span></div></div><span class="chip course" style="margin-top:14px;align-self:flex-start">Read the project →</span></div></a></section>
+<section><h2>Research in progress</h2><p class="note">Manuscripts in preparation from my research at the Technical University of Munich, with submission planned for 2027. <a href="research.html#tum">All research →</a></p><ul class="out">{_ms}</ul></section>
+<section><h2>Skills and training</h2><div class="stats"><a class="stat" href="skills.html#list"><b>{len(CERTS)}</b><span>verifiable certificates</span></a><a class="stat" href="courses.html"><b>{_n_neuro}</b><span>neuroscience courses completed or audited</span></a><a class="stat" href="courses/uw-computational-neuroscience.html"><b>{notes_pages}</b><span>pages of my own course notes</span></a></div>
+<div class="grid" style="margin-top:18px">{_areas}</div></section>
+<section><h2>Contact</h2><p style="font-size:17px;margin:10px 0 0">I am glad to hear from researchers and programmes working in neuroscience and computational neuroscience: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>""", "home", "Jagadrupa Sahoo: bioinformatics, neuroscience and computational neuroscience.")
 
 # ---- certificates
 assert set(CERT_META) == set(CERTS) == set(CERT_GROUP), "certificate tables out of step"
@@ -401,10 +436,10 @@ for i, t in enumerate(TREE):
 assert sum(len(v) for v in groups.values()) == len(CERTS) + len(AUDITS)
 n_inst = len({x.strip() for v in CERTS.values() for x in v[1].replace(" · edX", "").split(" and ")})
 js = "<script>(function(){var p=document.querySelectorAll('.tpill');function set(b,o){b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o}p.forEach(function(b){b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true')})});var a=document.getElementById('tall');a.addEventListener('click',function(){var o=a.dataset.o!=='1';p.forEach(function(b){set(b,o)});a.dataset.o=o?'1':'';a.textContent=o?'Collapse all':'Expand all'})})();</script><noscript><style>.tkids[hidden]{display:block!important}</style></noscript>"
-page("index.html", "Jagadrupa Sahoo: skills and certificates", f"""<section><p class="eyebrow">Bioinformatics · Neuroscience</p><h1>Skills and certificates</h1><p class="lede">I work in bioinformatics and study human Alzheimer's tissue with spatial transcriptomics. This is a summary of my skills, and the certifications that have helped me build them over the years. Expand any area to see how each skill was gained.</p></section>
+page("skills.html", "Skills and certificates", f"""<section><p class="eyebrow">Skills and certificates</p><h1>Skills and certificates</h1><p class="lede">This is a summary of my skills, and the certifications that have helped me build them over the years. Expand any area to see how each skill was gained.</p></section>
 <section><h2>Summary map</h2><p class="note">This map traces how my research interests have developed over the years, from biotechnology and bioinformatics towards neuroscience. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree}</div></section>
 {toolkit}
 <section id="list"><h2>Certificates and courses</h2><p class="note">Select a card for the course details, the full certificate and the issuer's verification link. Audited courses are marked and carry no certificate.</p>{lists}</section>{js}""", "certs")
-(ROOT/"certificates.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Skills and certificates</title><meta http-equiv="refresh" content="0; url=index.html"><link rel="canonical" href="index.html"></head><body><p><a href="index.html">Skills and certificates</a></p></body></html>')
+(ROOT/"certificates.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Skills and certificates</title><meta http-equiv="refresh" content="0; url=skills.html"><link rel="canonical" href="skills.html"></head><body><p><a href="skills.html">Skills and certificates</a></p></body></html>')
 (ROOT/".nojekyll").write_text("")
 print(f"built: {n_out} course outcomes, {checked} note references verified on their cited PDF page, {notes_pages} note pages")

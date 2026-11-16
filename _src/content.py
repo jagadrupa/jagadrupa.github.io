@@ -861,3 +861,42 @@ AD_QUESTIONS = [
  ("Shared or specific", "Is the disease signature specific to one cell type, or a local zone effect shared by every cell type living there?", "brain"),
  ("Machine learning", "Can a model learn cell-type identity from expression and spatial context, and does it transfer across regions and disease state?", "networks"),
 ]
+
+# ---- home and research pages
+EMAIL = "jagadrupa.sahoo@gmail.com"
+REPO = "https://github.com/jagadrupa/"
+PATH_STEPS = [("Biotechnology", "BSc (Hons), Amity University", "2018 to 2021", "brain"), ("Bioinformatics", "MSc, University of Manchester", "2021 to 2022", "molecules"),
+              ("Multi-omics research", "Technical University of Munich", "2023 to 2026", "networks"), ("Neuroscience and computational neuroscience", "Courses, own notes and an Alzheimer's project", "2026 onwards", "neurons")]
+WHY = [("Where I started", "I trained in biotechnology and bioinformatics, and my research years have been spent finding structure in large biological datasets."),
+       ("What drew me to the brain", "Working on human Alzheimer's tissue showed me that the questions I care most about are about the brain: why particular cells and circuits are vulnerable, and how a molecular change becomes a change in function."),
+       ("Where I am heading", "I want to work where neuroscience meets computation, on models that connect what cells express to what circuits do. I have been building that foundation through courses, my own notes and simulations.")]
+# title, when/role, status, summary, methods, links
+RESEARCH_INDEP = [
+ ("Spatial transcriptomics of human Alzheimer's cortex", "Independent project, 2026", "Public repository and technical report",
+  "Single-cell spatial transcriptomics of an Alzheimer's and a matched healthy section of human cortex. The oligodendrocyte lineage is the main axis of disruption, and the core result replicates in an independent atlas.",
+  ["10x Xenium", "Cell-type annotation", "Spatial statistics", "Spatial zoning", "Pseudotime", "Cell-type classifiers", "Validation against SEA-AD"], [("Project page", "alzheimers-project.html"), ("Repository ↗", REPO + "Spatial_Alzheimers_AI_project")]),
+ ("Multi-omics integration of published Alzheimer's disease datasets", "Independent project, 2026", "Analysis complete",
+  "Genomic, transcriptomic and proteomic data from published Alzheimer's studies, harmonised and integrated to find features that vary together across molecular layers, and where transcript and protein disagree.",
+  ["MOFA+", "DIABLO", "sPLS", "Transcript–protein concordance"], []),
+ ("Spatial niches in breast cancer", "Independent project", "Public repository",
+  "Visium spatial transcriptomics of invasive ductal carcinoma: manual niche annotation, then five supervised classifiers. Histogram gradient boosting reached 0.949 accuracy on a random split and a mean of 0.928 when whole tissue regions were held out.",
+  ["10x Visium", "Niche annotation", "Squidpy neighbour features", "Spatial hold-out validation", "Gradient boosting"], [("Repository ↗", REPO + "NicheAI_breast_cancer")]),
+ ("Congenital heart disease and kidney disease genetics", "MSc project, re-analysed in 2026", "Public repository",
+  "Rare-variant burden testing across 40 genes. The hypothesised link to chronic kidney disease was not supported (odds ratio 0.95, p = 0.68) and is reported as a negative result; the real signal is with kidney malformation (odds ratio 1.77, p = 3.1 × 10⁻¹³), pointing to a ciliary mechanism.",
+  ["Rare-variant burden testing", "GWAS", "REGENIE", "LD score regression"], [("Repository ↗", REPO + "chd-ckd-genetics")]),
+ ("Proteome analysis pipeline", "Independent project", "Public repository",
+  "Four small command-line tools that chain together: from a genome to open reading frames, peptides, mass-to-charge values and a ranking of proteases.",
+  ["Python", "Command-line tools", "Unit tests"], [("Repository ↗", REPO + "proteome-analysis-pipeline")]),
+]
+TUM_METHODS = [
+ ("Deep learning on sequencing signal", "Variational convolutional networks in PyTorch for predicting methylation state and variants from nanopore and Illumina signal."),
+ ("Graph and network models", "Heterogeneous graphs linking genomes, metabolites and environmental variables, analysed with network propagation and community detection."),
+ ("Multi-view integration", "Latent-variable methods (MOFA+, DIABLO, sPLS, CCA, MINT) to integrate five data types into shared low-dimensional representations."),
+ ("Metabolic modelling", "Genome-scale metabolic reconstruction and flux analysis to predict how microbial communities behave under defined conditions."),
+ ("Reproducible pipelines", "Containerised Nextflow and Snakemake pipelines on a SLURM cluster, processing terabyte-scale sequencing data end to end."),
+]
+RESEARCH_EARLIER = [
+ ("Protein–protein docking and conformational analysis", "MSc research project, University of Manchester, 2022", "Docking and conformational analysis of protein complexes.", ["HADDOCK", "Structural bioinformatics"]),
+ ("Quercetin in a zebrafish model of Alzheimer's disease", "Bachelor's project, Amity University", "Behavioural and biochemical analysis in a zebrafish disease model, with docking of quercetin compounds against acetylcholinesterase.", ["Zebrafish model", "Behavioural analysis", "Biochemical analysis", "Molecular docking"]),
+ ("GPCR-targeted therapeutic strategies in neurodegenerative disease", "Review, Ethical Edufabrica, 2020", "A literature review of G-protein-coupled receptors as drug targets in neurodegeneration, alongside a differential expression analysis of microRNAs from RNA-seq data.", ["Literature review", "GPCR signalling", "RNA-seq"]),
+]
