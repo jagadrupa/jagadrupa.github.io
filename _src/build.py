@@ -310,19 +310,27 @@ for c in COURSES:
     page(f'courses/{c["id"]}.html', c["title"], f'<div style="--c:var(--{col_})">{body}</div>', "courses" if c["id"] in NEURO_IDS else "other", c["summary"])
 
 # ---- Alzheimer's project
-_pt, _pc, _ps = PICTURES["ad-project"]
-_find = "".join(f'<li><p>{E(t)}</p><div class="chips"><a class="chip" href="{REPO_AD}{a}">Repository section ↗</a></div></li>' for _, _, t, a in AD_FINDINGS)
-_figs = "".join(f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)} · <a href="{REPO_AD}{a}">source ↗</a></figcaption></figure>' for f, cap, a in AD_FIGS)
 _steps = "".join(f'<li><p>{E(t)}</p><p class="od">{E(d)}</p></li>' for t, d in AD_STEPS)
+_key = "".join(f'<div class="finding"><div><p class="eyebrow">Finding {i + 1}</p><h3>{E(t)}</h3><p>{E(d)}</p><div class="chips"><a class="chip" href="{REPO_AD}{a}">Evidence in the repository ↗</a></div></div>'
+               f'<figure><a href="figs/{f}.png"><img loading="lazy" src="figs/{f}.png" alt="{E(cap)}"></a><figcaption>{E(cap)}</figcaption></figure></div>' for i, (t, d, f, cap, a) in enumerate(AD_KEY))
 page("alzheimers-project.html", "Alzheimer's project: spatial transcriptomics of human cortex", f"""<div style="--c:var(--neurons)"><section><p class="eyebrow">Independent research project · 2026</p><h1 style="font-size:clamp(30px,5vw,46px)">Spatial transcriptomics of human Alzheimer's cortex</h1>
-<p class="lede">I asked how the cellular architecture of human cortex is reorganised in Alzheimer's disease, and whether a model can learn that organisation. The oligodendrocyte lineage turned out to be the main axis of disruption: more numerous, less oligodendrocyte-like, arrested in maturation, and concentrated in the pathological zones.</p>
-<div class="chips" style="margin-top:14px"><a class="chip" href="{REPO_AD}">Code, notebooks and report on GitHub ↗</a><a class="chip src" href="{REPO_AD}#limitations">Limitations ↗</a></div>
+<div class="chips" style="margin-top:14px"><a class="chip" href="{REPO_AD}">Code, notebooks and report on GitHub ↗</a></div></section>
+<section><h2>Introduction</h2><div class="prose"><p>Alzheimer's disease does not damage the brain evenly. Some cell populations and some regions fail early while their neighbours hold on for years, and the reasons for that selectivity are still not understood. Answering the question needs measurements that keep each cell in its place in the tissue, which is what spatial transcriptomics provides.</p>
+<p>In this project I analysed single-cell spatial transcriptomics of human cortex, comparing a section from a person with Alzheimer's disease with a matched healthy section. The project is in two halves: bioinformatics, to establish what is happening biologically and where, and machine learning, to test whether a model can learn the tissue's cellular organisation.</p>
+<p>These were the questions I set before the analysis:</p>
+<ol class="qs"><li>Which cortical cell types are present in each section, and how do their proportions shift in Alzheimer's disease?</li>
+<li>Is the pathology spread evenly across the section, or does the tissue contain distinct affected and preserved zones?</li>
+<li>Does the same cell type express its defining gene programme at the same level in both conditions, or is cell identity itself eroded?</li>
+<li>Do the gene programmes that hold together in healthy tissue, the myelin module in particular, stay coherent in Alzheimer's disease?</li>
+<li>Is the disease signature specific to one cell type, or a local zone effect shared by every cell type living there?</li>
+<li>Can a machine-learning model learn cell-type identity from expression and spatial context, and does it transfer across tissue regions and across disease state?</li></ol>
+<p>The analysis runs from quality control to external validation. Its main result is that the oligodendrocyte lineage, the cells that make myelin, is the dominant axis of disruption in this tissue.</p></div>
 <div class="stats"><div class="stat"><b>44,955</b><span>cells in the Alzheimer's section</span></div><div class="stat"><b>24,406</b><span>cells in the matched healthy section</span></div><div class="stat"><b>19.7 → 36.0%</b><span>oligodendrocyte share, healthy to Alzheimer's</span></div><div class="stat"><b>58% vs 15%</b><span>oligodendrocytes in AD-hot against preserved zones</span></div></div></section>
-<section><h2>Graphical summary</h2><figure class="demo" style="margin:16px 0"><h4>{E(_pt)}</h4><p>{E(_pc)}</p>{_ps}</figure></section>
-<section><h2>Questions</h2><ul class="out"><li><p>How is the cellular architecture of human cortex reorganised in Alzheimer's disease, and is that reorganisation spatially structured?</p></li><li><p>Can machine learning learn cell-type identity from expression and spatial context, and does it transfer across tissue regions and across disease state?</p></li></ul></section>
-<section><h2>What I did</h2><p class="note">The data are a public 10x Genomics Xenium dataset: one Alzheimer's and one matched healthy section of human cortex, prepared and processed the same way.</p><ol class="out" style="list-style:none">{_steps}</ol></section>
-<section><h2>Key findings</h2><p class="note">Each finding links to the section of the repository that shows the evidence.</p><ul class="out">{_find}<li><p>Classifiers trained on the Alzheimer's section and tested on the healthy one generalise better (macro F1 about 0.59) than the reverse (about 0.43), across every model family tested.</p><div class="chips"><a class="chip" href="{REPO_AD}#the-asymmetry-is-the-finding">Repository section ↗</a></div></li></ul></section>
-<section><h2>Figures</h2><p class="note">From the analysis notebooks.</p><div class="gallery">{_figs}</div></section>
+<section><h2>Data</h2><p style="margin:10px 0 0">The public <a href="{REPO_AD}#dataset">10x Genomics Xenium In Situ human brain dataset</a>: one Alzheimer's and one matched healthy cortical section, prepared and processed the same way.</p></section>
+<section><h2>Methods</h2><ol class="out" style="list-style:none">{_steps}</ol></section>
+<section><h2>Key findings</h2>{_key}</section>
+<section><h2>Conclusion</h2><div class="prose"><p>Taken together, the findings point one way. In this tissue the oligodendrocyte lineage is more numerous, less mature, less coherent in its myelin programme, and concentrated in the zones where pathology-associated genes are highest. The change is spatially organised and not uniform, and the most disturbed zones impose a shared signature on every cell type living in them.</p>
+<p>The project compares one section per condition, so it cannot say how general this is or what comes first. What it does show is that the core oligodendrocyte signal survives a test against an independent atlas, and that a careful spatial analysis can separate what is robust from what is an artefact of the measurement. The next step is to repeat the analysis across more donors and across disease stages.</p></div></section>
 <section><h2>Limitations</h2><p class="note">Stated in the repository before any result. This is research and a portfolio project, not a clinical tool.</p><ul class="out">{"".join(f"<li><p style='font-weight:400'>{E(x)}</p></li>" for x in AD_LIMITS)}</ul></section>
 <section><h2>Tools</h2><div class="chips" style="margin-top:10px">{"".join(skchip(x) for x in AD_TOOLS)}</div></section></div>""", "ad", "An independent analysis of 10x Xenium spatial transcriptomics of human Alzheimer's cortex.")
 

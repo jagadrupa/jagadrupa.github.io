@@ -99,3 +99,10 @@ details.les summary{padding:0}details.les summary::before{content:"▸ "}details
 .ah{font-size:24px;margin:26px 0 0;padding-left:12px;border-left:4px solid var(--c)}
 
 .tbs .tb{display:inline-flex;align-items:center;gap:7px;padding:5px 11px 5px 9px}.tb svg{flex:none}
+
+.prose{max-width:46em}.prose p{font-size:17px;line-height:1.6;margin:12px 0 0}
+.finding{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start;padding:24px 0;border-top:1px solid var(--line)}.finding:first-of-type{margin-top:14px}
+.finding h3{font-size:21px;margin:4px 0 8px}.finding p{margin:0 0 10px}.finding figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;color:#1d2329}.finding img{width:100%;display:block}.finding figcaption{font-size:12.5px;padding:7px 10px;border-top:1px solid #e3e0d6}
+@media (max-width:760px){.finding{grid-template-columns:1fr}}
+
+.qs{margin:10px 0 0;padding-left:22px;font-size:16.5px;line-height:1.55}.qs li{margin:6px 0;padding-left:4px}.qs li::marker{color:var(--accent);font-family:var(--mono);font-size:13px}

@@ -833,3 +833,21 @@ OTHER_DETAIL["ph125"] = [
  ("Model fitting and recommendation systems", "Fitting models to a large real dataset, building a recommendation system, and regularising it.", ["Case study: MNIST digits", "Recommendation systems", "Regularisation"]),
  ("Final assessment", "A graded project applying the course's methods to a medical dataset.", ["Breast cancer prediction project"]),
 ]
+
+# title, detail, figure file (in figs/), figure caption, repository anchor
+AD_KEY = [
+ ("The oligodendrocyte lineage is the main axis of disruption", "Its share of cells nearly doubles, from 19.7% in the healthy section to 36.0% in the Alzheimer's section, and it becomes far more spatially segregated from neurons.",
+  "ad-f1_cell_type_proportions", "Cell-type proportions in the two sections", "#more-oligodendrocytes-each-less-oligodendrocyte-like"),
+ ("The myelin programme fragments instead of simply declining", "MOBP becomes the most spatially clustered gene, while CLDN11, OPALIN and CNDP1 lose their spatial structure. Myelin genes that are expressed together in healthy tissue stop moving together.",
+  "ad-f2_cldn11_mag", "CLDN11 against MAG: co-expressed in healthy tissue, decoupled in Alzheimer's", "#the-myelin-module-fragments--the-central-oligodendrocyte-result"),
+ ("Pathology is spatially zoned", "The Alzheimer's section divides into AD-hot zones, which are about 58% oligodendrocyte, and preserved zones, which are about 15% oligodendrocyte and more than half neuronal.",
+  "ad-f3_zone_map", "AD-hot and preserved zones across the section", "#milestone-9--spatial-ad-zoning"),
+ ("The zone effect is shared across cell types", "SPP1, CRYAB, GFAP and MOBP are raised in AD-hot zones in all five cell types tested, so they mark a local pathological environment and not one lineage.",
+  "ad-f4_zone_markers", "Pathology-associated genes by zone", "#per-cell-type-zone-deg--the-strongest-result-in-the-project"),
+ ("Oligodendrocyte maturation is arrested", "Along the path from precursor to mature oligodendrocyte, mean pseudotime falls from 0.490 in healthy tissue to 0.075 in Alzheimer's, where oligodendrocytes barely separate from their precursors.",
+  "ad-30_pseudotime_umap_ad", "Pseudotime from OPC to oligodendrocyte, Alzheimer's section", "#opc--oligodendrocyte-maturation-is-arrested"),
+ ("Alzheimer's tissue is harder to classify, and models transfer unevenly", "Cell-type classifiers trained on the Alzheimer's section and tested on the healthy one reach a macro F1 of about 0.59; the reverse reaches about 0.43, across every model family tested.",
+  "ad-f6_transfer_direction", "Cross-section transfer by direction", "#the-asymmetry-is-the-finding"),
+ ("The core claims replicate in an independent cohort", "Reactive-glia induction, loss of myelin genes (MAG, FDR 0.019) and rising SNCA all hold in SEA-AD, an independent whole-transcriptome atlas.",
+  "ad-32_seaad_myelin_oligo", "Myelin genes in oligodendrocytes across disease progression in SEA-AD", "#external-validation-against-sea-ad"),
+]
