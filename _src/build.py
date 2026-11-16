@@ -358,15 +358,15 @@ def rcard(t, when, status, summary, methods, links=()):
 _indep = "".join(rcard(*r) for r in RESEARCH_INDEP)
 _tum = "".join(rcard(t, role, st, "", ms) for t, role, st, ms in OMICS_PROJECTS)
 _tm = "".join(f'<div class="card"><h3 style="font-size:17px">{E(t)}</h3><p style="margin:8px 0 0;font-size:14.5px">{E(d)}</p></div>' for t, d in TUM_METHODS)
-_early = "".join(rcard(t, when, "", s, ms).replace(" · </p>", "</p>") for t, when, s, ms in RESEARCH_EARLIER)
-page("research.html", "Research", f"""<section><p class="eyebrow">Research</p><h1>Research</h1><p class="lede">My research so far: independent projects in spatial transcriptomics and genetics, multi-omics research at the Technical University of Munich, and earlier work during my degrees.</p>
-<nav class="jump" aria-label="Sections of this page"><a href="#independent">Independent projects</a><a href="#tum">Research at TUM</a><a href="#earlier">Earlier research</a></nav></section>
+_early = "".join(rcard(t, when, "", s, ms, lk).replace(" · </p>", "</p>") for t, when, s, ms, lk in RESEARCH_EARLIER)
+page("research.html", "Research", f"""<section><p class="eyebrow">Research</p><h1>Research</h1><p class="lede">My research so far: independent projects in spatial transcriptomics, multi-omics research at the Technical University of Munich, and the research I did during my studies.</p>
+<nav class="jump" aria-label="Sections of this page"><a href="#independent">Independent projects</a><a href="#tum">Research at TUM</a><a href="#studies">Research during my studies</a></nav></section>
 <section id="independent" style="--c:var(--neurons)"><h2>Independent projects</h2><p class="note">Designed, analysed and written up on my own. Code and reports are public where a repository is linked.</p><div class="rcs">{_indep}</div></section>
 <section id="tum" style="--c:var(--networks)"><h2>Research at the Technical University of Munich</h2><p class="note">2023 to 2026, on microbial sulfur metabolism in chronic intestinal inflammation and colitis-associated cancer, within Collaborative Research Centre 1371. Manuscripts are in preparation, with submission planned for 2027.</p>
 <div class="rcs">{_tum}</div>
 <h3 class="mlh">Methods I developed and applied</h3><div class="grid" style="margin-top:12px">{_tm}</div>
 <h3 class="mlh">Talks and posters</h3><ul class="out"><li><p style="font-weight:400">Talk at the Seeon conference, 2025: Westernized diets exacerbate tumorigenesis by expanding H₂S-producing Desulfovibrio in murine models of Atf6-driven colon cancer.</p></li><li><p style="font-weight:400">Talk at the Collaborative Research Centre 1371 retreat, 2025.</p></li><li><p style="font-weight:400">Three poster presentations.</p></li></ul></section>
-<section id="earlier" style="--c:var(--brain)"><h2>Earlier research</h2><p class="note">During my MSc at Manchester and my BSc at Amity University.</p><div class="rcs">{_early}</div></section>""", "research", "Research projects of Jagadrupa Sahoo: spatial transcriptomics, multi-omics and genetics.")
+<section id="studies" style="--c:var(--brain)"><h2>Research during my studies</h2><p class="note">Projects completed as part of my MSc at the University of Manchester and my BSc at Amity University.</p><div class="rcs">{_early}</div></section>""", "research", "Research projects of Jagadrupa Sahoo: spatial transcriptomics, multi-omics and genetics.")
 
 # ---- certificates
 assert set(CERT_META) == set(CERTS) == set(CERT_GROUP), "certificate tables out of step"
@@ -430,10 +430,14 @@ _why = "".join(f'<div class="card"><p class="eyebrow" style="color:var(--accent)
 def _ri(t, sub, href): return f'<a class="ri" href="{href}"><b>{E(t)}</b><small>{E(sub)}</small></a>'
 _tabs = [("Independent projects", "".join(_ri(t, f"{w} · {st}", "alzheimers-project.html" if i == 0 else "research.html#independent") for i, (t, w, st, *_) in enumerate(RESEARCH_INDEP))),
          ("Research at TUM", "".join(_ri(t, f"{role} · {st}", "research.html#tum") for t, role, st, _ in OMICS_PROJECTS)),
-         ("Earlier research", "".join(_ri(t, w, "research.html#earlier") for t, w, *_ in RESEARCH_EARLIER))]
+         ("Research during my studies", "".join(_ri(t, w, "research.html#studies") for t, w, *_ in RESEARCH_EARLIER))]
 _RI = 'class="ri"'
 _tabbtn = "".join(f'<button type="button" role="tab" class="tabb" aria-selected="{"true" if i == 0 else "false"}" data-t="{i}">{E(n)} <small>{h.count(_RI)}</small></button>' for i, (n, h) in enumerate(_tabs))
 _tabpan = "".join(f'<div class="tabp" role="tabpanel" data-t="{i}"{"" if i == 0 else " hidden"}>{h}</div>' for i, (n, h) in enumerate(_tabs))
+_can = ""
+for i_, (area, col, src, groups_) in enumerate(CAN_DO):
+    kids = "".join(f'<div class="tbr"><div class="bhead"><span class="bpill">{E(g)}</span></div><div class="leaves">{"".join(f"<span>{E(x)}</span>" for x in ab)}</div></div>' for g, ab in groups_)
+    _can += f'<div class="tn" style="--c:var(--{col})"><button type="button" class="tpill" aria-expanded="{"true" if i_ == 0 else "false"}"><span class="tw">{E(area)}</span><small>{sum(len(ab) for _, ab in groups_)} skills</small></button><div class="tkids"{"" if i_ == 0 else " hidden"}><p class="tnote">{E(src)}</p>{kids}</div></div>'
 _tabjs = "<script>(function(){var b=document.querySelectorAll('.tabb'),p=document.querySelectorAll('.tabp');b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.setAttribute('aria-selected',y===x)});p.forEach(function(q){q.hidden=q.dataset.t!==x.dataset.t})})})})();</script><noscript><style>.tabp[hidden]{display:grid!important}</style></noscript>"
 page("index.html", "Jagadrupa Sahoo", f"""<section class="hero"><img class="me" src="assets/jagadrupa-sahoo.jpg" alt="Jagadrupa Sahoo" width="150" height="150"><div><h1>Jagadrupa Sahoo</h1>
 <p class="lede">I am a bioinformatician working towards neuroscience and computational neuroscience. I study how the cells of the human cortex are reorganised in Alzheimer's disease, and I am interested in how molecular change becomes a change in what neural circuits do.</p>
@@ -446,7 +450,7 @@ page("index.html", "Jagadrupa Sahoo", f"""<section class="hero"><img class="me" 
 <p>In this tissue the oligodendrocyte lineage, the cells that make myelin, is more numerous, less mature, less coherent in its myelin programme, and concentrated in the zones where pathology is highest. The change is spatially organised and not uniform, and the most disturbed zones impose a shared signature on every cell type living in them. The core signal survives a test against an independent atlas.</p>
 <span class="chip course" style="margin-top:14px;align-self:flex-start">Read the project →</span></div></a></section>
 <section><h2>Research</h2><p class="note">All projects, by where they were done. Select a project for the detail.</p><div class="tabs" role="tablist">{_tabbtn}</div>{_tabpan}</section>
-<section><h2>Skills and training</h2><p class="note">{len(CERTS)} certificates, {_n_neuro} neuroscience courses and {notes_pages} pages of my own notes stand behind these. Select an area to open it; a branch with courses links to them. <button type="button" id="tall" class="linkb">Expand all</button></p><div class="tree">{tree.replace('href="#g-', 'href="skills.html#g-')}</div></section>
+<section><h2>What I can do</h2><p class="note">Practical skills, grouped by where I use them. Select an area to open it. <button type="button" id="tall" class="linkb">Expand all</button> The courses and certificates behind them are on the <a href="skills.html">Skills and certificates</a> page.</p><div class="tree">{_can}</div></section>
 <section><h2>Contact</h2><p style="font-size:17px;margin:10px 0 0">I am glad to hear from researchers and programmes working in neuroscience and computational neuroscience: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>{js}{_tabjs}""", "home", "Jagadrupa Sahoo: bioinformatics, neuroscience and computational neuroscience.")
 
 (ROOT/"certificates.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Skills and certificates</title><meta http-equiv="refresh" content="0; url=skills.html"><link rel="canonical" href="skills.html"></head><body><p><a href="skills.html">Skills and certificates</a></p></body></html>')
