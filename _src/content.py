@@ -913,6 +913,7 @@ CAN_DO = [
   ("Pipelines and computing", ["Pipeline development", "Nextflow", "Snakemake", "High-performance and GPU computing", "Docker", "Linux"]),
   ("Sharing work", ["Git and GitHub", "Jupyter notebooks", "Unit tests", "Interactive analysis tools", "Public repositories with written reports"])]),
  ("Neuroscience", "neurons", "Coursework, written up as my own notes and simulations, and the Alzheimer's project", [
+  ("Mathematics", ["Linear algebra: vectors, eigenvalues, change of basis", "Calculus and differential equations", "Probability and Bayes' rule", "Stochastic processes: Poisson spiking", "Dynamical systems: fixed points and nullclines", "Information theory", "Optimisation by gradient descent"]),
   ("Neural data and models", ["Encoding and decoding models", "Spike-triggered averages", "Signal detection theory", "Information in spike trains"]),
   ("Simulating neurons and networks", ["Hodgkin–Huxley and integrate-and-fire neurons", "Hebbian and Oja learning rules", "Temporal-difference learning"]),
   ("Neuroimaging", ["fMRI experimental design", "General Linear Model analysis", "Structural MRI processing in R"]),
